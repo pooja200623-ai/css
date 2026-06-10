@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional portfolio of a Full-Stack Developer specializing in PHP, MySQL, JavaScript, and modern web technologies.">
+    <meta name="keywords" content="portfolio, full stack developer, PHP, MySQL, JavaScript, web developer">
+    <title>DevPortfolio — Full Stack Developer</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Scroll Progress Bar -->
+<div id="scroll-progress"></div>
+
+<!-- ====== Navigation ====== -->
+<nav id="navbar">
+    <a href="#hero" class="nav-logo">&lt;DM /&gt;</a>
+    <div class="nav-links">
+        <a href="#hero" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a href="admin/login.php" class="nav-cta" target="_blank"><i class="fas fa-lock"></i> Admin</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <a href="admin/login.php" target="_blank"><i class="fas fa-lock"></i> Admin Panel</a>
+</div>
+
+<!-- ====== Hero Section ====== -->
+<section id="hero">
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="hero-content">
+        <div class="hero-badge">
+            <span class="dot"></span>
+            Available for freelance & full-time roles
+        </div>
+
+        <h1 class="hero-name">
+            Hi, I'm <span class="gradient-text">Dev Miller</span>
+        </h1>
+
+        <div class="hero-typewriter">
+            <span id="typewriter-text"></span><span class="typed-cursor">|</span>
+        </div>
+
+        <p class="hero-desc">
+            I craft beautiful, high-performance web experiences with clean code and modern design. Passionate about building scalable back-ends and pixel-perfect interfaces.
+        </p>
+
+        <div class="hero-btns">
+            <a href="#projects" class="btn-grad"><i class="fas fa-folder-open"></i> View My Work</a>
+            <a href="#contact" class="btn-outline"><i class="fas fa-paper-plane"></i> Get In Touch</a>
+        </div>
+
+        <div class="hero-stats">
+            <div>
+                <div class="hero-stat-num">3+</div>
+                <div class="hero-stat-label">Years Experience</div>
+            </div>
+            <div>
+                <div class="hero-stat-num">50+</div>
+                <div class="hero-stat-label">Projects Done</div>
+            </div>
+            <div>
+                <div class="hero-stat-num">30+</div>
+                <div class="hero-stat-label">Happy Clients</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== About Section ====== -->
+<section id="about">
+    <span class="section-label reveal">About Me</span>
+    <h2 class="section-title reveal">Turning ideas into<br>digital reality</h2>
+
+    <div class="about-grid">
+        <div class="about-text reveal-left">
+            <p>
+                I'm a passionate <strong>Full-Stack Web Developer</strong> with over 3 years of experience building robust, scalable applications. I specialize in PHP, MySQL, and modern JavaScript frameworks, crafting solutions that are both technically sound and visually stunning.
+            </p>
+            <p>
+                My journey in development started with a love for problem-solving. Today, I help businesses and individuals build their digital presence through clean, efficient, and maintainable code.
+            </p>
+            <p>
+                When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or designing user interface concepts.
+            </p>
+            <div class="about-tags">
+                <span class="about-tag"><i class="fas fa-map-marker-alt"></i> Available Remote</span>
+                <span class="about-tag"><i class="fas fa-graduation-cap"></i> CS Graduate</span>
+                <span class="about-tag"><i class="fas fa-coffee"></i> Coffee Driven Dev</span>
+                <span class="about-tag"><i class="fas fa-globe"></i> Open to Relocation</span>
+            </div>
+        </div>
+
+        <div class="skills-section reveal-right" id="skills-container">
+            <div class="skills-loader" style="color:rgba(255,255,255,0.3);font-size:14px;padding:20px 0">
+                <i class="fas fa-spinner fa-spin"></i> Loading skills...
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== Projects Section ====== -->
+<section id="projects" style="max-width:100%;padding-left:5%;padding-right:5%">
+    <div style="max-width:1200px;margin:0 auto">
+        <span class="section-label reveal">My Work</span>
+        <h2 class="section-title reveal">Featured Projects</h2>
+        <p class="section-subtitle reveal">A selection of projects I've built with passion and purpose. Each one represents a unique challenge solved.</p>
+
+        <div class="filter-tabs reveal" id="filter-tabs">
+            <button class="filter-tab active" data-filter="All">All</button>
+            <button class="filter-tab" data-filter="Web">Web</button>
+            <button class="filter-tab" data-filter="App">App</button>
+            <button class="filter-tab" data-filter="API">API</button>
+            <button class="filter-tab" data-filter="Mobile">Mobile</button>
+        </div>
+
+        <div id="projects-loading">
+            <div class="spinner"></div>
+            Loading projects...
+        </div>
+
+        <div class="projects-grid" id="projects-grid"></div>
+    </div>
+</section>
+
+<!-- ====== Contact Section ====== -->
+<section id="contact">
+    <span class="section-label reveal">Contact</span>
+    <h2 class="section-title reveal">Let's Work Together</h2>
+    <p class="section-subtitle reveal">Have a project in mind or just want to say hello? Drop me a message and I'll get back to you within 24 hours.</p>
+
+    <div class="contact-grid">
+        <div class="contact-info reveal-left">
+            <h3>Get In Touch</h3>
+            <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+
+            <div class="contact-detail">
+                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                <div class="contact-text">
+                    <a href="mailto:hello@devmiller.dev">hello@devmiller.dev</a>
+                    <span>Email</span>
+                </div>
+            </div>
+            <div class="contact-detail">
+                <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                <div class="contact-text">
+                    <a href="tel:+1234567890">+1 (234) 567-890</a>
+                    <span>Phone</span>
+                </div>
+            </div>
+            <div class="contact-detail">
+                <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="contact-text">
+                    <a href="#">New York, USA</a>
+                    <span>Location</span>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="#" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link" title="CodePen"><i class="fab fa-codepen"></i></a>
+            </div>
+        </div>
+
+        <div class="contact-form-wrap reveal-right">
+            <form class="contact-form" id="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cf-name">Your Name</label>
+                        <input type="text" id="cf-name" name="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cf-email">Email Address</label>
+                        <input type="email" id="cf-email" name="email" placeholder="john@example.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cf-subject">Subject</label>
+                    <input type="text" id="cf-subject" name="subject" placeholder="Project Inquiry" required>
+                </div>
+                <div class="form-group">
+                    <label for="cf-message">Message</label>
+                    <textarea id="cf-message" name="message" placeholder="Tell me about your project..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit" id="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ====== Footer ====== -->
+<footer>
+    <p>Designed & Built by <a href="#">Dev Miller</a> &bull; &copy; <span id="year"></span> All rights reserved.</p>
+    <p style="margin-top:8px;font-size:12px">Made with <i class="fas fa-heart" style="color:#f87171"></i> using PHP, MySQL &amp; JavaScript</p>
+</footer>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast">
+    <span class="toast-icon" id="toast-icon"></span>
+    <span id="toast-msg"></span>
+</div>
+
+<!-- Scripts -->
+<script src="js/typewriter.js"></script>
+<script src="js/main.js"></script>
+<script src="js/projects.js"></script>
+<script src="js/contact.js"></script>
+</body>
+</html>
