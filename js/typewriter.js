@@ -1,13 +1,15 @@
 /* ============================================
-   Typewriter Effect
+   Typewriter Effect — Digital Marketing Roles
    ============================================ */
 (function () {
     const roles = [
-        'Full-Stack Developer',
-        'PHP & MySQL Expert',
-        'JavaScript Enthusiast',
-        'UI/UX Craftsman',
-        'Problem Solver',
+        'Digital Marketing Strategist',
+        'SEO & SEM Specialist',
+        'Social Media Expert',
+        'Content Marketing Pro',
+        'PPC Campaign Manager',
+        'Brand Growth Consultant',
+        'Email Marketing Wizard',
     ];
 
     const el = document.getElementById('typewriter-text');
@@ -23,7 +25,7 @@
 
         if (pauseBeforeDelete) {
             pauseBeforeDelete = false;
-            setTimeout(tick, 1500);
+            setTimeout(tick, 1800);
             return;
         }
 
@@ -34,7 +36,7 @@
                 deleting = true;
                 pauseBeforeDelete = true;
             }
-            setTimeout(tick, 80 + Math.random() * 40);
+            setTimeout(tick, 70 + Math.random() * 40);
         } else {
             el.textContent = current.slice(0, charIndex - 1);
             charIndex--;
@@ -42,10 +44,9 @@
                 deleting = false;
                 roleIndex = (roleIndex + 1) % roles.length;
             }
-            setTimeout(tick, 45);
+            setTimeout(tick, 40);
         }
     }
 
-    // Small initial delay
-    setTimeout(tick, 800);
+    setTimeout(tick, 900);
 })();
