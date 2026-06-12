@@ -14,13 +14,15 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $name    = trim($_POST['name']    ?? '');
 $email   = trim($_POST['email']   ?? '');
 $subject = trim($_POST['subject'] ?? '');
+if (empty($subject)) {
+    $subject = 'Website Portfolio Message';
+}
 $message = trim($_POST['message'] ?? '');
 
 // Validation
 $errors = [];
 if (empty($name))                          $errors[] = 'Name is required.';
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'Valid email is required.';
-if (empty($subject))                       $errors[] = 'Subject is required.';
 if (strlen($message) < 10)                 $errors[] = 'Message must be at least 10 characters.';
 
 if (!empty($errors)) {

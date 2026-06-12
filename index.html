@@ -25,6 +25,7 @@
                 <li><a href="#services">Expertise</a></li>
                 <li><a href="#work">Case Studies</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#skills">Toolkit</a></li>
             </ul>
             <div class="nav-actions">
                 <a href="#contact" class="btn btn-outline">Let's Talk</a>
@@ -115,6 +116,32 @@
         </div>
     </section>
 
+    <!-- Case Studies / Work Section -->
+    <section id="work" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Selected Case Studies</h2>
+                <p class="section-desc">Real-world marketing campaigns and growth platforms built for impact.</p>
+            </div>
+            
+            <!-- Category Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-category="All">All Projects</button>
+                <button class="filter-tab" data-category="Web">Web Platforms</button>
+                <button class="filter-tab" data-category="App">Applications</button>
+                <button class="filter-tab" data-category="API">APIs & Integrations</button>
+            </div>
+            
+            <!-- Projects Grid -->
+            <div id="projects-grid" class="projects-grid">
+                <!-- Dynamically loaded via JS -->
+                <div class="loading-state">
+                    <i class="fas fa-spinner fa-spin"></i> Loading case studies...
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section id="about" class="section">
         <div class="container about-container">
@@ -131,6 +158,23 @@
                         <i class="fas fa-camera"></i>
                         <span>Professional Photo</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Toolkit Section -->
+    <section id="skills" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Technical Toolkit</h2>
+                <p class="section-desc">The technologies and tools I use to bring ideas to life.</p>
+            </div>
+            
+            <div id="skills-container" class="skills-grid">
+                <!-- Grouped skills loaded dynamically via JS -->
+                <div class="loading-state">
+                    <i class="fas fa-spinner fa-spin"></i> Loading toolkit...
                 </div>
             </div>
         </div>
@@ -179,6 +223,7 @@
                             <textarea id="message" rows="4" required placeholder="Tell me about your goals..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                        <div id="form-status" class="form-status"></div>
                     </form>
                 </div>
             </div>
