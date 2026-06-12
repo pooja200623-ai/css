@@ -6,56 +6,7 @@
 // ====== Year ======
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// ====== Custom Cursor ======
-(function initCursor() {
-    const cursor     = document.getElementById('cursor');
-    const cursorRing = document.getElementById('cursor-ring');
-    if (!cursor || !cursorRing) return;
-
-    let mouseX = 0, mouseY = 0;
-    let ringX  = 0, ringY  = 0;
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursor.style.left = mouseX + 'px';
-        cursor.style.top  = mouseY + 'px';
-    });
-
-    function animateRing() {
-        ringX += (mouseX - ringX) * 0.11;
-        ringY += (mouseY - ringY) * 0.11;
-        cursorRing.style.left = ringX + 'px';
-        cursorRing.style.top  = ringY + 'px';
-        requestAnimationFrame(animateRing);
-    }
-    animateRing();
-
-    document.addEventListener('mouseleave', () => {
-        cursor.style.opacity     = '0';
-        cursorRing.style.opacity = '0';
-    });
-    document.addEventListener('mouseenter', () => {
-        cursor.style.opacity     = '1';
-        cursorRing.style.opacity = '1';
-    });
-    document.addEventListener('mousedown', () => {
-        cursor.style.transform     = 'translate(-50%,-50%) scale(0.7)';
-        cursorRing.style.transform = 'translate(-50%,-50%) scale(0.85)';
-    });
-    document.addEventListener('mouseup', () => {
-        cursor.style.transform     = 'translate(-50%,-50%) scale(1)';
-        cursorRing.style.transform = 'translate(-50%,-50%) scale(1)';
-    });
-})();
-
-// ====== Scroll Progress Bar ======
-const scrollBar = document.getElementById('scroll-progress');
-window.addEventListener('scroll', () => {
-    const scrollTop   = document.documentElement.scrollTop;
-    const scrollTotal = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    scrollBar.style.width = (scrollTop / scrollTotal * 100) + '%';
-}, { passive: true });
+// ====== Cursor and Scroll removed for cleaner look ======
 
 // ====== Navbar scroll effect ======
 const navbar   = document.getElementById('navbar');
@@ -188,69 +139,7 @@ function renderSkills(grouped, container) {
     fills.forEach(fill => barObserver.observe(fill));
 }
 
-// ====== Particle Canvas ======
-(function initParticles() {
-    const canvas = document.getElementById('particles-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let W, H, particles;
-    const COUNT  = 65;
-    // Orange, violet, cyan palette matching brand
-    const COLORS = ['rgba(249,115,22,', 'rgba(139,92,246,', 'rgba(6,182,212,', 'rgba(236,72,153,'];
-
-    function resize() {
-        W = canvas.width  = canvas.offsetWidth;
-        H = canvas.height = canvas.offsetHeight;
-    }
-
-    function createParticle() {
-        return {
-            x:     Math.random() * W,
-            y:     Math.random() * H,
-            r:     Math.random() * 1.8 + 0.4,
-            dx:    (Math.random() - 0.5) * 0.32,
-            dy:    (Math.random() - 0.5) * 0.32,
-            a:     Math.random() * 0.4 + 0.08,
-            color: COLORS[Math.floor(Math.random() * COLORS.length)],
-        };
-    }
-
-    function init() { resize(); particles = Array.from({ length: COUNT }, createParticle); }
-
-    function draw() {
-        ctx.clearRect(0, 0, W, H);
-        particles.forEach(p => {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = p.color + p.a + ')';
-            ctx.fill();
-            p.x += p.dx; p.y += p.dy;
-            if (p.x < 0 || p.x > W) p.dx *= -1;
-            if (p.y < 0 || p.y > H) p.dy *= -1;
-        });
-        // Connecting lines
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const d  = Math.sqrt(dx*dx + dy*dy);
-                if (d < 110) {
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(249,115,22,${0.06 * (1 - d / 110)})`;
-                    ctx.lineWidth   = 0.5;
-                    ctx.stroke();
-                }
-            }
-        }
-        requestAnimationFrame(draw);
-    }
-
-    window.addEventListener('resize', resize, { passive: true });
-    init();
-    draw();
-})();
+// ====== Particle Canvas Removed ======
 
 // ====== Counter Animation for Result Cards ======
 (function initCounters() {
