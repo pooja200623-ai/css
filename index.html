@@ -3,153 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Rivera - Digital Marketing Strategist</title>
-    <!-- Use standard fonts and icons -->
+    <title>Alex Rivera | Digital Marketing Strategist</title>
+    
+    <!-- Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">Alex Rivera</a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="admin/login.php" class="btn-secondary">Login</a></li>
-                </ul>
-            </nav>
+    <!-- Elegant Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="brand">Alex Rivera.</a>
+            <ul class="nav-menu">
+                <li><a href="#services">Expertise</a></li>
+                <li><a href="#work">Case Studies</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#contact" class="btn btn-outline">Let's Talk</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modern Hero Section -->
+    <header class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="availability-badge">
+                    <span class="pulse-dot"></span> Available for new projects
+                </div>
+                <h1 class="hero-title">Elevating brands through strategic digital marketing.</h1>
+                <p class="hero-subtitle">I partner with ambitious companies to scale their online presence, optimize conversions, and build lasting customer relationships.</p>
+                <div class="hero-buttons">
+                    <a href="#work" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-text">Contact Me <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <!-- A clean, abstract geometric representation instead of generic AI elements -->
+                <div class="geometric-shape shape-1"></div>
+                <div class="geometric-shape shape-2"></div>
+                <div class="profile-image-container">
+                    <div class="profile-placeholder">AR</div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="hero" class="hero">
-            <div class="container hero-content">
-                <div class="hero-text">
-                    <h1>Hi, I'm Alex Rivera</h1>
-                    <h2>Digital Marketing Strategist</h2>
-                    <p>I help businesses improve their online presence through data-driven marketing strategies, SEO, and social media management.</p>
-                    <a href="#contact" class="btn-primary">Get In Touch</a>
+    <!-- Metrics Strip -->
+    <section class="metrics-strip">
+        <div class="metrics-container">
+            <div class="metric">
+                <span class="metric-number">$2M+</span>
+                <span class="metric-label">Ad Spend Managed</span>
+            </div>
+            <div class="metric divider"></div>
+            <div class="metric">
+                <span class="metric-number">320%</span>
+                <span class="metric-label">Average ROI</span>
+            </div>
+            <div class="metric divider"></div>
+            <div class="metric">
+                <span class="metric-number">60+</span>
+                <span class="metric-label">Happy Clients</span>
+            </div>
+            <div class="metric divider"></div>
+            <div class="metric">
+                <span class="metric-number">5+</span>
+                <span class="metric-label">Years Experience</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services / Expertise -->
+    <section id="services" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Areas of Expertise</h2>
+                <p class="section-desc">Comprehensive strategies tailored to your business goals.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Performance Marketing</h3>
+                    <p>Data-driven campaigns across Google Ads, Meta, and LinkedIn designed to maximize return on ad spend and drive qualified leads.</p>
                 </div>
-                <div class="hero-image">
-                    <img src="https://via.placeholder.com/300" alt="Alex Rivera">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-search"></i></div>
+                    <h3>Search Engine Optimization</h3>
+                    <p>Technical audits, keyword strategy, and content optimization to establish long-term organic visibility and authority.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-pen-nib"></i></div>
+                    <h3>Content Strategy</h3>
+                    <p>Engaging, high-value content ecosystems that nurture your audience from first touchpoint to loyal customer.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-envelope-open-text"></i></div>
+                    <h3>Lifecycle & Email</h3>
+                    <p>Automated sequences and targeted broadcasts that increase retention, lifetime value, and brand loyalty.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- About Section -->
-        <section id="about" class="bg-light">
-            <div class="container">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-content">
-                    <p>I'm a digital marketing strategist with over 5 years of experience helping businesses improve their online visibility and reach their target audience effectively.</p>
-                    <p>My approach focuses on understanding your audience, creating valuable content, and using the right channels to distribute your message. I prioritize sustainable growth and clear communication with my clients.</p>
-                    <ul class="skills-list">
-                        <li>SEO & Technical SEO</li>
-                        <li>Google Ads (SEM)</li>
-                        <li>Content Strategy</li>
-                        <li>Social Media Management</li>
-                        <li>Email Marketing</li>
-                        <li>Google Analytics</li>
-                    </ul>
-                </div>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container about-container">
+            <div class="about-text">
+                <h2 class="section-title">My approach to digital growth</h2>
+                <p>I don't believe in one-size-fits-all templates. Every brand has a unique voice, audience, and set of challenges. My methodology is rooted in deep market research, behavioral psychology, and rigorous A/B testing.</p>
+                <p>Over the last 5 years, I've had the privilege of working directly with founders and marketing teams to build sustainable growth engines that perform reliably month over month.</p>
+                <a href="#contact" class="btn btn-outline mt-4">Read full bio</a>
             </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services">
-            <div class="container">
-                <h2 class="section-title">My Services</h2>
-                <div class="grid">
-                    <div class="card">
-                        <i class="fas fa-search fa-2x"></i>
-                        <h3>SEO & SEM</h3>
-                        <p>Dominate search rankings and drive high-intent traffic that converts. From technical audits to content optimization.</p>
-                    </div>
-                    <div class="card">
-                        <i class="fab fa-instagram fa-2x"></i>
-                        <h3>Social Media</h3>
-                        <p>Build communities, spark conversations, and grow your brand across all platforms with data-driven strategies.</p>
-                    </div>
-                    <div class="card">
-                        <i class="fas fa-pen fa-2x"></i>
-                        <h3>Content Marketing</h3>
-                        <p>Compelling content that educates, entertains, and converts. Every word is crafted with purpose and SEO intent.</p>
-                    </div>
-                    <div class="card">
-                        <i class="fas fa-envelope fa-2x"></i>
-                        <h3>Email Marketing</h3>
-                        <p>Turn subscribers into loyal customers with personalized email sequences and high-converting campaigns.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="bg-light">
-            <div class="container">
-                <h2 class="section-title">Experience & Metrics</h2>
-                <div class="stats-grid">
-                    <div class="stat-box">
-                        <h3>5+</h3>
-                        <p>Years Experience</p>
-                    </div>
-                    <div class="stat-box">
-                        <h3>120+</h3>
-                        <p>Campaigns Managed</p>
-                    </div>
-                    <div class="stat-box">
-                        <h3>$2M+</h3>
-                        <p>Ad Spend Handled</p>
-                    </div>
-                    <div class="stat-box">
-                        <h3>60+</h3>
-                        <p>Clients Worked With</p>
+            <div class="about-image">
+                <div class="image-wrapper">
+                    <!-- Placeholder for a professional lifestyle photo -->
+                    <div class="photo-placeholder">
+                        <i class="fas fa-camera"></i>
+                        <span>Professional Photo</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Contact Section -->
-        <section id="contact">
-            <div class="container">
-                <h2 class="section-title">Contact Me</h2>
-                <p class="contact-intro">If you'd like to discuss a project or ask a question, feel free to reach out using the form below or via email.</p>
-                
-                <div class="contact-layout">
-                    <div class="contact-info">
-                        <p><i class="fas fa-envelope"></i> hello@alexrivera.marketing</p>
-                        <p><i class="fas fa-phone"></i> +1 (234) 567-890</p>
-                        <p><i class="fas fa-map-marker-alt"></i> New York, USA & Remote</p>
-                    </div>
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-dark">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2 class="section-title text-white">Let's build something great.</h2>
+                    <p class="text-light-gray">I'm currently accepting new clients. Reach out to discuss how we can accelerate your brand's growth.</p>
                     
-                    <form class="simple-form" id="contact-form">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
+                    <div class="contact-methods">
+                        <div class="method">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <span>Email me</span>
+                                <a href="mailto:hello@alexrivera.marketing">hello@alexrivera.marketing</a>
+                            </div>
+                        </div>
+                        <div class="method">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <span>Call me</span>
+                                <a href="tel:+1234567890">+1 (234) 567-890</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form id="contact-form" class="modern-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" required placeholder="Jane Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" required placeholder="jane@company.com">
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                            <label for="message">Project Details</label>
+                            <textarea id="message" rows="4" required placeholder="Tell me about your goals..."></textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary">Send Message</button>
+                        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
                     </form>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; <span id="year"></span> Alex Rivera. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <span class="brand-name">Alex Rivera.</span>
+                <p>Digital Marketing Strategist</p>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-dribbble"></i></a>
+            </div>
+            <div class="footer-copy">
+                &copy; <span id="year"></span> Alex Rivera. All rights reserved.
+            </div>
         </div>
     </footer>
 
