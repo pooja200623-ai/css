@@ -48,7 +48,7 @@ if ($action === 'edit' && $editId) {
 }
 
 $skills = $action === 'list' ? $db->query('SELECT * FROM skills ORDER BY category, name')->fetchAll() : [];
-$categories = ['Frontend','Backend','Database','Tools','Mobile','Other'];
+$categories = ['Paid Acquisition (PPC)','Search Engine Optimization','Marketing Tech & Analytics','Retention & Email'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

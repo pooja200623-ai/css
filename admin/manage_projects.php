@@ -55,7 +55,7 @@ if ($action === 'edit' && $editId) {
 }
 
 $projects = $action === 'list' ? $db->query('SELECT * FROM projects ORDER BY created_at DESC')->fetchAll() : [];
-$categories = ['Web','App','API','Mobile','Design'];
+$categories = ['SEO','PPC','Social','Email','Content'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

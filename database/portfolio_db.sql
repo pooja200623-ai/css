@@ -52,36 +52,39 @@ CREATE TABLE IF NOT EXISTS contact_messages (
 -- ============================================
 
 -- Default admin (username: admin, password: admin123)
-INSERT INTO admin_users (username, password_hash) VALUES
+INSERT IGNORE INTO admin_users (username, password_hash) VALUES
 ('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
 
--- Sample Projects
-INSERT INTO projects (title, description, tech_stack, live_url, github_url, category, featured) VALUES
-('E-Commerce Platform', 'A full-featured online shopping platform with cart, checkout, payment gateway integration, and admin panel for product management.', 'PHP, MySQL, JavaScript, Bootstrap', '#', '#', 'Web', 1),
-('Task Management App', 'A Kanban-style project management tool with drag-and-drop boards, real-time updates, team collaboration, and deadline tracking.', 'JavaScript, Node.js, MongoDB, Socket.io', '#', '#', 'App', 1),
-('Restaurant Booking System', 'Online reservation system for restaurants with table management, email confirmations, and admin dashboard for bookings.', 'PHP, MySQL, jQuery, CSS3', '#', '#', 'Web', 1),
-('Portfolio CMS', 'Content management system specifically designed for creative portfolios, with themes, media uploads, and analytics.', 'PHP, MySQL, JavaScript, AJAX', '#', '#', 'Web', 0),
-('Weather Dashboard', 'Real-time weather dashboard using OpenWeather API showing forecasts, maps, and historical data with beautiful visualizations.', 'JavaScript, Chart.js, REST API, CSS3', '#', '#', 'API', 0),
-('Blog Platform', 'Multi-user blogging platform with rich text editor, categories, tags, comments, and SEO optimization tools.', 'PHP, MySQL, TinyMCE, Bootstrap', '#', '#', 'Web', 0);
+-- Sample Projects (Digital Marketing Campaigns)
+TRUNCATE TABLE projects;
+INSERT INTO projects (title, description, tech_stack, live_url, github_url, image, category, featured) VALUES
+('E-Commerce SEO Overhaul', 'Revamped complete SEO strategy for a premium fashion brand — boosting organic traffic by 312% and adding $180K in monthly organic revenue.', 'Semrush, Google Search Console, Schema Markup, Content Clusters', '#', '', 'assets/images/seo-case-study.jpg', 'SEO', 1),
+('SaaS Meta Ads Scaling', 'Scaled B2B SaaS paid acquisition from $5,000 to $80,000/month in ad spend while maintaining a 4.2x ROAS through visual A/B testing and CAPI setup.', 'Meta Ads Manager, CAPI (Conversion API), Smartly.io, VWO', '#', '', 'assets/images/ppc-case-study.jpg', 'PPC', 1),
+('Instagram Growth Campaign', 'Designed organic social & influencer campaigns for a wellness brand, expanding reach from 3K to 95K followers with high engagement Reels.', 'Instagram Reels, GRIN (Influencer Tool), Canva, Metricool', '#', '', 'assets/images/social-case-study.jpg', 'Social', 0),
+('Email Automation Funnel', 'Created high-converting automated welcome and cart-abandonment flows, generating $15K/month on autopilot with 42% open rate.', 'Klaviyo, Shopify Integration, Copywriting, Figma', '#', '', 'assets/images/email-case-study.jpg', 'Email', 1),
+('Fintech Thought Leadership Hub', 'Developed an industry blog, LinkedIn newsletter, and podcast ecosystem that drove 85% of inbound SaaS marketing leads.', 'Content Strategy, Buzzsprout, LinkedIn Publishing, Medium', '#', '', 'assets/images/content-case-study.jpg', 'Content', 0),
+('Google Ads Lead Gen Engine', 'Structured search and local service ads for a multi-location real estate franchise, achieving a 65% reduction in cost-per-lead.', 'Google Ads Editor, Unbounce (Landing Pages), Zapier, Salesforce', '#', '', 'assets/images/leadgen-case-study.jpg', 'PPC', 0);
 
--- Sample Skills
+-- Sample Skills (Digital Marketing Toolkit)
+TRUNCATE TABLE skills;
 INSERT INTO skills (name, category, proficiency, icon_class) VALUES
--- Frontend
-('HTML5', 'Frontend', 95, 'fab fa-html5'),
-('CSS3 / SCSS', 'Frontend', 90, 'fab fa-css3-alt'),
-('JavaScript (ES6+)', 'Frontend', 88, 'fab fa-js-square'),
-('React.js', 'Frontend', 78, 'fab fa-react'),
-('Bootstrap', 'Frontend', 92, 'fab fa-bootstrap'),
--- Backend
-('PHP', 'Backend', 90, 'fab fa-php'),
-('Node.js', 'Backend', 72, 'fab fa-node-js'),
-('REST APIs', 'Backend', 85, 'fas fa-server'),
-('Laravel', 'Backend', 70, 'fab fa-laravel'),
--- Database
-('MySQL', 'Database', 88, 'fas fa-database'),
-('MongoDB', 'Database', 68, 'fas fa-leaf'),
-('Redis', 'Database', 60, 'fas fa-layer-group'),
--- Tools
-('Git / GitHub', 'Tools', 90, 'fab fa-github'),
-('Docker', 'Tools', 65, 'fab fa-docker'),
-('Linux / CLI', 'Tools', 78, 'fab fa-linux');
+-- PPC
+('Google Ads (Search/Display)', 'Paid Acquisition (PPC)', 92, 'fab fa-google'),
+('Meta Ads Manager', 'Paid Acquisition (PPC)', 95, 'fab fa-facebook-f'),
+('LinkedIn Campaign Manager', 'Paid Acquisition (PPC)', 80, 'fab fa-linkedin-in'),
+('TikTok Ads', 'Paid Acquisition (PPC)', 75, 'fab fa-tiktok'),
+-- SEO
+('Technical SEO & Audits', 'Search Engine Optimization', 90, 'fas fa-search-plus'),
+('On-Page & Content Optimization', 'Search Engine Optimization', 94, 'fas fa-file-alt'),
+('Keyword Research & Strategy', 'Search Engine Optimization', 95, 'fas fa-key'),
+('Link Building & Outreach', 'Search Engine Optimization', 82, 'fas fa-link'),
+-- Analytics
+('GA4 & Tag Manager (GTM)', 'Marketing Tech & Analytics', 90, 'fas fa-chart-bar'),
+('HubSpot CRM Marketing', 'Marketing Tech & Analytics', 85, 'fab fa-hubspot'),
+('A/B Testing & CRO (VWO/Hotjar)', 'Marketing Tech & Analytics', 88, 'fas fa-flask'),
+('Looker Studio Dashboards', 'Marketing Tech & Analytics', 80, 'fas fa-chart-pie'),
+-- Retention
+('Klaviyo / Mailchimp Automation', 'Retention & Email', 90, 'fas fa-envelope-open-text'),
+('Customer Journey Mapping', 'Retention & Email', 88, 'fas fa-map-signs'),
+('Lead Magnet & Funnel Strategy', 'Retention & Email', 92, 'fas fa-filter');
+
