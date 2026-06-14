@@ -28,7 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
     loadSkills();
     setupContactForm();
     setupFilters();
+    setupModalEvents();
 });
+
+// Global cache for projects data
+let allProjects = [];
 
 // Fetch and render projects from backend API
 async function loadProjects(category = 'All') {
@@ -53,70 +57,73 @@ async function loadProjects(category = 'All') {
         const result = await response.json();
         if (!result.success) throw new Error(result.error || 'Failed to fetch projects');
         
-        const projects = result.data;
-        
-        if (projects.length === 0) {
-            grid.innerHTML = `
-                <div class="error-state">
-                    <i class="fas fa-folder-open"></i>
-                    <p>No projects found in this category.</p>
-                </div>
-            `;
-            return;
-        }
-        
-        grid.innerHTML = projects.map(project => {
-            // Split tech stack by comma and clean up whitespace
-            const tags = project.tech_stack 
-                ? project.tech_stack.split(',').map(tag => tag.trim()).filter(tag => tag !== '')
-                : [];
-                
-            const tagsHtml = tags.map(tag => `<span class="project-tag">${tag}</span>`).join('');
-            
-            // Generate clean links
-            let linksHtml = '';
-            if (project.live_url && project.live_url !== '#') {
-                linksHtml += `<a href="${project.live_url}" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>`;
-            }
-            if (project.github_url && project.github_url !== '#') {
-                linksHtml += `<a href="${project.github_url}" class="project-link" target="_blank"><i class="fab fa-github"></i> Repository</a>`;
-            }
-            
-            // Check if there's an image or render custom elegant gradient placeholder
-            const imageHtml = project.image && project.image !== 'assets/images/project-placeholder.jpg'
-                ? `<img src="${project.image}" alt="${project.title}">`
-                : `
-                    <div class="project-image-placeholder">
-                        <i class="fas fa-chart-line"></i>
-                        <span>${project.category} Case Study</span>
-                    </div>
-                `;
-                
-            return `
-                <article class="project-card">
-                    <div class="project-image-wrapper">
-                        <span class="project-category-badge">${project.category}</span>
-                        ${imageHtml}
-                    </div>
-                    <div class="project-card-content">
-                        <h3>${project.title}</h3>
-                        <p>${project.description}</p>
-                        ${tags.length ? `<div class="project-tags">${tagsHtml}</div>` : ''}
-                        ${linksHtml ? `<div class="project-links">${linksHtml}</div>` : ''}
-                    </div>
-                </article>
-            `;
-        }).join('');
+        allProjects = result.data;
         
     } catch (error) {
-        console.error('Error loading projects:', error);
+        console.warn('Backend API unavailable, falling back to static case studies:', error);
+        allProjects = category === 'All' 
+            ? FALLBACK_PROJECTS 
+            : FALLBACK_PROJECTS.filter(p => p.category === category);
+    }
+    
+    if (allProjects.length === 0) {
         grid.innerHTML = `
             <div class="error-state">
-                <i class="fas fa-exclamation-circle"></i>
-                <p>Failed to load case studies. Please refresh the page.</p>
+                <i class="fas fa-folder-open"></i>
+                <p>No projects found in this category.</p>
             </div>
         `;
+        return;
     }
+    
+    grid.innerHTML = allProjects.map(project => {
+        // Split tech stack by comma and clean up whitespace
+        const tags = project.tech_stack 
+            ? project.tech_stack.split(',').map(tag => tag.trim()).filter(tag => tag !== '')
+            : [];
+            
+        const tagsHtml = tags.map(tag => `<span class="project-tag">${tag}</span>`).join('');
+        
+        // Generate metrics preview badges
+        let metricsPreviewHtml = '';
+        if (project.key_metrics) {
+            const previewMetrics = project.key_metrics.split(',').slice(0, 2);
+            metricsPreviewHtml = `
+                <div class="project-metrics-preview">
+                    ${previewMetrics.map(m => `<span class="project-metric-pill"><i class="fas fa-chart-line"></i> ${m.trim()}</span>`).join('')}
+                </div>
+            `;
+        }
+        
+        // Check if there's an image or render custom elegant gradient placeholder
+        const imageHtml = project.image && project.image !== 'assets/images/project-placeholder.jpg'
+            ? `<img src="${project.image}" alt="${project.title}">`
+            : `
+                <div class="project-image-placeholder">
+                    <i class="fas fa-chart-line"></i>
+                    <span>${project.category} Case Study</span>
+                </div>
+            `;
+            
+        return `
+            <article class="project-card">
+                <div class="project-image-wrapper" onclick="openCaseStudyModal(${project.id})" style="cursor:pointer">
+                    <span class="project-category-badge">${project.category}</span>
+                    ${imageHtml}
+                </div>
+                <div class="project-card-content">
+                    ${metricsPreviewHtml}
+                    <h3 onclick="openCaseStudyModal(${project.id})" style="cursor:pointer; transition: color 0.2s ease;">${project.title}</h3>
+                    <p>${project.description}</p>
+                    ${tags.length ? `<div class="project-tags">${tagsHtml}</div>` : ''}
+                    <div class="project-links">
+                        <button class="project-link" onclick="openCaseStudyModal(${project.id})" style="background:none;border:none;padding:0;cursor:pointer;font-family:inherit;"><i class="fas fa-file-alt"></i> Read Case Study</button>
+                        ${project.live_url && project.live_url !== '#' ? `<a href="${project.live_url}" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : ''}
+                    </div>
+                </div>
+            </article>
+        `;
+    }).join('');
 }
 
 // Fetch and render skills grouped by category
@@ -284,4 +291,213 @@ function setupContactForm() {
         }
     });
 }
+
+// =========================================
+// Case Study Modal Interactions & Fallbacks
+// =========================================
+
+// Open detailed case study modal
+function openCaseStudyModal(projectId) {
+    // Find project in the combined cache/fallback list
+    let project = allProjects.find(p => p.id == projectId);
+    if (!project) {
+        project = FALLBACK_PROJECTS.find(p => p.id == projectId);
+    }
+    if (!project) return;
+
+    // Populate modal text content
+    document.getElementById('modal-category').textContent = project.category;
+    document.getElementById('modal-title').textContent = project.title;
+    document.getElementById('modal-problem').textContent = project.problem || project.description || 'No challenge description provided.';
+    document.getElementById('modal-strategy').textContent = project.strategy || 'No solution description provided.';
+    document.getElementById('modal-results').textContent = project.results || 'No results data provided.';
+
+    // Populate metrics cards
+    const metricsContainer = document.getElementById('modal-metrics-container');
+    metricsContainer.innerHTML = '';
+    
+    if (project.key_metrics) {
+        const metricsList = project.key_metrics.split(',').map(m => m.trim()).filter(m => m !== '');
+        metricsList.forEach(metric => {
+            const spaceIdx = metric.indexOf(' ');
+            let val = metric;
+            let lbl = 'Metric';
+            if (spaceIdx > 0) {
+                val = metric.substring(0, spaceIdx);
+                lbl = metric.substring(spaceIdx + 1);
+            }
+            metricsContainer.innerHTML += `
+                <div class="modal-metric-card">
+                    <span class="modal-metric-val">${val}</span>
+                    <span class="modal-metric-lbl">${lbl}</span>
+                </div>
+            `;
+        });
+    }
+
+    // Populate tech stack
+    const techStackContainer = document.getElementById('modal-tech-stack');
+    techStackContainer.innerHTML = '';
+    const tags = project.tech_stack 
+        ? project.tech_stack.split(',').map(tag => tag.trim()).filter(tag => tag !== '')
+        : [];
+    tags.forEach(tag => {
+        techStackContainer.innerHTML += `<span class="project-tag">${tag}</span>`;
+    });
+
+    // Populate live/github links if any
+    const sidebar = document.querySelector('.modal-sidebar');
+    const existingLinkWidget = document.getElementById('modal-links-widget');
+    if (existingLinkWidget) existingLinkWidget.remove();
+
+    if ((project.live_url && project.live_url !== '#') || (project.github_url && project.github_url !== '#')) {
+        const linksWidget = document.createElement('div');
+        linksWidget.className = 'sidebar-widget';
+        linksWidget.id = 'modal-links-widget';
+        linksWidget.innerHTML = `
+            <h4>Project Links</h4>
+            <div class="sidebar-buttons">
+                ${project.live_url && project.live_url !== '#' ? `<a href="${project.live_url}" class="btn btn-outline btn-block" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : ''}
+                ${project.github_url && project.github_url !== '#' ? `<a href="${project.github_url}" class="btn btn-outline btn-block" target="_blank"><i class="fab fa-github"></i> Repository</a>` : ''}
+            </div>
+        `;
+        sidebar.insertBefore(linksWidget, sidebar.lastElementChild);
+    }
+
+    // Open Modal
+    const modal = document.getElementById('case-study-modal');
+    if (modal) {
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden'; // Prevent main page scrolling
+    }
+}
+
+// Close detailed case study modal
+function closeCaseStudyModal() {
+    const modal = document.getElementById('case-study-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = ''; // Restore main page scrolling
+    }
+}
+
+// Bind modal events
+function setupModalEvents() {
+    const closeBtn = document.getElementById('modal-close-btn');
+    const modal = document.getElementById('case-study-modal');
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeCaseStudyModal);
+    }
+    
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeCaseStudyModal();
+            }
+        });
+    }
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeCaseStudyModal();
+        }
+    });
+}
+
+// Fallback campaigns shown when API is unavailable (Offline Mode)
+const FALLBACK_PROJECTS = [
+    {
+        id: 1,
+        title: "E-Commerce SEO Overhaul",
+        description: "Revamped complete SEO strategy for a premium fashion brand — boosting organic traffic by 312% and adding $180K in monthly organic revenue.",
+        tech_stack: "Semrush, Google Search Console, Schema Markup, Content Clusters",
+        live_url: "#",
+        github_url: "",
+        image: "assets/images/seo-case-study.jpg",
+        category: "SEO",
+        featured: 1,
+        key_metrics: "312% Organic Traffic, +$180K Monthly Revenue, 14.5% Conversion Rate",
+        problem: "The client, a premium fashion e-commerce brand, suffered from stagnant organic search visibility and a heavy reliance on paid acquisition. Their search presence was hindered by technical debt, slow page loads, duplicate product description content, and a lack of organized topical hubs.",
+        strategy: "We executed a three-pronged SEO strategy: 1) Technical remediation, resolving indexation issues and implementing JSON-LD schema markup. 2) Topical authority building, clustering content around high-intent keywords. 3) Scalable digital PR campaigns to secure high-authority backlinks from major style and retail publications.",
+        results: "Within 6 months, organic page-one keyword rankings increased by 420%. Organic traffic grew by 312%, translating directly into an additional $180,000 in monthly organic revenue. Technical optimizations also reduced bounce rates by 18%."
+    },
+    {
+        id: 2,
+        title: "SaaS Meta Ads Scaling",
+        description: "Scaled B2B SaaS paid acquisition from $5,000 to $80,000/month in ad spend while maintaining a 4.2x ROAS through visual A/B testing and CAPI setup.",
+        tech_stack: "Meta Ads Manager, CAPI (Conversion API), Smartly.io, VWO",
+        live_url: "#",
+        github_url: "",
+        image: "assets/images/ppc-case-study.jpg",
+        category: "PPC",
+        featured: 1,
+        key_metrics: "4.2x ROAS, 16x Paid Traffic Growth, -45% Customer Acquisition Cost",
+        problem: "A B2B SaaS provider was struggling to scale their monthly paid acquisition spend beyond $5,000 while maintaining efficiency. Their Meta ad creatives were fatiguing rapidly, conversion tracking was dropping up to 25% of events due to browser restrictions, and targeting was too broad.",
+        strategy: "We implemented the Meta Conversions API (CAPI) via server-side tagging to bypass cookie restrictions. We set up Smartly.io for automated creative asset variations and established a continuous A/B testing framework (VWO) on customized landing pages. We built narrow lookalike audiences based on high-LTV customers.",
+        results: "Successfully scaled B2B SaaS paid acquisition from $5,000 to $80,000/month in ad spend. The campaign maintained an average 4.2x ROAS (Return on Ad Spend) and dropped customer acquisition cost (CAC) by 45%."
+    },
+    {
+        id: 3,
+        title: "Instagram Growth Campaign",
+        description: "Designed organic social & influencer campaigns for a wellness brand, expanding reach from 3K to 95K followers with high engagement Reels.",
+        tech_stack: "Instagram Reels, GRIN (Influencer Tool), Canva, Metricool",
+        live_url: "#",
+        github_url: "",
+        image: "assets/images/social-case-study.jpg",
+        category: "Social",
+        featured: 0,
+        key_metrics: "92K New Followers, +620% Engagement Rate, 34% DM-to-Sale Conversion",
+        problem: "A boutique wellness brand had a high-quality product line but virtually zero social presence (stuck at 3K followers). Their content lacked cohesive aesthetic appeal, had low engagement, and failed to drive sales conversions.",
+        strategy: "We developed a Reels-first content strategy focused on educational micro-videos and lifestyle aesthetics. Using GRIN, we identified and onboarded 25 micro-influencers for authentic product reviews. We also implemented automated Instagram DM funnel flows to instantly nurture post comments into purchase discounts.",
+        results: "Expanded organic reach from 3K to 95K followers within 8 months. Reels generated over 4.2 million total views. Crucially, the automated DM funnel drove a 34% DM-to-sale conversion rate, representing a major new direct revenue stream."
+    },
+    {
+        id: 4,
+        title: "Email Automation Funnel",
+        description: "Created high-converting automated welcome and cart-abandonment flows, generating $15K/month on autopilot with 42% open rate.",
+        tech_stack: "Klaviyo, Shopify Integration, Copywriting, Figma",
+        live_url: "#",
+        github_url: "",
+        image: "assets/images/email-case-study.jpg",
+        category: "Email",
+        featured: 1,
+        key_metrics: "+$15K Monthly Autopilot Revenue, 42% Open Rate, 18% Click-Through Rate",
+        problem: "An online coaching business had a list of 12,000 subscribers but was only sending sporadic broadcast newsletters. They had no automated nurture sequences or cart recovery systems, leaving substantial revenue on the table.",
+        strategy: "We designed a highly segmented email lifecycle strategy using Klaviyo. We built a 7-stage welcome series, dynamic abandoned cart flows, and post-purchase cross-sell sequences. We also performed deep subscriber cleanups and implemented dedicated domain sending to maximize inbox deliverability.",
+        results: "The automated welcome and cart-abandonment flows generated $15,000/month in recurring revenue on autopilot. The campaigns averaged a 42% open rate and a high-performing 18% click-through rate."
+    },
+    {
+        id: 5,
+        title: "Fintech Thought Leadership Hub",
+        description: "Developed an industry blog, LinkedIn newsletter, and podcast ecosystem that drove 85% of inbound SaaS marketing leads.",
+        tech_stack: "Content Strategy, Buzzsprout, LinkedIn Publishing, Medium",
+        live_url: "#",
+        github_url: "",
+        image: "assets/images/content-case-study.jpg",
+        category: "Content",
+        featured: 0,
+        key_metrics: "85% Inbound Lead Share, 1.2M Annual Pageviews, +240% Demo Bookings",
+        problem: "A fintech startup was offering a complex B2B payment solution but had low brand credibility and difficulty explaining their value proposition to C-suite decision makers.",
+        strategy: "We established a high-authority content hub centered on technical finance blogs, a LinkedIn newsletter, and a monthly industry podcast. We utilized content syndication on Medium and secured thought leadership guest columns for company executives in prominent financial news portals.",
+        results: "The content ecosystem grew to drive 85% of all inbound marketing leads. Demo bookings increased by 240% year-over-year, and website pageviews crossed 1.2 million annually."
+    },
+    {
+        id: 6,
+        title: "Google Ads Lead Gen Engine",
+        description: "Structured search and local service ads for a multi-location real estate franchise, achieving a 65% reduction in cost-per-lead.",
+        tech_stack: "Google Ads Editor, Unbounce (Landing Pages), Zapier, Salesforce",
+        live_url: "#",
+        github_url: "",
+        image: "assets/images/leadgen-case-study.jpg",
+        category: "PPC",
+        featured: 0,
+        key_metrics: "-65% Cost-Per-Lead, +180% Lead Volume, 94% Quality Match Score",
+        problem: "A multi-location real estate franchise was running Google Ads but suffered from high cost-per-lead ($80+), poor lead quality (junk forms), and inefficient budget allocation across regions.",
+        strategy: "We rebuilt the Google Ads account from scratch with a single-theme ad group structure, added negative keyword lists, and restructured local service campaigns. We created custom landing pages integrated with Salesforce CRM to feed offline conversion data back to Google's bidding algorithm.",
+        results: "Reduced the average cost-per-lead from $80 to $28 (a 65% reduction) while increasing overall lead volume by 180%. Lead quality match score rose to 94%, significantly improving sales team efficiency."
+    }
+];
 

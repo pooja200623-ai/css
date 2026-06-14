@@ -246,6 +246,50 @@
         </div>
     </footer>
 
+    <!-- Case Study Detail Modal (Ultra-Premium Overlay) -->
+    <div id="case-study-modal" class="modal-overlay" aria-hidden="true" role="dialog">
+        <div class="modal-container">
+            <button class="modal-close" id="modal-close-btn" aria-label="Close Case Study">&times;</button>
+            <div class="modal-content">
+                <div class="modal-hero">
+                    <span id="modal-category" class="modal-category-badge">Category</span>
+                    <h2 id="modal-title" class="modal-title-text">Project Title</h2>
+                    <div id="modal-metrics-container" class="modal-metrics-grid">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </div>
+                <div class="modal-body-grid">
+                    <div class="modal-main-column">
+                        <section class="modal-section">
+                            <h3><i class="fas fa-exclamation-triangle"></i> The Challenge</h3>
+                            <p id="modal-problem"></p>
+                        </section>
+                        <section class="modal-section">
+                            <h3><i class="fas fa-lightbulb"></i> Our Strategy</h3>
+                            <p id="modal-strategy"></p>
+                        </section>
+                        <section class="modal-section">
+                            <h3><i class="fas fa-trophy"></i> Results & Impact</h3>
+                            <p id="modal-results"></p>
+                        </section>
+                    </div>
+                    <aside class="modal-sidebar">
+                        <div class="sidebar-widget">
+                            <h4>Toolkit & Stack</h4>
+                            <div id="modal-tech-stack" class="project-tags"></div>
+                        </div>
+                        <div class="sidebar-widget">
+                            <h4>Campaign Actions</h4>
+                            <div class="sidebar-buttons">
+                                <a href="#contact" id="modal-action-btn" class="btn btn-primary btn-block">Inquire About This Service</a>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/typewriter.js"></script>
     <script src="js/main.js"></script>
 </body>

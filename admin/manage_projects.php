@@ -11,7 +11,7 @@ $action  = $_GET['action'] ?? 'list';
 $editId  = (int)($_GET['id'] ?? 0);
 $message = '';
 $err     = '';
-$project = ['id'=>'','title'=>'','description'=>'','tech_stack'=>'','live_url'=>'','github_url'=>'','image'=>'','category'=>'Web','featured'=>0];
+$project = ['id'=>'','title'=>'','description'=>'','tech_stack'=>'','live_url'=>'','github_url'=>'','image'=>'','category'=>'Web','featured'=>0,'key_metrics'=>'','problem'=>'','strategy'=>'','results'=>''];
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -24,6 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ':image'       => trim($_POST['image'] ?? 'assets/images/project-placeholder.jpg'),
         ':category'    => trim($_POST['category'] ?? 'Web'),
         ':featured'    => isset($_POST['featured']) ? 1 : 0,
+        ':key_metrics' => trim($_POST['key_metrics'] ?? ''),
+        ':problem'     => trim($_POST['problem'] ?? ''),
+        ':strategy'    => trim($_POST['strategy'] ?? ''),
+        ':results'     => trim($_POST['results'] ?? ''),
     ];
     $pid = (int)($_POST['project_id'] ?? 0);
 
@@ -38,11 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $action = 'list';
     } elseif ($pid) {
         $data[':id'] = $pid;
-        $db->prepare('UPDATE projects SET title=:title,description=:description,tech_stack=:tech_stack,live_url=:live_url,github_url=:github_url,image=:image,category=:category,featured=:featured WHERE id=:id')->execute($data);
+        $db->prepare('UPDATE projects SET title=:title,description=:description,tech_stack=:tech_stack,live_url=:live_url,github_url=:github_url,image=:image,category=:category,featured=:featured,key_metrics=:key_metrics,problem=:problem,strategy=:strategy,results=:results WHERE id=:id')->execute($data);
         $message = 'Project updated successfully.';
         $action = 'list';
     } else {
-        $db->prepare('INSERT INTO projects (title,description,tech_stack,live_url,github_url,image,category,featured) VALUES (:title,:description,:tech_stack,:live_url,:github_url,:image,:category,:featured)')->execute($data);
+        $db->prepare('INSERT INTO projects (title,description,tech_stack,live_url,github_url,image,category,featured,key_metrics,problem,strategy,results) VALUES (:title,:description,:tech_stack,:live_url,:github_url,:image,:category,:featured,:key_metrics,:problem,:strategy,:results)')->execute($data);
         $message = 'Project added successfully.';
         $action = 'list';
     }
@@ -134,6 +138,22 @@ $categories = ['SEO','PPC','Social','Email','Content'];
             <div class="form-group">
                 <label>Tech Stack <small>(comma separated)</small></label>
                 <input type="text" name="tech_stack" value="<?= htmlspecialchars($project['tech_stack']) ?>" placeholder="PHP, MySQL, JavaScript">
+            </div>
+            <div class="form-group">
+                <label>Key Metrics <small>(comma separated, e.g. "+312% Traffic, +$180K Revenue")</small></label>
+                <input type="text" name="key_metrics" value="<?= htmlspecialchars($project['key_metrics'] ?? '') ?>" placeholder="+312% Traffic, +$180K Revenue">
+            </div>
+            <div class="form-group">
+                <label>Problem / Challenge</label>
+                <textarea name="problem" rows="3" placeholder="Describe the problem or challenge..."><?= htmlspecialchars($project['problem'] ?? '') ?></textarea>
+            </div>
+            <div class="form-group">
+                <label>Strategy / Solution</label>
+                <textarea name="strategy" rows="3" placeholder="Describe the strategy or action plan..."><?= htmlspecialchars($project['strategy'] ?? '') ?></textarea>
+            </div>
+            <div class="form-group">
+                <label>Results / Impact</label>
+                <textarea name="results" rows="3" placeholder="Describe the results and metrics achieved..."><?= htmlspecialchars($project['results'] ?? '') ?></textarea>
             </div>
             <div class="form-row">
                 <div class="form-group">
