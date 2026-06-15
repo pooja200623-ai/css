@@ -1,15 +1,15 @@
 /* ============================================
-   Typewriter Effect — Digital Marketing Roles
+   Typewriter Effect — Sofia Chen Portfolio
    ============================================ */
 (function () {
     const roles = [
-        'Digital Marketing Strategist',
-        'SEO & SEM Specialist',
-        'Social Media Expert',
-        'Content Marketing Pro',
-        'PPC Campaign Manager',
-        'Brand Growth Consultant',
-        'Email Marketing Wizard',
+        'strategic marketing',
+        'compelling brand stories',
+        'data-driven campaigns',
+        'powerful SEO strategies',
+        'community-driven growth',
+        'high-converting content',
+        'meaningful connections',
     ];
 
     const el = document.getElementById('typewriter-text');
@@ -25,7 +25,7 @@
 
         if (pauseBeforeDelete) {
             pauseBeforeDelete = false;
-            setTimeout(tick, 1800);
+            setTimeout(tick, 2000);
             return;
         }
 
@@ -36,7 +36,7 @@
                 deleting = true;
                 pauseBeforeDelete = true;
             }
-            setTimeout(tick, 70 + Math.random() * 40);
+            setTimeout(tick, 75 + Math.random() * 45);
         } else {
             el.textContent = current.slice(0, charIndex - 1);
             charIndex--;
@@ -44,9 +44,9 @@
                 deleting = false;
                 roleIndex = (roleIndex + 1) % roles.length;
             }
-            setTimeout(tick, 40);
+            setTimeout(tick, 38);
         }
     }
 
-    setTimeout(tick, 900);
+    setTimeout(tick, 1000);
 })();

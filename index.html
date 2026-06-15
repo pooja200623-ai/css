@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Rivera | Digital Marketing Strategist</title>
+    <title>Sofia Chen | Digital Marketing Strategist</title>
+    <meta name="description" content="Sofia Chen – Award-winning Digital Marketing Strategist specializing in performance marketing, SEO, and brand growth. Based in San Francisco.">
     
     <!-- Modern Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,9 +19,9 @@
 <body>
 
     <!-- Elegant Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#" class="brand">Alex Rivera.</a>
+            <a href="#" class="brand">Sofia Chen.</a>
             <ul class="nav-menu">
                 <li><a href="#services">Expertise</a></li>
                 <li><a href="#work">Case Studies</a></li>
@@ -28,31 +29,47 @@
                 <li><a href="#skills">Toolkit</a></li>
             </ul>
             <div class="nav-actions">
-                <a href="#contact" class="btn btn-outline">Let's Talk</a>
+                <a href="#contact" class="btn btn-outline" id="nav-cta">Let's Connect</a>
             </div>
+            <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
-    <!-- Modern Hero Section -->
-    <header class="hero">
+    <!-- Hero Section -->
+    <header class="hero" id="home">
+        <!-- Decorative blobs -->
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+
         <div class="hero-container">
             <div class="hero-content">
                 <div class="availability-badge">
                     <span class="pulse-dot"></span> Available for new projects
                 </div>
-                <h1 class="hero-title">Elevating brands through <br><span id="typewriter-text" style="color: var(--accent);">strategic marketing</span><span class="typewriter-cursor">|</span></h1>
-                <p class="hero-subtitle">I partner with ambitious companies to scale their online presence, optimize conversions, and build lasting customer relationships.</p>
+                <h1 class="hero-title">Empowering brands through <br><span id="typewriter-text" class="hero-accent">strategic marketing</span><span class="typewriter-cursor">|</span></h1>
+                <p class="hero-subtitle">I partner with bold, ambitious companies to scale their online presence, elevate brand stories, and build lasting customer relationships that drive real results.</p>
                 <div class="hero-buttons">
-                    <a href="#work" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-text">Contact Me <i class="fas fa-arrow-right"></i></a>
+                    <a href="#work" class="btn btn-primary" id="hero-work-btn">View My Work</a>
+                    <a href="#contact" class="btn btn-text" id="hero-contact-btn">Get in Touch <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="hero-social">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
             <div class="hero-visual">
-                <!-- A clean, abstract geometric representation instead of generic AI elements -->
                 <div class="geometric-shape shape-1"></div>
                 <div class="geometric-shape shape-2"></div>
-                <div class="profile-image-container">
-                    <img src="assets/images/alex-rivera.jpg" alt="Alex Rivera" class="profile-photo">
+                <div class="profile-image-container" id="profile-card">
+                    <img src="assets/images/alex-rivera.jpg" alt="Sofia Chen – Digital Marketing Strategist" class="profile-photo">
+                    <div class="profile-badge">
+                        <i class="fas fa-star"></i>
+                        <span>Top 1% Marketer</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,12 +89,12 @@
             </div>
             <div class="metric divider"></div>
             <div class="metric">
-                <span class="metric-number">60+</span>
+                <span class="metric-number">70+</span>
                 <span class="metric-label">Happy Clients</span>
             </div>
             <div class="metric divider"></div>
             <div class="metric">
-                <span class="metric-number">5+</span>
+                <span class="metric-number">7+</span>
                 <span class="metric-label">Years Experience</span>
             </div>
         </div>
@@ -87,30 +104,35 @@
     <section id="services" class="section bg-light">
         <div class="container">
             <div class="section-header">
+                <span class="section-tag">What I Do</span>
                 <h2 class="section-title">Areas of Expertise</h2>
-                <p class="section-desc">Comprehensive strategies tailored to your business goals.</p>
+                <p class="section-desc">Comprehensive, creative strategies tailored to your unique business goals.</p>
             </div>
             
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card" id="service-performance">
                     <div class="service-icon"><i class="fas fa-chart-line"></i></div>
                     <h3>Performance Marketing</h3>
-                    <p>Data-driven campaigns across Google Ads, Meta, and LinkedIn designed to maximize return on ad spend and drive qualified leads.</p>
+                    <p>Data-driven campaigns across Google Ads, Meta, and LinkedIn designed to maximize return on ad spend and drive qualified, high-intent leads.</p>
+                    <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" id="service-seo">
                     <div class="service-icon"><i class="fas fa-search"></i></div>
                     <h3>Search Engine Optimization</h3>
-                    <p>Technical audits, keyword strategy, and content optimization to establish long-term organic visibility and authority.</p>
+                    <p>Technical audits, keyword strategy, and content optimization to establish long-term organic visibility and topical authority.</p>
+                    <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" id="service-content">
                     <div class="service-icon"><i class="fas fa-pen-nib"></i></div>
                     <h3>Content Strategy</h3>
-                    <p>Engaging, high-value content ecosystems that nurture your audience from first touchpoint to loyal customer.</p>
+                    <p>Engaging, high-value content ecosystems that nurture your audience from first touchpoint to loyal brand advocate.</p>
+                    <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" id="service-email">
                     <div class="service-icon"><i class="fas fa-envelope-open-text"></i></div>
                     <h3>Lifecycle & Email</h3>
-                    <p>Automated sequences and targeted broadcasts that increase retention, lifetime value, and brand loyalty.</p>
+                    <p>Automated sequences and targeted broadcasts that increase retention, lifetime value, and build genuine brand loyalty.</p>
+                    <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
                 </div>
             </div>
         </div>
@@ -120,23 +142,23 @@
     <section id="work" class="section">
         <div class="container">
             <div class="section-header">
+                <span class="section-tag">Portfolio</span>
                 <h2 class="section-title">Selected Case Studies</h2>
-                <p class="section-desc">Real-world marketing campaigns and growth platforms built for impact.</p>
+                <p class="section-desc">Real-world marketing campaigns and growth stories built for meaningful impact.</p>
             </div>
             
             <!-- Category Filter Tabs -->
             <div class="filter-tabs">
-                <button class="filter-tab active" data-category="All">All Campaigns</button>
-                <button class="filter-tab" data-category="SEO">SEO</button>
-                <button class="filter-tab" data-category="PPC">Paid Ads (PPC)</button>
-                <button class="filter-tab" data-category="Social">Social Media</button>
-                <button class="filter-tab" data-category="Email">Email Marketing</button>
-                <button class="filter-tab" data-category="Content">Content Marketing</button>
+                <button class="filter-tab active" data-category="All" id="filter-all">All Campaigns</button>
+                <button class="filter-tab" data-category="SEO" id="filter-seo">SEO</button>
+                <button class="filter-tab" data-category="PPC" id="filter-ppc">Paid Ads (PPC)</button>
+                <button class="filter-tab" data-category="Social" id="filter-social">Social Media</button>
+                <button class="filter-tab" data-category="Email" id="filter-email">Email Marketing</button>
+                <button class="filter-tab" data-category="Content" id="filter-content">Content Marketing</button>
             </div>
             
             <!-- Projects Grid -->
             <div id="projects-grid" class="projects-grid">
-                <!-- Dynamically loaded via JS -->
                 <div class="loading-state">
                     <i class="fas fa-spinner fa-spin"></i> Loading case studies...
                 </div>
@@ -145,34 +167,111 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section">
+    <section id="about" class="section bg-light">
         <div class="container about-container">
-            <div class="about-text">
-                <h2 class="section-title">My approach to digital growth</h2>
-                <p>I don't believe in one-size-fits-all templates. Every brand has a unique voice, audience, and set of challenges. My methodology is rooted in deep market research, behavioral psychology, and rigorous A/B testing.</p>
-                <p>Over the last 5 years, I've had the privilege of working directly with founders and marketing teams to build sustainable growth engines that perform reliably month over month.</p>
-                <a href="#contact" class="btn btn-outline mt-4">Read full bio</a>
-            </div>
             <div class="about-image">
                 <div class="image-wrapper">
-                    <img src="assets/images/alex-rivera-lifestyle.jpg" alt="Alex Rivera Workspace" class="about-photo">
+                    <img src="assets/images/alex-rivera-lifestyle.jpg" alt="Sofia Chen at Work" class="about-photo">
+                    <div class="about-image-badge">
+                        <i class="fas fa-award"></i>
+                        <div>
+                            <strong>Certified Expert</strong>
+                            <span>Google · Meta · HubSpot</span>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="about-text">
+                <span class="section-tag">About Sofia</span>
+                <h2 class="section-title">My approach to digital growth</h2>
+                <p>I believe every brand has a unique voice and story worth telling. My methodology is rooted in deep market research, behavioral psychology, and rigorous A/B testing — because data should always back creativity.</p>
+                <p>Over the last 7 years, I've had the privilege of working with founders, CMOs, and passionate marketing teams to build sustainable growth engines that perform reliably, month after month.</p>
+                <div class="about-values">
+                    <div class="value-item">
+                        <i class="fas fa-heart"></i>
+                        <span>Empathy-first marketing</span>
+                    </div>
+                    <div class="value-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Data-backed creativity</span>
+                    </div>
+                    <div class="value-item">
+                        <i class="fas fa-users"></i>
+                        <span>Community-driven growth</span>
+                    </div>
+                </div>
+                <a href="#contact" class="btn btn-primary mt-4" id="about-cta">Work With Me</a>
             </div>
         </div>
     </section>
 
     <!-- Skills & Toolkit Section -->
-    <section id="skills" class="section bg-light">
+    <section id="skills" class="section">
         <div class="container">
             <div class="section-header">
+                <span class="section-tag">My Arsenal</span>
                 <h2 class="section-title">Technical Toolkit</h2>
-                <p class="section-desc">The technologies and tools I use to bring ideas to life.</p>
+                <p class="section-desc">The technologies and platforms I use to bring bold ideas to life.</p>
             </div>
             
             <div id="skills-container" class="skills-grid">
-                <!-- Grouped skills loaded dynamically via JS -->
                 <div class="loading-state">
                     <i class="fas fa-spinner fa-spin"></i> Loading toolkit...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Kind Words</span>
+                <h2 class="section-title">What Clients Say</h2>
+                <p class="section-desc">Real feedback from the people I've had the pleasure of working with.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" id="testimonial-1">
+                    <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                    <p>"Sofia transformed our entire digital presence. In 6 months, our organic traffic tripled and we went from invisible to ranking on page one for our most competitive keywords."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JK</div>
+                        <div>
+                            <strong>Jessica Kim</strong>
+                            <span>CEO, LuxeThreads</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card" id="testimonial-2">
+                    <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                    <p>"Working with Sofia is like having a superpower on your team. She's incredibly strategic, creative, and most importantly — she delivers results. Our ROAS went from 2x to 4.2x."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MP</div>
+                        <div>
+                            <strong>Marcus Patel</strong>
+                            <span>CMO, NovaTech SaaS</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card" id="testimonial-3">
+                    <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                    <p>"Sofia doesn't just manage campaigns — she becomes a true partner in your growth story. Our email automations now generate $15K/month completely on autopilot."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">AT</div>
+                        <div>
+                            <strong>Amelia Torres</strong>
+                            <span>Founder, WellnessEdge</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -183,24 +282,38 @@
         <div class="container">
             <div class="contact-wrapper">
                 <div class="contact-info">
-                    <h2 class="section-title text-white">Let's build something great.</h2>
-                    <p class="text-light-gray">I'm currently accepting new clients. Reach out to discuss how we can accelerate your brand's growth.</p>
+                    <span class="section-tag tag-light">Let's Talk</span>
+                    <h2 class="section-title text-white">Let's create something beautiful.</h2>
+                    <p class="text-light-gray">I'm currently accepting new clients. Reach out to discuss how we can elevate your brand's growth story together.</p>
                     
                     <div class="contact-methods">
                         <div class="method">
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <span>Email me</span>
-                                <a href="mailto:hello@alexrivera.marketing">hello@alexrivera.marketing</a>
+                                <a href="mailto:hello@sofiachenmarketing.com">hello@sofiachenmarketing.com</a>
                             </div>
                         </div>
                         <div class="method">
                             <i class="fas fa-phone"></i>
                             <div>
                                 <span>Call me</span>
-                                <a href="tel:+1234567890">+1 (234) 567-890</a>
+                                <a href="tel:+14155550192">+1 (415) 555-0192</a>
                             </div>
                         </div>
+                        <div class="method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <span>Location</span>
+                                <a href="#">San Francisco, CA</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-social">
+                        <a href="#" class="social-icon-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 
@@ -217,10 +330,14 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="message">Project Details</label>
-                            <textarea id="message" rows="4" required placeholder="Tell me about your goals..."></textarea>
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" placeholder="How can I help you?">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                        <div class="form-group">
+                            <label for="message">Project Details</label>
+                            <textarea id="message" rows="5" required placeholder="Tell me about your goals, brand, and what you'd like to achieve..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" id="contact-submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
                         <div id="form-status" class="form-status"></div>
                     </form>
                 </div>
@@ -232,21 +349,27 @@
     <footer class="footer">
         <div class="container footer-container">
             <div class="footer-brand">
-                <span class="brand-name">Alex Rivera.</span>
+                <span class="brand-name">Sofia Chen.</span>
                 <p>Digital Marketing Strategist</p>
             </div>
+            <div class="footer-links">
+                <a href="#services">Expertise</a>
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
             <div class="footer-social">
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-dribbble"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
             <div class="footer-copy">
-                &copy; <span id="year"></span> Alex Rivera. All rights reserved.
+                &copy; <span id="year"></span> Sofia Chen. All rights reserved. Made with <i class="fas fa-heart" style="color: var(--accent);"></i>
             </div>
         </div>
     </footer>
 
-    <!-- Case Study Detail Modal (Ultra-Premium Overlay) -->
+    <!-- Case Study Detail Modal -->
     <div id="case-study-modal" class="modal-overlay" aria-hidden="true" role="dialog">
         <div class="modal-container">
             <button class="modal-close" id="modal-close-btn" aria-label="Close Case Study">&times;</button>
@@ -265,7 +388,7 @@
                             <p id="modal-problem"></p>
                         </section>
                         <section class="modal-section">
-                            <h3><i class="fas fa-lightbulb"></i> Our Strategy</h3>
+                            <h3><i class="fas fa-lightbulb"></i> My Strategy</h3>
                             <p id="modal-strategy"></p>
                         </section>
                         <section class="modal-section">
@@ -290,7 +413,35 @@
         </div>
     </div>
 
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav" id="mobile-nav">
+        <button class="mobile-nav-close" id="mobile-nav-close"><i class="fas fa-times"></i></button>
+        <ul>
+            <li><a href="#services">Expertise</a></li>
+            <li><a href="#work">Case Studies</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Toolkit</a></li>
+            <li><a href="#contact">Let's Connect</a></li>
+        </ul>
+    </div>
+
     <script src="js/typewriter.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        const mobileClose = document.getElementById('mobile-nav-close');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
+        }
+        if (mobileClose) {
+            mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+        }
+        // Close mobile nav on link click
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => mobileNav.classList.remove('open'));
+        });
+    </script>
 </body>
 </html>
