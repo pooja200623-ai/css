@@ -1,0 +1,2000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Priya | Canva Graphic Designer</title>
+  <meta name="description" content="Priya – Professional Canva Graphic Designer specializing in social media creatives, brand kits, banners, and stunning visual content." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* =============================================
+       CSS VARIABLES & RESET
+    ============================================= */
+    :root {
+      --pink:       #e85d8a;
+      --pink-dark:  #c43d6a;
+      --pink-light: #fce8f0;
+      --pink-glow:  rgba(232,93,138,0.18);
+      --purple:     #9b6fa5;
+      --purple-pale:#f3edf7;
+      --gold:       #d4a96a;
+      --gold-pale:  #fdf3e4;
+      --bg:         #fdf9fb;
+      --bg2:        #faf4f7;
+      --card:       #ffffff;
+      --dark:       #1c0e18;
+      --text:       #2d1424;
+      --muted:      #8b627a;
+      --border:     #eddde6;
+      --border-lt:  #f5eaf0;
+      --shadow-sm:  0 2px 8px rgba(232,93,138,0.07);
+      --shadow-md:  0 6px 24px rgba(232,93,138,0.13);
+      --shadow-lg:  0 14px 48px rgba(232,93,138,0.18);
+      --shadow-xl:  0 24px 72px rgba(232,93,138,0.22);
+      --radius:     16px;
+      --radius-sm:  10px;
+      --pill:       999px;
+      --font-h:     'Cormorant Garamond', serif;
+      --font-b:     'Nunito', sans-serif;
+      --transition: all 0.32s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-b);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display:block; max-width:100%; }
+    a { text-decoration:none; color:inherit; transition: var(--transition); }
+    ul { list-style: none; }
+    button { font-family: var(--font-b); cursor: pointer; }
+
+    /* =============================================
+       SCROLLBAR
+    ============================================= */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: var(--pink); border-radius: var(--pill); }
+
+    /* =============================================
+       UTILITIES
+    ============================================= */
+    .container { width:100%; max-width:1180px; margin:0 auto; padding:0 28px; }
+    .section    { padding: 110px 0; }
+    .section-alt { background: var(--bg2); }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--pink);
+      background: var(--pink-light);
+      border: 1px solid rgba(232,93,138,0.25);
+      padding: 5px 16px;
+      border-radius: var(--pill);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: var(--font-h);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .section-title span { color: var(--pink); font-style: italic; }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.8;
+    }
+
+    .section-header { margin-bottom: 60px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding: 14px 32px;
+      font-weight: 700; font-size: 15px;
+      border-radius: var(--radius-sm);
+      border: none; transition: var(--transition);
+      position: relative; overflow: hidden;
+    }
+    .btn::after {
+      content:''; position:absolute; inset:0;
+      background: rgba(255,255,255,0.12);
+      opacity:0; transition: var(--transition);
+    }
+    .btn:hover::after { opacity:1; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(232,93,138,0.38);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(232,93,138,0.48); }
+    .btn-outline {
+      background: transparent;
+      color: var(--pink);
+      border: 2px solid var(--pink);
+    }
+    .btn-outline:hover { background: var(--pink-light); transform: translateY(-2px); }
+    .btn-dark {
+      background: var(--dark);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(28,14,24,0.3);
+    }
+    .btn-dark:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(28,14,24,0.4); }
+
+    /* Tag pill */
+    .tag {
+      font-size:12px; font-weight:700;
+      padding: 4px 12px; border-radius: var(--pill);
+      background: var(--pink-light);
+      color: var(--pink-dark);
+      border: 1px solid rgba(232,93,138,0.2);
+    }
+
+    /* Card base */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(232,93,138,0.3);
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity:1; transform:none; }
+    .reveal-left  { opacity:0; transform:translateX(-40px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal-right { opacity:0; transform:translateX(40px);  transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal-left.visible,
+    .reveal-right.visible { opacity:1; transform:none; }
+
+    /* =============================================
+       FLOATING BLOBS
+    ============================================= */
+    .blob {
+      position:absolute; border-radius:50%;
+      filter: blur(90px); pointer-events:none; z-index:0;
+    }
+    .blob-pink   { background: radial-gradient(circle, rgba(232,93,138,0.22) 0%, transparent 70%); }
+    .blob-purple { background: radial-gradient(circle, rgba(155,111,165,0.16) 0%, transparent 70%); }
+    .blob-gold   { background: radial-gradient(circle, rgba(212,169,106,0.14) 0%, transparent 70%); }
+
+    /* =============================================
+       NAVIGATION
+    ============================================= */
+    .navbar {
+      position: fixed; top:0; left:0; width:100%;
+      background: rgba(253,249,251,0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-lt);
+      z-index: 1000;
+      transition: box-shadow 0.3s;
+    }
+    .navbar.scrolled { box-shadow: var(--shadow-md); }
+    .nav-inner {
+      display: flex; align-items:center; justify-content:space-between;
+      max-width:1180px; margin:0 auto;
+      padding: 16px 28px;
+    }
+    .nav-logo {
+      font-family: var(--font-h);
+      font-size: 26px; font-weight:700;
+      color: var(--text);
+    }
+    .nav-logo span { color: var(--pink); font-style:italic; }
+    .nav-links {
+      display:flex; gap:32px;
+    }
+    .nav-links a {
+      font-size:14px; font-weight:600;
+      color: var(--muted);
+    }
+    .nav-links a:hover { color: var(--pink); }
+    .nav-cta { display:flex; align-items:center; gap:12px; }
+    .hamburger {
+      display:none; flex-direction:column; gap:5px;
+      background:none; border:none; padding:4px;
+    }
+    .hamburger span {
+      display:block; width:24px; height:2px;
+      background: var(--text); border-radius:2px; transition:0.3s;
+    }
+
+    /* Mobile nav */
+    .mobile-drawer {
+      position:fixed; top:0; right:-100%; width:280px; height:100vh;
+      background: var(--card);
+      border-left:1px solid var(--border);
+      z-index: 2000; padding: 80px 32px 32px;
+      transition: right 0.38s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: var(--shadow-xl);
+    }
+    .mobile-drawer.open { right:0; }
+    .mobile-drawer ul { list-style:none; }
+    .mobile-drawer ul li { margin-bottom:28px; }
+    .mobile-drawer ul li a {
+      font-family: var(--font-h);
+      font-size:22px; font-weight:700;
+      color: var(--text);
+    }
+    .mobile-drawer ul li a:hover { color: var(--pink); }
+    .drawer-close {
+      position:absolute; top:22px; right:22px;
+      background:none; border:none; font-size:22px;
+      color: var(--muted); cursor:pointer;
+    }
+    .drawer-close:hover { color: var(--pink); }
+
+    /* =============================================
+       HERO
+    ============================================= */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items:center;
+      padding: 120px 0 80px;
+      background: var(--bg2);
+      position:relative; overflow:hidden;
+    }
+    .hero .blob { position:absolute; }
+    .hero .blob-1 { width:600px; height:600px; top:-160px; right:-140px; }
+    .hero .blob-2 { width:400px; height:400px; bottom:-80px; left:-100px; }
+    .hero .blob-3 { width:300px; height:300px; top:40%; left:35%; }
+
+    .hero-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:72px; align-items:center;
+      position:relative; z-index:1;
+    }
+
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background: var(--card);
+      border:1px solid var(--border);
+      padding: 8px 18px; border-radius: var(--pill);
+      font-size:13px; font-weight:700;
+      color: var(--muted);
+      margin-bottom:24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .hero-badge .dot {
+      width:8px; height:8px; border-radius:50%;
+      background:#10b981;
+      animation: pulse-green 2s infinite;
+    }
+    @keyframes pulse-green {
+      0%   { box-shadow: 0 0 0 0 rgba(16,185,129,0.5); }
+      70%  { box-shadow: 0 0 0 8px rgba(16,185,129,0); }
+      100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+    }
+
+    .hero-title {
+      font-family: var(--font-h);
+      font-size: clamp(42px, 5.5vw, 72px);
+      font-weight:700; line-height:1.08;
+      margin-bottom:22px;
+      color: var(--text);
+    }
+    .hero-title .name { color: var(--pink); font-style:italic; display:block; }
+    .hero-title .role { font-size: clamp(18px, 2.5vw, 28px); font-weight:400; color: var(--muted); font-style:italic; display:block; margin-top:6px; }
+
+    .hero-desc {
+      font-size:17px; color: var(--muted);
+      line-height:1.85; margin-bottom:36px;
+      max-width:500px;
+    }
+
+    .hero-btns { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:40px; }
+
+    .hero-stats {
+      display:flex; gap:32px; flex-wrap:wrap;
+    }
+    .hero-stat { text-align:center; }
+    .hero-stat-num {
+      font-family: var(--font-h);
+      font-size:32px; font-weight:700;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text; line-height:1;
+    }
+    .hero-stat-lbl {
+      font-size:12px; font-weight:700;
+      color: var(--muted); text-transform:uppercase;
+      letter-spacing:0.06em; margin-top:4px;
+    }
+    .hero-stat-divider { width:1px; background: var(--border); align-self:stretch; }
+
+    /* Hero visual */
+    .hero-visual { position:relative; display:flex; align-items:center; justify-content:center; height:520px; }
+    .hero-shape {
+      position:absolute; border-radius:40% 60% 60% 40% / 40% 40% 60% 60%;
+    }
+    .hs1 { width:360px; height:460px; background: linear-gradient(135deg, rgba(232,93,138,0.22), rgba(155,111,165,0.15)); transform:rotate(-8deg); }
+    .hs2 { width:360px; height:460px; background: linear-gradient(135deg, rgba(155,111,165,0.12), rgba(232,93,138,0.08)); transform:rotate(8deg); }
+
+    .hero-img-wrap {
+      position:relative; z-index:2;
+      width:300px; height:400px;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow: var(--shadow-xl);
+      border:3px solid rgba(232,93,138,0.25);
+    }
+    .hero-img-placeholder {
+      width:100%; height:100%;
+      background: linear-gradient(160deg, var(--pink-light), var(--purple-pale));
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      gap:14px;
+    }
+    .hero-img-placeholder i { font-size:64px; color: var(--pink); opacity:0.6; }
+    .hero-img-placeholder span { font-family:var(--font-h); font-size:22px; font-weight:700; color:var(--pink-dark); }
+
+    .hero-floating-card {
+      position:absolute; z-index:3;
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding:12px 18px;
+      box-shadow: var(--shadow-lg);
+      white-space:nowrap;
+    }
+    .hfc-1 { bottom: 60px; left:-30px; }
+    .hfc-2 { top:60px; right:-20px; }
+    .hfc-icon { font-size:20px; color:var(--pink); }
+    .hfc-text { font-size:13px; font-weight:700; color:var(--text); margin-top:2px; }
+    .hfc-sub  { font-size:11px; color:var(--muted); }
+
+    /* =============================================
+       ABOUT ME
+    ============================================= */
+    .about-grid {
+      display:grid; grid-template-columns:1fr 1.1fr;
+      gap:80px; align-items:center;
+    }
+
+    .about-img-wrap {
+      position:relative;
+    }
+    .about-img-box {
+      width:100%; aspect-ratio:3/4;
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: var(--shadow-xl);
+    }
+    .about-img-placeholder {
+      width:100%; height:100%;
+      background: linear-gradient(160deg, var(--pink-light), var(--purple-pale));
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px;
+    }
+    .about-img-placeholder i { font-size:72px; color:var(--pink); opacity:0.5; }
+    .about-cert-badge {
+      position:absolute; bottom:28px; right:-24px;
+      background: var(--card); border:1px solid var(--border);
+      border-radius: var(--radius-sm); padding:14px 20px;
+      box-shadow: var(--shadow-lg);
+      display:flex; align-items:center; gap:12px;
+    }
+    .about-cert-badge i { font-size:26px; color:var(--gold); }
+    .about-cert-badge strong { display:block; font-size:13px; font-weight:800; color:var(--text); }
+    .about-cert-badge span  { font-size:11px; color:var(--muted); }
+
+    .about-text .section-label { margin-bottom:14px; }
+
+    .about-body { font-size:16px; color:var(--muted); line-height:1.85; margin-bottom:20px; }
+
+    .about-highlights {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:14px; margin:28px 0;
+    }
+    .ah-item {
+      display:flex; align-items:center; gap:10px;
+      font-size:14px; font-weight:600; color:var(--text);
+    }
+    .ah-item i { color:var(--pink); font-size:15px; }
+
+    /* =============================================
+       SKILLS
+    ============================================= */
+    .skills-grid {
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+      gap:24px;
+    }
+
+    .skill-card {
+      padding:32px 28px;
+    }
+    .skill-card-icon {
+      width:54px; height:54px;
+      background: var(--pink-light);
+      border-radius: var(--radius-sm);
+      display:flex; align-items:center; justify-content:center;
+      font-size:24px; color:var(--pink);
+      margin-bottom:20px;
+      transition: var(--transition);
+    }
+    .skill-card:hover .skill-card-icon {
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      color:#fff;
+      box-shadow: 0 6px 18px rgba(232,93,138,0.35);
+    }
+    .skill-card h3 { font-size:18px; font-weight:800; margin-bottom:8px; }
+    .skill-card p  { font-size:14px; color:var(--muted); line-height:1.7; margin-bottom:14px; }
+
+    .skill-bar-wrap { }
+    .skill-bar-label {
+      display:flex; justify-content:space-between;
+      font-size:12px; font-weight:700;
+      color:var(--text); margin-bottom:6px;
+    }
+    .skill-bar {
+      height:6px; background:var(--border);
+      border-radius:var(--pill); overflow:hidden;
+    }
+    .skill-bar-fill {
+      height:100%;
+      background: linear-gradient(90deg, var(--pink), var(--purple));
+      border-radius:var(--pill);
+      width:0; transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* =============================================
+       SERVICES
+    ============================================= */
+    .services-grid {
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+      gap:28px;
+    }
+
+    .service-card {
+      padding:36px 32px;
+      position:relative; overflow:hidden;
+    }
+    .service-card::before {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(135deg, var(--pink-light), var(--purple-pale));
+      opacity:0; transition: var(--transition);
+    }
+    .service-card:hover::before { opacity:1; }
+
+    .service-num {
+      font-family:var(--font-h);
+      font-size:52px; font-weight:700;
+      color: var(--border); line-height:1;
+      margin-bottom:14px; position:relative;
+      transition: var(--transition);
+    }
+    .service-card:hover .service-num { color: var(--pink-light); }
+
+    .service-icon {
+      width:52px; height:52px;
+      background: var(--pink-light);
+      border-radius:var(--radius-sm);
+      display:flex; align-items:center; justify-content:center;
+      font-size:22px; color:var(--pink);
+      margin-bottom:18px; position:relative;
+      transition: var(--transition);
+    }
+    .service-card:hover .service-icon {
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      color:#fff; box-shadow: 0 6px 18px rgba(232,93,138,0.35);
+    }
+
+    .service-card h3 { font-size:22px; font-weight:800; margin-bottom:12px; position:relative; }
+    .service-card p  { font-size:15px; color:var(--muted); line-height:1.75; position:relative; margin-bottom:18px; }
+    .service-includes { position:relative; }
+    .service-includes li {
+      font-size:13px; color:var(--muted);
+      padding:4px 0; display:flex; align-items:center; gap:8px;
+    }
+    .service-includes li i { color:var(--pink); font-size:11px; }
+    .service-arrow {
+      position:absolute; bottom:28px; right:28px;
+      font-size:16px; color:var(--pink);
+      opacity:0; transform:translateX(-8px);
+      transition: var(--transition);
+    }
+    .service-card:hover .service-arrow { opacity:1; transform:translateX(0); }
+
+    /* =============================================
+       PORTFOLIO / SOCIAL MEDIA CREATIVES
+    ============================================= */
+    .portfolio-filter {
+      display:flex; justify-content:center; gap:10px;
+      flex-wrap:wrap; margin-bottom:48px;
+    }
+
+    .portfolio-grid {
+      display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+      gap:24px;
+    }
+
+    .pf-card {
+      border-radius: var(--radius);
+      overflow:hidden;
+      position:relative;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .pf-card:hover { transform:translateY(-8px); box-shadow: var(--shadow-lg); }
+
+    .pf-img {
+      height:240px;
+      display:flex; align-items:center; justify-content:center;
+      position:relative; overflow:hidden;
+    }
+    .pf-img i { font-size:48px; opacity:0.5; color:#fff; }
+
+    .pf-overlay {
+      position:absolute; inset:0;
+      background: linear-gradient(to top, rgba(28,14,24,0.85), transparent);
+      opacity:0; transition: var(--transition);
+      display:flex; align-items:flex-end; padding:20px;
+    }
+    .pf-card:hover .pf-overlay { opacity:1; }
+    .pf-overlay-content { color:#fff; }
+    .pf-overlay-content h4 { font-size:18px; font-weight:800; }
+    .pf-overlay-content p  { font-size:13px; opacity:0.8; }
+
+    .pf-info { padding:18px 20px; background:var(--card); border:1px solid var(--border); border-top:none; }
+    .pf-info h4 { font-size:16px; font-weight:800; margin-bottom:4px; }
+    .pf-info p  { font-size:13px; color:var(--muted); }
+
+    /* gradient variants */
+    .grad-1 { background: linear-gradient(135deg, #f9a8d4, #c084fc); }
+    .grad-2 { background: linear-gradient(135deg, #fda4af, #fb923c); }
+    .grad-3 { background: linear-gradient(135deg, #a5f3fc, #818cf8); }
+    .grad-4 { background: linear-gradient(135deg, #bbf7d0, #34d399); }
+    .grad-5 { background: linear-gradient(135deg, #fde68a, #f472b6); }
+    .grad-6 { background: linear-gradient(135deg, #c4b5fd, #818cf8); }
+    .grad-7 { background: linear-gradient(135deg, #fca5a5, #f87171); }
+    .grad-8 { background: linear-gradient(135deg, #6ee7b7, #3b82f6); }
+    .grad-9 { background: linear-gradient(135deg, #fbbf24, #ef4444); }
+
+    /* =============================================
+       BANNER SHOWCASE
+    ============================================= */
+    .banner-grid {
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:20px;
+    }
+    .banner-card {
+      border-radius: var(--radius);
+      overflow:hidden;
+      position:relative;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .banner-card:hover { transform:scale(1.02); box-shadow: var(--shadow-lg); }
+    .banner-img {
+      height:180px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .banner-img i { font-size:42px; color:#fff; opacity:0.5; }
+    .banner-label {
+      position:absolute; bottom:0; left:0; right:0;
+      background: linear-gradient(to top, rgba(28,14,24,0.9), transparent);
+      padding:16px;
+      color:#fff; font-size:14px; font-weight:800;
+    }
+    .banner-label span { display:block; font-size:11px; opacity:0.7; font-weight:500; margin-top:2px; }
+
+    /* =============================================
+       DESIGN PROCESS
+    ============================================= */
+    .process-grid {
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+      gap:24px;
+    }
+
+    .process-step {
+      text-align:center; padding:36px 24px;
+      position:relative;
+    }
+    .process-step::after {
+      content:'→';
+      position:absolute; right:-12px; top:50%;
+      transform:translateY(-50%);
+      font-size:24px; color:var(--border);
+    }
+    .process-step:last-child::after { display:none; }
+
+    .process-num {
+      width:60px; height:60px;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      border-radius:50%; margin:0 auto 20px;
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--font-h); font-size:24px; font-weight:700; color:#fff;
+      box-shadow: 0 8px 20px rgba(232,93,138,0.35);
+      transition: var(--transition);
+    }
+    .process-step:hover .process-num { transform:scale(1.1) rotate(5deg); }
+    .process-step h3 { font-size:18px; font-weight:800; margin-bottom:10px; }
+    .process-step p  { font-size:14px; color:var(--muted); line-height:1.7; }
+
+    /* =============================================
+       WHY CHOOSE ME
+    ============================================= */
+    .why-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:32px;
+    }
+
+    .why-card {
+      padding:32px 28px;
+      display:flex; gap:20px; align-items:flex-start;
+    }
+    .why-icon {
+      width:52px; height:52px; flex-shrink:0;
+      background: var(--pink-light);
+      border-radius:var(--radius-sm);
+      display:flex; align-items:center; justify-content:center;
+      font-size:22px; color:var(--pink);
+      transition: var(--transition);
+    }
+    .why-card:hover .why-icon {
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      color:#fff;
+      box-shadow: 0 6px 18px rgba(232,93,138,0.35);
+    }
+    .why-text h3 { font-size:20px; font-weight:800; margin-bottom:8px; }
+    .why-text p  { font-size:14px; color:var(--muted); line-height:1.75; }
+
+    /* =============================================
+       TESTIMONIALS
+    ============================================= */
+    .testimonials-grid {
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+      gap:28px;
+    }
+
+    .testi-card {
+      padding:36px 32px;
+      position:relative; overflow:hidden;
+    }
+    .testi-card::before {
+      content:'\201C';
+      font-family:var(--font-h);
+      font-size:120px; line-height:1;
+      color:var(--pink-light);
+      position:absolute; top:-10px; left:20px;
+      pointer-events:none;
+    }
+
+    .testi-stars { display:flex; gap:4px; margin-bottom:16px; }
+    .testi-stars i { color:var(--gold); font-size:15px; }
+
+    .testi-body {
+      font-size:15px; color:var(--muted);
+      line-height:1.85; font-style:italic;
+      margin-bottom:24px; position:relative;
+    }
+
+    .testi-author { display:flex; align-items:center; gap:14px; }
+    .testi-avatar {
+      width:48px; height:48px; border-radius:50%;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      display:flex; align-items:center; justify-content:center;
+      font-size:15px; font-weight:800; color:#fff;
+      flex-shrink:0;
+    }
+    .testi-author strong { display:block; font-size:15px; font-weight:800; color:var(--text); }
+    .testi-author span   { font-size:13px; color:var(--muted); }
+
+    /* =============================================
+       CONTACT
+    ============================================= */
+    .contact-wrap {
+      display:grid; grid-template-columns:1fr 1.2fr;
+      gap:72px; align-items:start;
+    }
+
+    .contact-info h2 { margin-bottom:14px; }
+    .contact-info p  { font-size:16px; color:var(--muted); line-height:1.8; margin-bottom:36px; }
+
+    .contact-methods { display:flex; flex-direction:column; gap:24px; margin-bottom:36px; }
+    .cm-item { display:flex; align-items:center; gap:16px; }
+    .cm-icon {
+      width:48px; height:48px;
+      background: var(--pink-light); border-radius:var(--radius-sm);
+      display:flex; align-items:center; justify-content:center;
+      font-size:20px; color:var(--pink); flex-shrink:0;
+    }
+    .cm-label { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); }
+    .cm-value { font-size:16px; font-weight:700; color:var(--text); }
+    .cm-value a { color:var(--text); }
+    .cm-value a:hover { color:var(--pink); }
+
+    .contact-social { display:flex; gap:12px; margin-top:8px; }
+    .contact-social a {
+      width:42px; height:42px; border-radius:50%;
+      background: var(--bg2); border:1px solid var(--border);
+      display:flex; align-items:center; justify-content:center;
+      font-size:16px; color:var(--muted);
+      transition: var(--transition);
+    }
+    .contact-social a:hover {
+      background: var(--pink); border-color:var(--pink);
+      color:#fff; transform:translateY(-3px);
+      box-shadow: 0 8px 20px rgba(232,93,138,0.35);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:44px;
+      box-shadow: var(--shadow-xl);
+    }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .form-group { margin-bottom:20px; }
+    .form-group label { display:block; font-size:13px; font-weight:700; color:var(--text); margin-bottom:8px; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width:100%; padding:13px 16px;
+      background:var(--bg2); border:1.5px solid var(--border);
+      border-radius:var(--radius-sm);
+      font-family:var(--font-b); font-size:15px; color:var(--text);
+      outline:none; transition: var(--transition);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color:var(--pink); background:#fff;
+      box-shadow: 0 0 0 3px var(--pink-glow);
+    }
+    .form-group textarea { resize:vertical; min-height:130px; }
+    #form-status { margin-top:14px; font-size:14px; font-weight:600; }
+    #form-status.ok  { color:#16a34a; }
+    #form-status.err { color:#dc2626; }
+
+    /* =============================================
+       WHATSAPP + EMAIL FLOATING BUTTONS
+    ============================================= */
+    .float-btns {
+      position:fixed; bottom:28px; right:28px;
+      display:flex; flex-direction:column; gap:12px;
+      z-index:999;
+    }
+    .float-btn {
+      width:54px; height:54px; border-radius:50%; border:none;
+      display:flex; align-items:center; justify-content:center;
+      font-size:22px; color:#fff;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.22);
+      transition: var(--transition); cursor:pointer;
+    }
+    .float-btn:hover { transform:scale(1.12); }
+    .float-wa  { background:#25d366; }
+    .float-mail{ background: var(--pink); }
+    .float-btn-tooltip {
+      position:absolute; right:66px;
+      background:var(--dark); color:#fff;
+      font-size:12px; font-weight:700;
+      padding:5px 12px; border-radius:var(--pill);
+      white-space:nowrap; opacity:0;
+      transform:translateX(8px);
+      transition: var(--transition); pointer-events:none;
+    }
+    .float-btn:hover .float-btn-tooltip { opacity:1; transform:translateX(0); }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    .footer {
+      background: var(--dark); color:#fff;
+      padding: 60px 0 0;
+    }
+    .footer-grid {
+      display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr;
+      gap:48px; padding-bottom:48px;
+    }
+    .footer-brand .nav-logo { color:#fff; font-size:28px; }
+    .footer-brand p { font-size:14px; color:#a08090; line-height:1.8; margin:16px 0; }
+    .footer-social { display:flex; gap:12px; }
+    .footer-social a {
+      width:38px; height:38px; border-radius:50%;
+      background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12);
+      display:flex; align-items:center; justify-content:center;
+      font-size:15px; color:rgba(255,255,255,0.6);
+      transition: var(--transition);
+    }
+    .footer-social a:hover { background:var(--pink); border-color:var(--pink); color:#fff; transform:translateY(-2px); }
+
+    .footer-col h4 { font-size:14px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; color:#fff; margin-bottom:20px; }
+    .footer-col ul li { margin-bottom:12px; }
+    .footer-col ul li a { font-size:14px; color:#a08090; }
+    .footer-col ul li a:hover { color:var(--pink); }
+
+    .footer-bottom {
+      border-top:1px solid rgba(255,255,255,0.08);
+      padding:22px 0; text-align:center;
+      font-size:13px; color:#a08090;
+    }
+    .footer-bottom span { color:var(--pink); }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 1024px) {
+      .hero-grid      { gap:48px; }
+      .about-grid     { gap:48px; }
+      .contact-wrap   { gap:48px; }
+      .footer-grid    { grid-template-columns:1fr 1fr; }
+      .banner-grid    { grid-template-columns:1fr 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      .why-grid       { grid-template-columns:1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .section        { padding:80px 0; }
+      .hero-grid      { grid-template-columns:1fr; gap:40px; }
+      .hero           { padding:100px 0 60px; }
+      .hero-visual    { display:none; }
+      .about-grid     { grid-template-columns:1fr; }
+      .contact-wrap   { grid-template-columns:1fr; }
+      .form-row       { grid-template-columns:1fr; }
+      .nav-links, .nav-cta { display:none; }
+      .hamburger      { display:flex; }
+      .banner-grid    { grid-template-columns:1fr; }
+      .footer-grid    { grid-template-columns:1fr 1fr; gap:32px; }
+      .process-grid   { grid-template-columns:1fr 1fr; }
+      .process-step::after { display:none; }
+      .about-cert-badge { right:0; }
+    }
+
+    @media (max-width: 520px) {
+      .hero-stats     { gap:20px; }
+      .portfolio-grid { grid-template-columns:1fr; }
+      .footer-grid    { grid-template-columns:1fr; }
+      .process-grid   { grid-template-columns:1fr; }
+      .why-grid       { grid-template-columns:1fr; }
+      .about-highlights { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- =============================================
+     NAVBAR
+============================================= -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Priya<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary" style="padding:10px 22px;font-size:14px;">Hire Me</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="drawer">
+  <button class="drawer-close" id="drawer-close"><i class="fas fa-times"></i></button>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#why">Why Me</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div>
+
+<!-- =============================================
+     HERO
+============================================= -->
+<section class="hero" id="home">
+  <div class="blob blob-pink blob-1"></div>
+  <div class="blob blob-purple blob-2"></div>
+  <div class="blob blob-gold blob-3"></div>
+
+  <div class="container">
+    <div class="hero-grid">
+      <!-- Content -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Available for Freelance Projects
+        </div>
+
+        <h1 class="hero-title">
+          Hi, I'm
+          <span class="name">Priya</span>
+          <span class="role">Canva Graphic Designer</span>
+        </h1>
+
+        <p class="hero-desc">
+          I create visually stunning designs that help brands communicate their story with clarity, creativity, and impact. From social media creatives to complete brand kits — every pixel is crafted with purpose.
+        </p>
+
+        <div class="hero-btns">
+          <a href="#portfolio" class="btn btn-primary">View My Work <i class="fas fa-arrow-right"></i></a>
+          <a href="#contact" class="btn btn-outline">Let's Talk</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">100+</div>
+            <div class="hero-stat-lbl">Projects Done</div>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">50+</div>
+            <div class="hero-stat-lbl">Happy Clients</div>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">3+</div>
+            <div class="hero-stat-lbl">Years Exp.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="hero-visual">
+        <div class="hero-shape hs1"></div>
+        <div class="hero-shape hs2"></div>
+        <div class="hero-img-wrap">
+          <div class="hero-img-placeholder">
+            <i class="fas fa-palette"></i>
+            <span>Priya</span>
+          </div>
+        </div>
+        <div class="hero-floating-card hfc-1">
+          <div class="hfc-icon"><i class="fas fa-star"></i></div>
+          <div class="hfc-text">5★ Rated Designer</div>
+          <div class="hfc-sub">50+ Client Reviews</div>
+        </div>
+        <div class="hero-floating-card hfc-2">
+          <div class="hfc-icon"><i class="fas fa-paint-brush"></i></div>
+          <div class="hfc-text">Canva Expert</div>
+          <div class="hfc-sub">Certified Pro</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     ABOUT ME
+============================================= -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <!-- Image -->
+      <div class="about-img-wrap reveal-left">
+        <div class="about-img-box">
+          <div class="about-img-placeholder">
+            <i class="fas fa-user-circle"></i>
+            <span style="font-family:var(--font-h);font-size:20px;font-weight:700;color:var(--pink-dark);">Priya</span>
+          </div>
+        </div>
+        <div class="about-cert-badge">
+          <i class="fas fa-award"></i>
+          <div>
+            <strong>Canva Certified</strong>
+            <span>Graphic Design Expert</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="about-text reveal-right">
+        <div class="section-label"><i class="fas fa-user"></i> About Me</div>
+        <h2 class="section-title">Passionate Designer,<br><span>Creative Storyteller</span></h2>
+
+        <p class="about-body">
+          Hi! I'm <strong>Priya</strong>, a passionate and creative Canva Graphic Designer with over 3 years of experience crafting visually compelling designs for businesses, entrepreneurs, and content creators. I specialize in creating eye-catching social media graphics, professional brand kits, engaging presentation templates, and scroll-stopping promotional banners.
+        </p>
+        <p class="about-body">
+          My design philosophy is simple: <em>Every brand has a unique story, and I'm here to tell it beautifully.</em> I believe great design is not just about aesthetics — it's about communication. I work closely with clients to understand their vision and translate it into designs that resonate with their audience and drive real results.
+        </p>
+        <p class="about-body">
+          Whether you're a small business owner looking to establish your brand identity, a content creator wanting to elevate your visual presence, or an entrepreneur launching a new product — I'm here to make your brand shine.
+        </p>
+
+        <div class="about-highlights">
+          <div class="ah-item"><i class="fas fa-check-circle"></i> 100+ Successful Projects</div>
+          <div class="ah-item"><i class="fas fa-check-circle"></i> 50+ Happy Clients</div>
+          <div class="ah-item"><i class="fas fa-check-circle"></i> Fast 24–48hr Delivery</div>
+          <div class="ah-item"><i class="fas fa-check-circle"></i> Unlimited Revisions</div>
+          <div class="ah-item"><i class="fas fa-check-circle"></i> Canva Certified Expert</div>
+          <div class="ah-item"><i class="fas fa-check-circle"></i> Unique Custom Designs</div>
+        </div>
+
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="#portfolio" class="btn btn-primary">View Portfolio <i class="fas fa-images"></i></a>
+          <a href="#contact" class="btn btn-outline">Hire Me</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     SKILLS
+============================================= -->
+<section class="section section-alt" id="skills">
+  <div class="container">
+    <div class="section-header center reveal">
+      <div class="section-label"><i class="fas fa-magic"></i> My Skills</div>
+      <h2 class="section-title">What I <span>Bring to the Table</span></h2>
+      <p class="section-sub">A diverse set of design skills developed through years of hands-on experience and continuous learning.</p>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card card reveal">
+        <div class="skill-card-icon"><i class="fas fa-palette"></i></div>
+        <h3>Canva Design</h3>
+        <p>Expert-level proficiency in all Canva tools, templates, and features for professional-grade outputs.</p>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Proficiency</span><span>98%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="98"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card card reveal">
+        <div class="skill-card-icon"><i class="fas fa-hashtag"></i></div>
+        <h3>Social Media Graphics</h3>
+        <p>Creating platform-optimized graphics for Instagram, Facebook, LinkedIn, Pinterest, and more.</p>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Proficiency</span><span>95%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="95"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card card reveal">
+        <div class="skill-card-icon"><i class="fas fa-gem"></i></div>
+        <h3>Brand Identity Design</h3>
+        <p>Developing cohesive visual identities — logos, color palettes, typography, and brand guidelines.</p>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Proficiency</span><span>92%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="92"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card card reveal">
+        <div class="skill-card-icon"><i class="fas fa-presentation-screen"></i></div>
+        <h3>Presentation Design</h3>
+        <p>Designing clean, engaging, and professional pitch decks, business presentations, and slide decks.</p>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Proficiency</span><span>93%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="93"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card card reveal">
+        <div class="skill-card-icon"><i class="fas fa-ad"></i></div>
+        <h3>Banner & Ad Design</h3>
+        <p>High-converting promotional banners, event flyers, sale announcements, and digital ad creatives.</p>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Proficiency</span><span>96%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="96"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card card reveal">
+        <div class="skill-card-icon"><i class="fas fa-eye"></i></div>
+        <h3>Visual Communication</h3>
+        <p>Translating complex ideas into clear, beautiful, and compelling visual narratives that connect.</p>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Proficiency</span><span>90%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="90"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     SERVICES
+============================================= -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-header center reveal">
+      <div class="section-label"><i class="fas fa-briefcase"></i> Services</div>
+      <h2 class="section-title">What I <span>Offer</span></h2>
+      <p class="section-sub">Premium design services tailored to help your brand stand out in today's competitive digital landscape.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card card reveal">
+        <div class="service-num">01</div>
+        <div class="service-icon"><i class="fas fa-layer-group"></i></div>
+        <h3>Social Media Post Design</h3>
+        <p>Eye-catching posts, stories, reels covers, and carousel designs optimized for every platform to boost your online engagement and brand presence.</p>
+        <ul class="service-includes">
+          <li><i class="fas fa-check"></i> Instagram & Facebook Posts</li>
+          <li><i class="fas fa-check"></i> Story & Reel Covers</li>
+          <li><i class="fas fa-check"></i> Carousel Templates</li>
+          <li><i class="fas fa-check"></i> LinkedIn Graphics</li>
+          <li><i class="fas fa-check"></i> Pinterest Pins</li>
+        </ul>
+        <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+      </div>
+
+      <div class="service-card card reveal">
+        <div class="service-num">02</div>
+        <div class="service-icon"><i class="fas fa-gem"></i></div>
+        <h3>Brand Kit Design</h3>
+        <p>Complete visual identity packages that give your brand a professional, consistent, and memorable look across all platforms and touchpoints.</p>
+        <ul class="service-includes">
+          <li><i class="fas fa-check"></i> Logo Design</li>
+          <li><i class="fas fa-check"></i> Color Palette</li>
+          <li><i class="fas fa-check"></i> Typography System</li>
+          <li><i class="fas fa-check"></i> Brand Guidelines</li>
+          <li><i class="fas fa-check"></i> Business Card Design</li>
+        </ul>
+        <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+      </div>
+
+      <div class="service-card card reveal">
+        <div class="service-num">03</div>
+        <div class="service-icon"><i class="fas fa-tv"></i></div>
+        <h3>Presentation Design</h3>
+        <p>Professional pitch decks, business presentations, and educational slide decks that communicate your message with clarity and visual impact.</p>
+        <ul class="service-includes">
+          <li><i class="fas fa-check"></i> Business Pitch Decks</li>
+          <li><i class="fas fa-check"></i> Company Profiles</li>
+          <li><i class="fas fa-check"></i> Educational Slides</li>
+          <li><i class="fas fa-check"></i> Investor Presentations</li>
+          <li><i class="fas fa-check"></i> Webinar Slides</li>
+        </ul>
+        <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+      </div>
+
+      <div class="service-card card reveal">
+        <div class="service-num">04</div>
+        <div class="service-icon"><i class="fas fa-bullhorn"></i></div>
+        <h3>Banner & Flyer Design</h3>
+        <p>Attention-grabbing promotional materials that drive action — from festive sale banners to professional event flyers and digital ads.</p>
+        <ul class="service-includes">
+          <li><i class="fas fa-check"></i> Sale & Offer Banners</li>
+          <li><i class="fas fa-check"></i> Event Flyers</li>
+          <li><i class="fas fa-check"></i> Digital Ad Banners</li>
+          <li><i class="fas fa-check"></i> Promotional Posters</li>
+          <li><i class="fas fa-check"></i> Festival Creatives</li>
+        </ul>
+        <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+      </div>
+
+      <div class="service-card card reveal">
+        <div class="service-num">05</div>
+        <div class="service-icon"><i class="fas fa-book-open"></i></div>
+        <h3>eBook & Lead Magnet Design</h3>
+        <p>Beautifully designed digital products that attract, engage, and convert your audience — perfect for coaches, educators, and online businesses.</p>
+        <ul class="service-includes">
+          <li><i class="fas fa-check"></i> eBook Covers & Layout</li>
+          <li><i class="fas fa-check"></i> Lead Magnet PDFs</li>
+          <li><i class="fas fa-check"></i> Workbooks & Guides</li>
+          <li><i class="fas fa-check"></i> Checklists & Templates</li>
+          <li><i class="fas fa-check"></i> Course Materials</li>
+        </ul>
+        <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+      </div>
+
+      <div class="service-card card reveal">
+        <div class="service-num">06</div>
+        <div class="service-icon"><i class="fas fa-edit"></i></div>
+        <h3>Custom Canva Templates</h3>
+        <p>Fully editable, professionally designed Canva templates customized for your brand that you can reuse and edit independently.</p>
+        <ul class="service-includes">
+          <li><i class="fas fa-check"></i> Reusable Post Templates</li>
+          <li><i class="fas fa-check"></i> Story Template Packs</li>
+          <li><i class="fas fa-check"></i> Branded Document Templates</li>
+          <li><i class="fas fa-check"></i> Email Newsletter Design</li>
+          <li><i class="fas fa-check"></i> Editable Brand Templates</li>
+        </ul>
+        <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     PORTFOLIO SHOWCASE
+============================================= -->
+<section class="section section-alt" id="portfolio">
+  <div class="container">
+    <div class="section-header center reveal">
+      <div class="section-label"><i class="fas fa-images"></i> Portfolio</div>
+      <h2 class="section-title">My <span>Creative Work</span></h2>
+      <p class="section-sub">A selection of projects showcasing my design skills across different industries and platforms.</p>
+    </div>
+
+    <!-- Filter -->
+    <div class="portfolio-filter reveal">
+      <button class="btn btn-primary filter-btn active" data-filter="all">All Work</button>
+      <button class="btn btn-outline filter-btn" data-filter="social">Social Media</button>
+      <button class="btn btn-outline filter-btn" data-filter="brand">Brand Kits</button>
+      <button class="btn btn-outline filter-btn" data-filter="banner">Banners</button>
+      <button class="btn btn-outline filter-btn" data-filter="presentation">Presentations</button>
+    </div>
+
+    <div class="portfolio-grid">
+
+      <div class="pf-card reveal" data-cat="social">
+        <div class="pf-img grad-1">
+          <i class="fas fa-instagram"></i>
+          <div class="pf-overlay">
+            <div class="pf-overlay-content">
+              <h4>Fashion Brand Instagram Pack</h4>
+              <p>30-piece social media creative set</p>
+            </div>
+          </div>
+        </div>
+        <div class="pf-info">
+          <h4>Fashion Brand Instagram Pack</h4>
+          <p>Social Media Creatives · Instagram</p>
+        </div>
+      </div>
+
+      <div class="pf-card reveal" data-cat="brand">
+        <div class="pf-img grad-2">
+          <i class="fas fa-gem"></i>
+          <div class="pf-overlay">
+            <div class="pf-overlay-content">
+              <h4>Wellness Brand Kit</h4>
+              <p>Complete brand identity package</p>
+            </div>
+          </div>
+        </div>
+        <div class="pf-info">
+          <h4>Wellness Brand Kit</h4>
+          <p>Brand Identity · Logo + Colors + Typography</p>
+        </div>
+      </div>
+
+      <div class="pf-card reveal" data-cat="banner">
+        <div class="pf-img grad-3">
+          <i class="fas fa-bullhorn"></i>
+          <div class="pf-overlay">
+            <div class="pf-overlay-content">
+              <h4>Diwali Sale Banner Series</h4>
+              <p>Festival promotional banners</p>
+            </div>
+          </div>
+        </div>
+        <div class="pf-info">
+          <h4>Diwali Sale Banner Series</h4>
+          <p>Promotional Banners · Festival Creatives</p>
+        </div>
+      </div>
+
+      <div class="pf-card reveal" data-cat="presentation">
+        <div class="pf-img grad-4">
+          <i class="fas fa-tv"></i>
+          <div class="pf-overlay">
+            <div class="pf-overlay-content">
+              <h4>Startup Pitch Deck</h4>
+              <p>20-slide investor presentation</p>
+            </div>
+          </div>
+        </div>
+        <div class="pf-info">
+          <h4>Startup Pitch Deck</h4>
+          <p>Presentation Design · Pitch Deck</p>
+        </div>
+      </div>
+
+      <div class="pf-card reveal" data-cat="social">
+        <div class="pf-img grad-5">
+          <i class="fas fa-spa"></i>
+          <div class="pf-overlay">
+            <div class="pf-overlay-content">
+              <h4>Beauty Salon Social Pack</h4>
+              <p>Monthly content calendar designs</p>
+            </div>
+          </div>
+        </div>
+        <div class="pf-info">
+          <h4>Beauty Salon Social Pack</h4>
+          <p>Social Media Creatives · Facebook + Instagram</p>
+        </div>
+      </div>
+
+      <div class="pf-card reveal" data-cat="brand">
+        <div class="pf-img grad-6">
+          <i class="fas fa-coffee"></i>
+          <div class="pf-overlay">
+            <div class="pf-overlay-content">
+              <h4>Café Brand Identity</h4>
+              <p>Logo, menu & packaging design</p>
+            </div>
+          </div>
+        </div>
+        <div class="pf-info">
+          <h4>Café Brand Identity</h4>
+          <p>Brand Kit · Logo + Menu Design</p>
+        </div>
+      </div>
+
+      <div class="pf-card reveal" data-cat="social">
+        <div class="pf-img grad-7">
+          <i class="fas fa-dumbbell"></i>
+          <div class="pf-overlay">
+            <div class="pf-overlay-content">
+              <h4>Fitness Coach Content Pack</h4>
+              <p>Quote cards, tips & story templates</p>
+            </div>
+          </div>
+        </div>
+        <div class="pf-info">
+          <h4>Fitness Coach Content Pack</h4>
+          <p>Social Media Creatives · Content Templates</p>
+        </div>
+      </div>
+
+      <div class="pf-card reveal" data-cat="banner">
+        <div class="pf-img grad-8">
+          <i class="fas fa-shopping-bag"></i>
+          <div class="pf-overlay">
+            <div class="pf-overlay-content">
+              <h4>E-commerce Sale Banners</h4>
+              <p>Product launch & discount ads</p>
+            </div>
+          </div>
+        </div>
+        <div class="pf-info">
+          <h4>E-commerce Sale Banners</h4>
+          <p>Banner Design · Digital Ads</p>
+        </div>
+      </div>
+
+      <div class="pf-card reveal" data-cat="presentation">
+        <div class="pf-img grad-9">
+          <i class="fas fa-chalkboard-teacher"></i>
+          <div class="pf-overlay">
+            <div class="pf-overlay-content">
+              <h4>Online Course Slide Deck</h4>
+              <p>Educational presentation template</p>
+            </div>
+          </div>
+        </div>
+        <div class="pf-info">
+          <h4>Online Course Slide Deck</h4>
+          <p>Presentation Design · eLearning</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     SOCIAL MEDIA CREATIVES SHOWCASE
+============================================= -->
+<section class="section" id="social-creatives">
+  <div class="container">
+    <div class="section-header center reveal">
+      <div class="section-label"><i class="fas fa-mobile-alt"></i> Social Media</div>
+      <h2 class="section-title">Social Media <span>Creatives</span></h2>
+      <p class="section-sub">Scroll-stopping visual content designed to boost engagement, grow followers, and build brand authority on every platform.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;">
+
+      <div class="card reveal" style="overflow:hidden;">
+        <div style="height:200px;background:linear-gradient(135deg,#f9a8d4,#a78bfa);display:flex;align-items:center;justify-content:center;">
+          <i class="fab fa-instagram" style="font-size:56px;color:#fff;opacity:0.7;"></i>
+        </div>
+        <div style="padding:24px 22px;">
+          <div class="tag" style="margin-bottom:12px;">Instagram</div>
+          <h3 style="font-size:18px;font-weight:800;margin-bottom:8px;">Instagram Post & Story Designs</h3>
+          <p style="font-size:14px;color:var(--muted);line-height:1.7;">Aesthetically cohesive feed posts, story templates, highlight covers, and reel thumbnail designs that make your Instagram profile look professionally curated.</p>
+        </div>
+      </div>
+
+      <div class="card reveal" style="overflow:hidden;">
+        <div style="height:200px;background:linear-gradient(135deg,#60a5fa,#3b82f6);display:flex;align-items:center;justify-content:center;">
+          <i class="fab fa-facebook" style="font-size:56px;color:#fff;opacity:0.7;"></i>
+        </div>
+        <div style="padding:24px 22px;">
+          <div class="tag" style="margin-bottom:12px;">Facebook</div>
+          <h3 style="font-size:18px;font-weight:800;margin-bottom:8px;">Facebook Post & Cover Designs</h3>
+          <p style="font-size:14px;color:var(--muted);line-height:1.7;">Engaging Facebook post graphics, event banners, page cover images, and promotional creatives designed to maximise reach and drive meaningful interaction.</p>
+        </div>
+      </div>
+
+      <div class="card reveal" style="overflow:hidden;">
+        <div style="height:200px;background:linear-gradient(135deg,#6ee7b7,#059669);display:flex;align-items:center;justify-content:center;">
+          <i class="fab fa-whatsapp" style="font-size:56px;color:#fff;opacity:0.7;"></i>
+        </div>
+        <div style="padding:24px 22px;">
+          <div class="tag" style="margin-bottom:12px;">WhatsApp</div>
+          <h3 style="font-size:18px;font-weight:800;margin-bottom:8px;">WhatsApp Status & Broadcast Creatives</h3>
+          <p style="font-size:14px;color:var(--muted);line-height:1.7;">Eye-catching WhatsApp status graphics, festival greetings, offer announcements, and business broadcast creatives that make your messages impossible to ignore.</p>
+        </div>
+      </div>
+
+      <div class="card reveal" style="overflow:hidden;">
+        <div style="height:200px;background:linear-gradient(135deg,#fbbf24,#f59e0b);display:flex;align-items:center;justify-content:center;">
+          <i class="fab fa-linkedin" style="font-size:56px;color:#fff;opacity:0.7;"></i>
+        </div>
+        <div style="padding:24px 22px;">
+          <div class="tag" style="margin-bottom:12px;">LinkedIn</div>
+          <h3 style="font-size:18px;font-weight:800;margin-bottom:8px;">LinkedIn Content & Banner Designs</h3>
+          <p style="font-size:14px;color:var(--muted);line-height:1.7;">Professional LinkedIn post graphics, profile banners, company page covers, and thought leadership content cards that position you as an industry authority.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     BANNER DESIGN SHOWCASE
+============================================= -->
+<section class="section section-alt" id="banners">
+  <div class="container">
+    <div class="section-header center reveal">
+      <div class="section-label"><i class="fas fa-ad"></i> Banner Designs</div>
+      <h2 class="section-title">Banner Design <span>Showcase</span></h2>
+      <p class="section-sub">High-impact promotional banners designed to capture attention, communicate your offer, and drive conversions.</p>
+    </div>
+
+    <div class="banner-grid">
+      <div class="banner-card reveal">
+        <div class="banner-img grad-1"><i class="fas fa-star"></i></div>
+        <div class="banner-label">Festive Sale Banners<span>Diwali · Eid · Christmas · New Year</span></div>
+      </div>
+      <div class="banner-card reveal">
+        <div class="banner-img grad-3"><i class="fas fa-shopping-cart"></i></div>
+        <div class="banner-label">E-commerce Offer Banners<span>Flash Sale · Discount · Launch</span></div>
+      </div>
+      <div class="banner-card reveal">
+        <div class="banner-img grad-5"><i class="fas fa-calendar-alt"></i></div>
+        <div class="banner-label">Event & Webinar Banners<span>Conference · Workshop · Launch</span></div>
+      </div>
+      <div class="banner-card reveal">
+        <div class="banner-img grad-2"><i class="fas fa-building"></i></div>
+        <div class="banner-label">Business Promotional Banners<span>Service Ads · Brand Awareness</span></div>
+      </div>
+      <div class="banner-card reveal">
+        <div class="banner-img grad-4"><i class="fas fa-graduation-cap"></i></div>
+        <div class="banner-label">Educational Banners<span>Course Launch · Workshop · Seminar</span></div>
+      </div>
+      <div class="banner-card reveal">
+        <div class="banner-img grad-6"><i class="fas fa-spa"></i></div>
+        <div class="banner-label">Lifestyle & Beauty Banners<span>Salon · Wellness · Fashion</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     DESIGN PROCESS
+============================================= -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-header center reveal">
+      <div class="section-label"><i class="fas fa-cogs"></i> How I Work</div>
+      <h2 class="section-title">My Design <span>Process</span></h2>
+      <p class="section-sub">A clear, collaborative, and client-focused process designed to deliver exceptional results every time.</p>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-step card reveal">
+        <div class="process-num">1</div>
+        <h3>Discovery & Brief</h3>
+        <p>We start with a detailed conversation about your brand, goals, target audience, and design preferences to build a clear creative brief.</p>
+      </div>
+      <div class="process-step card reveal">
+        <div class="process-num">2</div>
+        <h3>Research & Concept</h3>
+        <p>I research your industry, competitors, and audience to develop creative concepts and design directions that align with your brand vision.</p>
+      </div>
+      <div class="process-step card reveal">
+        <div class="process-num">3</div>
+        <h3>Design & Creation</h3>
+        <p>I bring the concepts to life in Canva, crafting pixel-perfect designs with attention to typography, color, layout, and visual hierarchy.</p>
+      </div>
+      <div class="process-step card reveal">
+        <div class="process-num">4</div>
+        <h3>Review & Revisions</h3>
+        <p>You review the designs and share feedback. I make revisions until you're completely satisfied — unlimited revisions included in every project.</p>
+      </div>
+      <div class="process-step card reveal">
+        <div class="process-num">5</div>
+        <h3>Final Delivery</h3>
+        <p>Once approved, I deliver all final files in your preferred formats (PNG, PDF, JPG, editable Canva link) promptly and professionally.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     WHY CHOOSE ME
+============================================= -->
+<section class="section section-alt" id="why">
+  <div class="container">
+    <div class="section-header center reveal">
+      <div class="section-label"><i class="fas fa-heart"></i> Why Choose Me</div>
+      <h2 class="section-title">Why Clients <span>Love Working With Me</span></h2>
+      <p class="section-sub">More than just designs — I deliver exceptional experiences that make clients come back again and again.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card card reveal">
+        <div class="why-icon"><i class="fas fa-bolt"></i></div>
+        <div class="why-text">
+          <h3>Fast Turnaround</h3>
+          <p>I deliver most projects within 24–48 hours without compromising on quality. Your time is valuable, and I respect every deadline with consistency.</p>
+        </div>
+      </div>
+      <div class="why-card card reveal">
+        <div class="why-icon"><i class="fas fa-infinity"></i></div>
+        <div class="why-text">
+          <h3>Unlimited Revisions</h3>
+          <p>Your satisfaction is my top priority. I offer unlimited revisions on every project because I'm not done until you're absolutely in love with the final design.</p>
+        </div>
+      </div>
+      <div class="why-card card reveal">
+        <div class="why-icon"><i class="fas fa-fingerprint"></i></div>
+        <div class="why-text">
+          <h3>100% Custom Designs</h3>
+          <p>Every design is created uniquely for you. I never use recycled designs or off-the-shelf templates without full customization to match your brand identity.</p>
+        </div>
+      </div>
+      <div class="why-card card reveal">
+        <div class="why-icon"><i class="fas fa-comments"></i></div>
+        <div class="why-text">
+          <h3>Clear Communication</h3>
+          <p>I keep you informed throughout every step of the process. Responsive, professional, and always available to answer your questions and address concerns.</p>
+        </div>
+      </div>
+      <div class="why-card card reveal">
+        <div class="why-icon"><i class="fas fa-award"></i></div>
+        <div class="why-text">
+          <h3>Canva Certified Expertise</h3>
+          <p>As a Canva Certified professional, I bring expert-level knowledge of all Canva tools, features, and best practices to deliver premium quality outputs.</p>
+        </div>
+      </div>
+      <div class="why-card card reveal">
+        <div class="why-icon"><i class="fas fa-dollar-sign"></i></div>
+        <div class="why-text">
+          <h3>Affordable Pricing</h3>
+          <p>Premium design quality at budget-friendly prices. I believe great design should be accessible to businesses of all sizes — from startups to enterprises.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     TESTIMONIALS
+============================================= -->
+<section class="section" id="testimonials">
+  <div class="container">
+    <div class="section-header center reveal">
+      <div class="section-label"><i class="fas fa-star"></i> Testimonials</div>
+      <h2 class="section-title">What My <span>Clients Say</span></h2>
+      <p class="section-sub">Real words from real clients who trusted me with their brand's visual identity and came back for more.</p>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <div class="testi-card card reveal">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-body">"Priya is absolutely amazing! She designed a complete social media pack for my fashion boutique and the results were stunning. My Instagram engagement went up by 40% in the first month. Her attention to detail and creativity is unmatched. Will definitely hire again!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AA</div>
+          <div>
+            <strong>Aisha Ansari</strong>
+            <span>Fashion Boutique Owner, Mumbai</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card card reveal">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-body">"Working with Priya was an incredible experience. She created a full brand kit for my wellness coaching business — logo, colors, fonts, and social templates. Everything was exactly what I envisioned but better! She's patient, talented, and delivers fast. Highly recommend!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RM</div>
+          <div>
+            <strong>Ritu Mehta</strong>
+            <span>Wellness Coach, Delhi</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card card reveal">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-body">"I needed a professional pitch deck for my startup in less than 48 hours and Priya delivered beyond expectations! The design was sleek, modern, and perfectly aligned with our brand. Our investors were impressed. She's my go-to designer for all future projects!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">KS</div>
+          <div>
+            <strong>Karan Shah</strong>
+            <span>Tech Startup Founder, Bangalore</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card card reveal">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-body">"Priya designed our Diwali and New Year sale banners and they were absolutely gorgeous! Our sales went up significantly because the banners were so eye-catching. She understands the Indian market perfectly and creates designs that truly connect with the audience. Thank you, Priya!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SP</div>
+          <div>
+            <strong>Sneha Patel</strong>
+            <span>E-commerce Business Owner, Surat</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card card reveal">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-body">"I've worked with many designers before, but Priya stands out for her professionalism, creativity, and speed. She designed an entire month's worth of social media content for my fitness brand in just 3 days. The quality is exceptional and her communication is excellent throughout. A true gem!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">VR</div>
+          <div>
+            <strong>Vikram Rao</strong>
+            <span>Fitness Trainer & Influencer, Hyderabad</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card card reveal">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-body">"Priya helped me design my eBook and lead magnet for my online coaching program. The design was beautiful, professional, and perfectly matched my brand aesthetic. It helped me generate over 200 leads in the first week of launch! Absolutely worth every penny. Highly recommended!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">NJ</div>
+          <div>
+            <strong>Nisha Jain</strong>
+            <span>Business Coach & Course Creator, Pune</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     CONTACT
+============================================= -->
+<section class="section section-alt" id="contact">
+  <div class="container">
+    <div class="section-header center reveal">
+      <div class="section-label"><i class="fas fa-envelope"></i> Get In Touch</div>
+      <h2 class="section-title">Let's Create <span>Something Beautiful</span></h2>
+      <p class="section-sub">Ready to elevate your brand's visual identity? Let's talk about your project and bring your vision to life.</p>
+    </div>
+
+    <div class="contact-wrap">
+      <!-- Info -->
+      <div class="reveal-left">
+        <div class="section-label"><i class="fas fa-map-marker-alt"></i> Contact Info</div>
+        <h2 class="section-title" style="font-size:clamp(26px,3vw,38px);margin-bottom:14px;">I'd Love to <span>Hear From You</span></h2>
+        <p>Have a project in mind? Want to discuss your design needs? Feel free to reach out — I'm just a message away and always happy to chat about how I can help your brand look its best.</p>
+
+        <div class="contact-methods">
+          <div class="cm-item">
+            <div class="cm-icon"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <div class="cm-label">WhatsApp / Phone</div>
+              <div class="cm-value"><a href="https://wa.me/919876543210">+91 98765 43210</a></div>
+            </div>
+          </div>
+          <div class="cm-item">
+            <div class="cm-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div class="cm-label">Email</div>
+              <div class="cm-value"><a href="mailto:priya.designs@gmail.com">priya.designs@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="cm-item">
+            <div class="cm-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <div class="cm-label">Location</div>
+              <div class="cm-value">India (Available Worldwide)</div>
+            </div>
+          </div>
+          <div class="cm-item">
+            <div class="cm-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <div class="cm-label">Working Hours</div>
+              <div class="cm-value">Mon – Sat, 9 AM – 7 PM IST</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-social">
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+          <a href="https://wa.me/919876543210" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+
+        <!-- Quick action buttons -->
+        <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:32px;">
+          <a href="https://wa.me/919876543210" class="btn btn-primary" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp Me
+          </a>
+          <a href="mailto:priya.designs@gmail.com" class="btn btn-outline">
+            <i class="fas fa-envelope"></i> Email Me
+          </a>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="contact-form reveal-right">
+        <form id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-name">Your Name *</label>
+              <input type="text" id="cf-name" placeholder="e.g. Priya Sharma" required />
+            </div>
+            <div class="form-group">
+              <label for="cf-email">Email Address *</label>
+              <input type="email" id="cf-email" placeholder="you@email.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cf-phone">Phone / WhatsApp</label>
+            <input type="tel" id="cf-phone" placeholder="+91 XXXXX XXXXX" />
+          </div>
+          <div class="form-group">
+            <label for="cf-service">Service Required *</label>
+            <select id="cf-service" required>
+              <option value="">Select a Service</option>
+              <option>Social Media Post Design</option>
+              <option>Brand Kit Design</option>
+              <option>Presentation Design</option>
+              <option>Banner & Flyer Design</option>
+              <option>eBook & Lead Magnet Design</option>
+              <option>Custom Canva Templates</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cf-msg">Project Details *</label>
+            <textarea id="cf-msg" placeholder="Tell me about your project, brand, requirements, timeline, and any specific ideas you have..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;padding:16px;">
+            Send Message <i class="fas fa-paper-plane"></i>
+          </button>
+          <div id="form-status"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     FOOTER
+============================================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">Priya<span style="color:var(--pink);">.</span></a>
+        <p>Canva Graphic Designer creating beautiful, purposeful designs that help brands communicate their story with clarity and impact.</p>
+        <div class="footer-social">
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+          <a href="https://wa.me/919876543210" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About Me</a></li>
+          <li><a href="#skills">My Skills</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#process">Design Process</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Social Media Design</a></li>
+          <li><a href="#services">Brand Kit Design</a></li>
+          <li><a href="#services">Presentation Design</a></li>
+          <li><a href="#services">Banner & Flyer Design</a></li>
+          <li><a href="#services">eBook Design</a></li>
+          <li><a href="#services">Canva Templates</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://wa.me/919876543210"><i class="fab fa-whatsapp" style="color:var(--pink);margin-right:6px;"></i>+91 98765 43210</a></li>
+          <li><a href="mailto:priya.designs@gmail.com"><i class="fas fa-envelope" style="color:var(--pink);margin-right:6px;"></i>priya.designs@gmail.com</a></li>
+          <li><a href="#"><i class="fas fa-globe" style="color:var(--pink);margin-right:6px;"></i>India (Worldwide)</a></li>
+        </ul>
+        <div style="margin-top:20px;">
+          <a href="https://wa.me/919876543210" class="btn btn-primary" style="padding:10px 20px;font-size:13px;" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      © <span id="footer-year"></span> <span>Priya</span> — Canva Graphic Designer. Designed with <i class="fas fa-heart" style="color:var(--pink);"></i> and creativity.
+    </div>
+  </div>
+</footer>
+
+<!-- =============================================
+     FLOATING BUTTONS
+============================================= -->
+<div class="float-btns">
+  <a href="https://wa.me/919876543210" class="float-btn float-wa" target="_blank" title="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="float-btn-tooltip">WhatsApp Me</span>
+  </a>
+  <a href="mailto:priya.designs@gmail.com" class="float-btn float-mail" title="Email">
+    <i class="fas fa-envelope"></i>
+    <span class="float-btn-tooltip">Email Me</span>
+  </a>
+</div>
+
+<!-- =============================================
+     JAVASCRIPT
+============================================= -->
+<script>
+  /* ---- Navbar scroll ---- */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  /* ---- Mobile drawer ---- */
+  const hamburger = document.getElementById('hamburger');
+  const drawer    = document.getElementById('drawer');
+  const drawerClose = document.getElementById('drawer-close');
+  hamburger.addEventListener('click',  () => drawer.classList.add('open'));
+  drawerClose.addEventListener('click', () => drawer.classList.remove('open'));
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+
+  /* ---- Footer year ---- */
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  /* ---- Scroll reveal ---- */
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  /* ---- Skill bar animation ---- */
+  const skillBars = document.querySelectorAll('.skill-bar-fill');
+  const skillObs  = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = e.target.dataset.width + '%';
+        skillObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  skillBars.forEach(bar => skillObs.observe(bar));
+
+  /* ---- Portfolio filter ---- */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const pfCards    = document.querySelectorAll('.pf-card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => { b.classList.remove('active'); b.classList.add('btn-outline'); b.classList.remove('btn-primary'); });
+      btn.classList.add('active', 'btn-primary');
+      btn.classList.remove('btn-outline');
+      const filter = btn.dataset.filter;
+      pfCards.forEach(card => {
+        if (filter === 'all' || card.dataset.cat === filter) {
+          card.style.display = '';
+          setTimeout(() => card.style.opacity = '1', 10);
+        } else {
+          card.style.opacity = '0';
+          setTimeout(() => card.style.display = 'none', 300);
+        }
+      });
+    });
+  });
+
+  /* ---- Contact form ---- */
+  const contactForm = document.getElementById('contact-form');
+  const formStatus  = document.getElementById('form-status');
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name    = document.getElementById('cf-name').value.trim();
+    const email   = document.getElementById('cf-email').value.trim();
+    const service = document.getElementById('cf-service').value;
+    const msg     = document.getElementById('cf-msg').value.trim();
+    if (!name || !email || !service || !msg) {
+      formStatus.textContent = '⚠️ Please fill in all required fields.';
+      formStatus.className = 'err';
+      return;
+    }
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    setTimeout(() => {
+      formStatus.textContent = '✅ Thank you! Your message has been sent. I\'ll get back to you within 24 hours!';
+      formStatus.className = 'ok';
+      contactForm.reset();
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
+    }, 1500);
+  });
+
+  /* ---- Stagger reveal delays ---- */
+  document.querySelectorAll('.services-grid .service-card').forEach((el, i) => el.style.transitionDelay = (i * 0.08) + 's');
+  document.querySelectorAll('.skills-grid .skill-card').forEach((el, i)    => el.style.transitionDelay = (i * 0.08) + 's');
+  document.querySelectorAll('.why-grid .why-card').forEach((el, i)          => el.style.transitionDelay = (i * 0.08) + 's');
+  document.querySelectorAll('.testi-card').forEach((el, i)                  => el.style.transitionDelay = (i * 0.08) + 's');
+</script>
+
+</body>
+</html>
