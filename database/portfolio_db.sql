@@ -152,21 +152,25 @@ INSERT INTO projects (title, description, tech_stack, live_url, github_url, imag
 TRUNCATE TABLE skills;
 INSERT INTO skills (name, category, proficiency, icon_class) VALUES
 -- PPC
-('Google Ads (Search/Display)', 'Paid Acquisition (PPC)', 92, 'fab fa-google'),
+('Google Ads (Search/Display)', 'Paid Acquisition (PPC)', 98, 'fab fa-google'),
 ('Meta Ads Manager', 'Paid Acquisition (PPC)', 95, 'fab fa-facebook-f'),
 ('LinkedIn Campaign Manager', 'Paid Acquisition (PPC)', 80, 'fab fa-linkedin-in'),
 ('TikTok Ads', 'Paid Acquisition (PPC)', 75, 'fab fa-tiktok'),
 -- SEO
-('Technical SEO & Audits', 'Search Engine Optimization', 90, 'fas fa-search-plus'),
+('Technical SEO & Audits', 'Search Engine Optimization', 96, 'fas fa-search-plus'),
 ('On-Page & Content Optimization', 'Search Engine Optimization', 94, 'fas fa-file-alt'),
 ('Keyword Research & Strategy', 'Search Engine Optimization', 95, 'fas fa-key'),
 ('Link Building & Outreach', 'Search Engine Optimization', 82, 'fas fa-link'),
 -- Analytics
-('GA4 & Tag Manager (GTM)', 'Marketing Tech & Analytics', 90, 'fas fa-chart-bar'),
+('GA4 & Tag Manager (GTM)', 'Marketing Tech & Analytics', 94, 'fas fa-chart-bar'),
 ('HubSpot CRM Marketing', 'Marketing Tech & Analytics', 85, 'fab fa-hubspot'),
 ('A/B Testing & CRO (VWO/Hotjar)', 'Marketing Tech & Analytics', 88, 'fas fa-flask'),
 ('Looker Studio Dashboards', 'Marketing Tech & Analytics', 80, 'fas fa-chart-pie'),
 -- Retention
 ('Klaviyo / Mailchimp Automation', 'Retention & Email', 90, 'fas fa-envelope-open-text'),
 ('Customer Journey Mapping', 'Retention & Email', 88, 'fas fa-map-signs'),
-('Lead Magnet & Funnel Strategy', 'Retention & Email', 92, 'fas fa-filter');
+('Lead Magnet & Funnel Strategy', 'Retention & Email', 92, 'fas fa-filter'),
+-- AI & Automations
+('ChatGPT & Prompt Engineering', 'AI & Automations', 95, 'fas fa-robot'),
+('Midjourney / AI Visuals', 'AI & Automations', 88, 'fas fa-image'),
+('Zapier / Make.com Workflows', 'AI & Automations', 92, 'fas fa-bolt');
