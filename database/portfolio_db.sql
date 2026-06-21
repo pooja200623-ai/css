@@ -173,4 +173,5 @@ INSERT INTO skills (name, category, proficiency, icon_class) VALUES
 -- AI & Automations
 ('ChatGPT & Prompt Engineering', 'AI & Automations', 95, 'fas fa-robot'),
 ('Midjourney / AI Visuals', 'AI & Automations', 88, 'fas fa-image'),
+('Claude & Advanced LLMs', 'AI & Automations', 90, 'fas fa-brain'),
 ('Zapier / Make.com Workflows', 'AI & Automations', 92, 'fas fa-bolt');
