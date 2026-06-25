@@ -1044,6 +1044,126 @@ img { display: block; max-width: 100%; }
 /* =========================================
    Skills Section — Premium Redesign
    ========================================= */
+
+/* ── Stats Summary Bar ── */
+.toolkit-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 18px;
+    padding: 22px 36px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow-sm);
+    flex-wrap: wrap;
+}
+
+.toolkit-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 0 32px;
+}
+
+.toolkit-stat-value {
+    font-size: 32px;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    background: linear-gradient(135deg, var(--accent), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.toolkit-stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+}
+
+.toolkit-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border-light);
+    flex-shrink: 0;
+}
+
+/* ── Filter Tab Strip ── */
+.toolkit-filters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+}
+
+.toolkit-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 18px;
+    border-radius: 99px;
+    border: 1.5px solid var(--border-light);
+    background: var(--bg-card);
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.toolkit-filter-btn i {
+    font-size: 12px;
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+}
+
+.toolkit-filter-btn:hover {
+    border-color: var(--btn-color, var(--accent));
+    color: var(--btn-color, var(--accent));
+    background: color-mix(in srgb, var(--btn-color, var(--accent)) 8%, white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--btn-color, var(--accent)) 20%, transparent);
+}
+
+.toolkit-filter-btn.active {
+    background: var(--btn-color, var(--accent));
+    border-color: var(--btn-color, var(--accent));
+    color: #fff;
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--btn-color, var(--accent)) 35%, transparent);
+}
+
+.toolkit-filter-btn.active i {
+    opacity: 1;
+}
+
+/* "All" button uses accent gradient */
+#filter-all {
+    --btn-color: var(--accent);
+}
+#filter-all.active {
+    background: linear-gradient(135deg, var(--accent), var(--secondary));
+    border-color: var(--accent);
+    box-shadow: 0 4px 14px var(--accent-glow);
+}
+
+/* Hide/show category cards with fade */
+.skills-category.cat-hidden {
+    opacity: 0;
+    transform: scale(0.96);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

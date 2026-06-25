@@ -138,6 +138,21 @@ async function loadProjects(category = 'All') {
     }).join('');
 }
 
+// Animate a number element counting up from start to end
+function animateCount(elId, start, end, duration) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    const startTime = performance.now();
+    function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+        el.textContent = Math.round(start + (end - start) * eased);
+        if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+}
+
 // Category metadata for icons, colors, and descriptions
 const CATEGORY_META = {
     'Paid Acquisition (PPC)': {
@@ -197,9 +212,68 @@ async function loadSkills() {
         if (!result.success) throw new Error(result.error || 'Failed to fetch skills');
         
         const groupedSkills = result.data;
-        
         container.innerHTML = '';
-        
+
+        // ── Compute stats ──────────────────────────────────────────
+        let totalSkills = 0, totalProf = 0, expertCount = 0;
+        const allCategories = Object.keys(groupedSkills);
+        for (const skills of Object.values(groupedSkills)) {
+            skills.forEach(s => {
+                totalSkills++;
+                totalProf += s.proficiency;
+                if (s.proficiency >= 95) expertCount++;
+            });
+        }
+        const avgProf = totalSkills ? Math.round(totalProf / totalSkills) : 0;
+
+        // ── Populate stats bar ──────────────────────────────────────
+        const statsBar = document.getElementById('toolkit-stats');
+        if (statsBar) {
+            document.getElementById('stat-total').textContent  = totalSkills;
+            document.getElementById('stat-avg').textContent    = avgProf + '%';
+            document.getElementById('stat-expert').textContent = expertCount;
+            document.getElementById('stat-cats').textContent   = allCategories.length;
+            statsBar.style.display = '';
+            // Animate numbers counting up
+            animateCount('stat-total',  0, totalSkills,  1200);
+            animateCount('stat-expert', 0, expertCount,  1000);
+        }
+
+        // ── Build filter tabs ───────────────────────────────────────
+        const filtersWrap = document.getElementById('toolkit-filters');
+        if (filtersWrap) {
+            // Keep the "All" button, add one per category
+            allCategories.forEach(cat => {
+                const meta = CATEGORY_META[cat] || { icon: 'fas fa-code', label: cat };
+                const btn = document.createElement('button');
+                btn.className = 'toolkit-filter-btn';
+                btn.dataset.filter = cat;
+                btn.innerHTML = `<i class="${meta.icon}"></i> <span>${meta.label || cat}</span>`;
+                btn.style.setProperty('--btn-color', meta.color || 'var(--accent)');
+                filtersWrap.appendChild(btn);
+            });
+            filtersWrap.style.display = '';
+
+            // Filter logic
+            filtersWrap.addEventListener('click', (e) => {
+                const btn = e.target.closest('.toolkit-filter-btn');
+                if (!btn) return;
+                filtersWrap.querySelectorAll('.toolkit-filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                container.querySelectorAll('.skills-category').forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = '';
+                        card.classList.remove('cat-hidden');
+                    } else {
+                        card.classList.add('cat-hidden');
+                        setTimeout(() => { if (card.classList.contains('cat-hidden')) card.style.display = 'none'; }, 350);
+                    }
+                });
+            });
+        }
+
+        // ── Render category cards ───────────────────────────────────
         for (const [category, skills] of Object.entries(groupedSkills)) {
             const meta = CATEGORY_META[category] || {
                 icon: 'fas fa-code',
@@ -212,7 +286,6 @@ async function loadSkills() {
             const skillCardsHtml = skills.map((skill, i) => {
                 const icon = skill.icon_class || 'fas fa-code';
                 const prof = skill.proficiency;
-                // Tier label based on proficiency
                 const tier = prof >= 95 ? 'Expert' : prof >= 85 ? 'Advanced' : prof >= 70 ? 'Proficient' : 'Familiar';
                 const tierClass = prof >= 95 ? 'tier-expert' : prof >= 85 ? 'tier-advanced' : prof >= 70 ? 'tier-proficient' : 'tier-familiar';
                 return `
@@ -236,40 +309,39 @@ async function loadSkills() {
                 `;
             }).join('');
             
-            container.innerHTML += `
-                <div class="skills-category" style="--cat-color:${meta.color};--cat-glow:${meta.glow}">
-                    <div class="skills-category-header">
-                        <div class="skills-cat-icon" style="background:${meta.gradient};box-shadow:0 8px 20px ${meta.glow}">
-                            <i class="${meta.icon}"></i>
-                        </div>
-                        <div class="skills-cat-info">
-                            <h3 class="skills-category-title">${category}</h3>
-                            <span class="skills-cat-count">${skills.length} skill${skills.length !== 1 ? 's' : ''}</span>
-                        </div>
+            const catEl = document.createElement('div');
+            catEl.className = 'skills-category';
+            catEl.dataset.category = category;
+            catEl.style.cssText = `--cat-color:${meta.color};--cat-glow:${meta.glow}`;
+            catEl.innerHTML = `
+                <div class="skills-category-header">
+                    <div class="skills-cat-icon" style="background:${meta.gradient};box-shadow:0 8px 20px ${meta.glow}">
+                        <i class="${meta.icon}"></i>
                     </div>
-                    <div class="skills-list">
-                        ${skillCardsHtml}
+                    <div class="skills-cat-info">
+                        <h3 class="skills-category-title">${category}</h3>
+                        <span class="skills-cat-count">${skills.length} skill${skills.length !== 1 ? 's' : ''}</span>
                     </div>
                 </div>
+                <div class="skills-list">${skillCardsHtml}</div>
             `;
+            container.appendChild(catEl);
         }
         
-        // Trigger progress bar animations with intersection observer
+        // ── Animate progress bars on scroll ────────────────────────
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const fills = entry.target.querySelectorAll('.skill-progress-fill');
                     fills.forEach((fill, i) => {
                         setTimeout(() => {
-                            const prof = fill.getAttribute('data-proficiency');
-                            fill.style.width = `${prof}%`;
+                            fill.style.width = `${fill.getAttribute('data-proficiency')}%`;
                         }, i * 100);
                     });
                     observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1 });
-        
         observer.observe(container);
         
     } catch (error) {
@@ -281,6 +353,7 @@ async function loadSkills() {
             </div>
         `;
     }
+
 }
 
 // Setup project filter tabs

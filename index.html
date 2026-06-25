@@ -297,7 +297,37 @@
                 <h2 class="section-title">Technical Toolkit</h2>
                 <p class="section-desc">The technologies and platforms I use to bring bold ideas to life.</p>
             </div>
-            
+
+            <!-- Toolkit Stats Bar -->
+            <div class="toolkit-stats" id="toolkit-stats" style="display:none">
+                <div class="toolkit-stat">
+                    <span class="toolkit-stat-value" id="stat-total">—</span>
+                    <span class="toolkit-stat-label">Total Skills</span>
+                </div>
+                <div class="toolkit-stat-divider"></div>
+                <div class="toolkit-stat">
+                    <span class="toolkit-stat-value" id="stat-avg">—</span>
+                    <span class="toolkit-stat-label">Avg. Proficiency</span>
+                </div>
+                <div class="toolkit-stat-divider"></div>
+                <div class="toolkit-stat">
+                    <span class="toolkit-stat-value" id="stat-expert">—</span>
+                    <span class="toolkit-stat-label">Expert-Level Skills</span>
+                </div>
+                <div class="toolkit-stat-divider"></div>
+                <div class="toolkit-stat">
+                    <span class="toolkit-stat-value" id="stat-cats">—</span>
+                    <span class="toolkit-stat-label">Categories</span>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="toolkit-filters" id="toolkit-filters" style="display:none">
+                <button class="toolkit-filter-btn active" data-filter="all" id="filter-all">
+                    <i class="fas fa-th"></i> All
+                </button>
+            </div>
+
             <div id="skills-container" class="skills-grid">
                 <div class="loading-state">
                     <i class="fas fa-spinner fa-spin"></i> Loading toolkit...
