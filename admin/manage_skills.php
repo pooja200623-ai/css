@@ -11,7 +11,7 @@ $action  = $_GET['action'] ?? 'list';
 $editId  = (int)($_GET['id'] ?? 0);
 $message = '';
 $err     = '';
-$skill   = ['id'=>'','name'=>'','category'=>'Frontend','proficiency'=>80,'icon_class'=>'fas fa-code'];
+$skill   = ['id'=>'','name'=>'','category'=>'Paid Acquisition (PPC)','proficiency'=>80,'icon_class'=>'fas fa-code'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = [
@@ -48,7 +48,7 @@ if ($action === 'edit' && $editId) {
 }
 
 $skills = $action === 'list' ? $db->query('SELECT * FROM skills ORDER BY category, name')->fetchAll() : [];
-$categories = ['Paid Acquisition (PPC)','Search Engine Optimization','Marketing Tech & Analytics','Retention & Email'];
+$categories = ['Paid Acquisition (PPC)','Search Engine Optimization','Marketing Tech & Analytics','Retention & Email','AI & Automations','Content & Social Media'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +65,10 @@ $categories = ['Paid Acquisition (PPC)','Search Engine Optimization','Marketing 
     <div class="page-header">
         <h1><?= $action === 'list' ? 'Manage Skills' : ($action === 'add' ? 'Add Skill' : 'Edit Skill') ?></h1>
         <?php if ($action === 'list'): ?>
-        <a href="?action=add" class="btn-primary"><i class="fas fa-plus"></i> Add Skill</a>
+        <div style="display:flex;gap:10px;align-items:center">
+            <a href="reseed_skills.php" class="btn-secondary" title="Reseed all toolkit skills from preset data"><i class="fas fa-sync-alt"></i> Reseed Toolkit</a>
+            <a href="?action=add" class="btn-primary"><i class="fas fa-plus"></i> Add Skill</a>
+        </div>
         <?php else: ?>
         <a href="manage_skills.php" class="btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
         <?php endif; ?>

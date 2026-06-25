@@ -138,6 +138,52 @@ async function loadProjects(category = 'All') {
     }).join('');
 }
 
+// Category metadata for icons, colors, and descriptions
+const CATEGORY_META = {
+    'Paid Acquisition (PPC)': {
+        icon: 'fas fa-bullseye',
+        color: '#e64d7a',
+        gradient: 'linear-gradient(135deg, #e64d7a, #c75f8a)',
+        glow: 'rgba(230, 77, 122, 0.25)',
+        label: 'PPC & Paid Media'
+    },
+    'Search Engine Optimization': {
+        icon: 'fas fa-search',
+        color: '#7c5cbf',
+        gradient: 'linear-gradient(135deg, #7c5cbf, #9b6fa5)',
+        glow: 'rgba(124, 92, 191, 0.25)',
+        label: 'SEO Strategy'
+    },
+    'Marketing Tech & Analytics': {
+        icon: 'fas fa-chart-line',
+        color: '#d4a57a',
+        gradient: 'linear-gradient(135deg, #d4a57a, #c9855a)',
+        glow: 'rgba(212, 165, 122, 0.25)',
+        label: 'MarTech & Data'
+    },
+    'Retention & Email': {
+        icon: 'fas fa-envelope-open-text',
+        color: '#5bba8e',
+        gradient: 'linear-gradient(135deg, #5bba8e, #3d9e72)',
+        glow: 'rgba(91, 186, 142, 0.25)',
+        label: 'Email & Retention'
+    },
+    'AI & Automations': {
+        icon: 'fas fa-robot',
+        color: '#4db8e8',
+        gradient: 'linear-gradient(135deg, #4db8e8, #2590c9)',
+        glow: 'rgba(77, 184, 232, 0.25)',
+        label: 'AI & Automation'
+    },
+    'Content & Social Media': {
+        icon: 'fas fa-share-alt',
+        color: '#f07e3c',
+        gradient: 'linear-gradient(135deg, #f07e3c, #d4602a)',
+        glow: 'rgba(240, 126, 60, 0.25)',
+        label: 'Content & Social'
+    }
+};
+
 // Fetch and render skills grouped by category
 async function loadSkills() {
     const container = document.getElementById('skills-container');
@@ -155,27 +201,52 @@ async function loadSkills() {
         container.innerHTML = '';
         
         for (const [category, skills] of Object.entries(groupedSkills)) {
-            const skillCardsHtml = skills.map(skill => {
+            const meta = CATEGORY_META[category] || {
+                icon: 'fas fa-code',
+                color: '#c75f8a',
+                gradient: 'linear-gradient(135deg, #c75f8a, #9b6fa5)',
+                glow: 'rgba(199, 95, 138, 0.25)',
+                label: category
+            };
+
+            const skillCardsHtml = skills.map((skill, i) => {
                 const icon = skill.icon_class || 'fas fa-code';
+                const prof = skill.proficiency;
+                // Tier label based on proficiency
+                const tier = prof >= 95 ? 'Expert' : prof >= 85 ? 'Advanced' : prof >= 70 ? 'Proficient' : 'Familiar';
+                const tierClass = prof >= 95 ? 'tier-expert' : prof >= 85 ? 'tier-advanced' : prof >= 70 ? 'tier-proficient' : 'tier-familiar';
                 return `
-                    <div class="skill-item">
+                    <div class="skill-item" style="--skill-color:${meta.color};--skill-glow:${meta.glow};animation-delay:${i * 80}ms">
                         <div class="skill-info">
                             <span class="skill-name-wrapper">
-                                <i class="${icon}"></i>
-                                <span>${skill.name}</span>
+                                <span class="skill-icon-wrap" style="background:${meta.gradient};box-shadow:0 4px 12px ${meta.glow}">
+                                    <i class="${icon}"></i>
+                                </span>
+                                <span class="skill-name-text">${skill.name}</span>
                             </span>
-                            <span class="skill-proficiency">${skill.proficiency}%</span>
+                            <span class="skill-right">
+                                <span class="skill-tier ${tierClass}">${tier}</span>
+                                <span class="skill-proficiency" style="color:${meta.color}">${prof}%</span>
+                            </span>
                         </div>
                         <div class="skill-progress-bar">
-                            <div class="skill-progress-fill" data-proficiency="${skill.proficiency}"></div>
+                            <div class="skill-progress-fill" data-proficiency="${prof}" style="--bar-gradient:${meta.gradient};--bar-glow:${meta.glow}"></div>
                         </div>
                     </div>
                 `;
             }).join('');
             
             container.innerHTML += `
-                <div class="skills-category">
-                    <h3 class="skills-category-title">${category}</h3>
+                <div class="skills-category" style="--cat-color:${meta.color};--cat-glow:${meta.glow}">
+                    <div class="skills-category-header">
+                        <div class="skills-cat-icon" style="background:${meta.gradient};box-shadow:0 8px 20px ${meta.glow}">
+                            <i class="${meta.icon}"></i>
+                        </div>
+                        <div class="skills-cat-info">
+                            <h3 class="skills-category-title">${category}</h3>
+                            <span class="skills-cat-count">${skills.length} skill${skills.length !== 1 ? 's' : ''}</span>
+                        </div>
+                    </div>
                     <div class="skills-list">
                         ${skillCardsHtml}
                     </div>
@@ -188,14 +259,16 @@ async function loadSkills() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const fills = entry.target.querySelectorAll('.skill-progress-fill');
-                    fills.forEach(fill => {
-                        const prof = fill.getAttribute('data-proficiency');
-                        fill.style.width = `${prof}%`;
+                    fills.forEach((fill, i) => {
+                        setTimeout(() => {
+                            const prof = fill.getAttribute('data-proficiency');
+                            fill.style.width = `${prof}%`;
+                        }, i * 100);
                     });
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.1 });
         
         observer.observe(container);
         
