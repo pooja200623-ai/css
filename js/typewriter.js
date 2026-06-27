@@ -1,15 +1,14 @@
 /* ============================================
-   Typewriter Effect — Sofia Chen Portfolio
+   Typewriter Effect — Priya Portfolio
    ============================================ */
 (function () {
     const roles = [
-        'strategic marketing',
-        'compelling brand stories',
-        'data-driven campaigns',
-        'powerful SEO strategies',
-        'community-driven growth',
-        'high-converting content',
-        'meaningful connections',
+        'creative designs',
+        'stunning posters',
+        'social media graphics',
+        'eye-catching banners',
+        'brand visuals',
+        'promotional creatives',
     ];
 
     const el = document.getElementById('typewriter-text');
