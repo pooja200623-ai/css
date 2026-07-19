@@ -3,53 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Priya</title>
+    <title>About Priya | Creative Designer</title>
+    <meta name="description" content="About Priya - A passionate designer creating posters, social posts, banners, and promotional assets that attract attention and convert viewers into customers.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #ff8e8e;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-            margin: 0;
-            padding: 50px;
-            text-align: center;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            color: var(--text-main);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
+
         .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+            position: relative;
+            overflow: hidden;
         }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), #feca57);
+        }
+
         h1 {
-            color: #ff6b6b;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 1.1rem;
-            opacity: 0.8;
-            margin-bottom: 20px;
-        }
-        a {
+            color: var(--dark);
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+            position: relative;
             display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #ff6b6b;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: var(--primary);
+            bottom: -8px;
+            left: 25%;
+            border-radius: 2px;
+        }
+
+        p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .skill-tag {
+            background: #fff;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.15);
+            border: 1px solid rgba(255, 107, 107, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.25);
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: #fff;
             text-decoration: none;
-            border-radius: 20px;
-            font-weight: bold;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 30px 20px; }
+            h1 { font-size: 2.2rem; }
+            p { font-size: 1.05rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>About Me</h1>
-        <p>Hi, I'm Priya. I design posters, social posts, banners, and promotional assets that attract attention and convert viewers into customers.</p>
-        <p>I am always eager to embrace new changes and fresh ideas, continuously adding value and innovation to my craft.</p>
-        <a href="index.html">Back to Home</a>
+        <p>Hi, I'm Priya. A creative designer passionate about crafting visuals that speak. I specialize in designing posters, social posts, banners, and promotional assets that attract attention and convert viewers into customers.</p>
+        <p>I am always eager to embrace new changes and fresh ideas, continuously adding value and innovation to my craft to stay ahead of the design curve.</p>
+        
+        <div class="skills">
+            <span class="skill-tag">Poster Design</span>
+            <span class="skill-tag">Social Media Posts</span>
+            <span class="skill-tag">Banners</span>
+            <span class="skill-tag">Promotional Assets</span>
+            <span class="skill-tag">Visual Storytelling</span>
+        </div>
+
+        <a href="index.html" class="btn">Back to Home</a>
     </div>
 </body>
 </html>
