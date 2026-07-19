@@ -11,8 +11,8 @@
         :root {
             --primary: #00f2fe;
             --secondary: #4facfe;
-            --bg-main: #0b0f19;
-            --bg-card: rgba(22, 28, 45, 0.7);
+            --bg-main: #060913;
+            --bg-card: rgba(15, 20, 35, 0.7);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --accent: #f59e0b;
@@ -27,36 +27,46 @@
         body {
             font-family: 'Outfit', sans-serif;
             background: var(--bg-main);
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(79, 172, 254, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 85% 30%, rgba(245, 158, 11, 0.15) 0%, transparent 50%);
             color: var(--text-main);
             line-height: 1.7;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Background */
+        .ambient-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 242, 254, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.08) 0%, transparent 40%);
+            z-index: -1;
         }
 
         .container {
-            max-width: 1050px;
-            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* Hero Section */
+        .hero-section {
             background: var(--bg-card);
             backdrop-filter: blur(20px);
             padding: 60px;
-            border-radius: 30px;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+            border-radius: 40px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            animation: fadeIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-            position: relative;
             display: grid;
-            grid-template-columns: 1fr 1.6fr;
+            grid-template-columns: 1fr 1.8fr;
             gap: 60px;
             align-items: center;
         }
 
-        /* Left Column: Image */
         .profile-wrapper {
             position: relative;
             text-align: center;
@@ -66,93 +76,78 @@
         }
 
         .profile-img {
-            width: 280px;
-            height: 280px;
-            border-radius: 30px;
+            width: 300px;
+            height: 300px;
+            border-radius: 40px;
             object-fit: cover;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.05);
             position: relative;
             z-index: 2;
-            transition: all 0.5s ease;
-            filter: grayscale(20%) contrast(110%);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: grayscale(10%) contrast(110%);
         }
 
         .profile-wrapper:hover .profile-img {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-10px) rotate(-2deg) scale(1.03);
             border-color: var(--primary);
-            box-shadow: 0 25px 50px rgba(0, 242, 254, 0.2);
-            filter: grayscale(0%) contrast(110%);
+            box-shadow: 0 30px 60px rgba(0, 242, 254, 0.15);
+            filter: grayscale(0%) contrast(115%);
         }
 
         .glow-ring {
             position: absolute;
-            width: 320px;
-            height: 320px;
-            border-radius: 35px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
-            opacity: 0.5;
-            filter: blur(20px);
-            animation: pulse 4s ease-in-out infinite alternate;
+            width: 340px;
+            height: 340px;
+            border-radius: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            opacity: 0.4;
+            filter: blur(25px);
+            animation: pulse 5s ease-in-out infinite alternate;
             z-index: 1;
         }
 
         @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.3; }
-            100% { transform: scale(1.05); opacity: 0.6; }
+            0% { transform: scale(0.95) rotate(0deg); opacity: 0.3; }
+            100% { transform: scale(1.05) rotate(5deg); opacity: 0.5; }
         }
 
-        /* Right Column: Text */
-        .content {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .badge {
-            align-self: flex-start;
-            background: rgba(0, 242, 254, 0.1);
-            color: var(--primary);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border: 1px solid rgba(0, 242, 254, 0.2);
-        }
-
-        h1 {
-            font-size: 3.5rem;
+        .content h1 {
+            font-size: 4rem;
             font-weight: 800;
             line-height: 1.1;
-            letter-spacing: -1px;
-            background: linear-gradient(to right, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
         }
 
-        h1 span {
+        .content h1 span {
             background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            line-height: 1.8;
+        .lead-text {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 20px;
             font-weight: 300;
         }
 
-        /* Stats Section */
+        .quote-box {
+            border-left: 4px solid var(--primary);
+            padding: 15px 20px;
+            background: rgba(0, 242, 254, 0.05);
+            border-radius: 0 15px 15px 0;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        /* Stats */
         .stats {
             display: flex;
-            gap: 30px;
-            margin: 10px 0;
-            padding: 20px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            gap: 40px;
+            margin-bottom: 40px;
         }
 
         .stat-item {
@@ -161,143 +156,273 @@
         }
 
         .stat-num {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 800;
             color: var(--text-main);
+            line-height: 1;
         }
 
         .stat-label {
             font-size: 0.9rem;
             color: var(--primary);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 500;
+            letter-spacing: 2px;
+            margin-top: 5px;
         }
 
-        /* Buttons and Social */
+        /* Timeline & Expertise Grid */
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-title i { color: var(--primary); }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -37px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .timeline-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 10px;
+        }
+
+        /* Expertise Bars */
+        .expertise-item {
+            margin-bottom: 25px;
+        }
+
+        .expertise-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .expertise-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .expertise-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+        }
+
+        /* Buttons */
         .actions {
             display: flex;
             align-items: center;
             gap: 20px;
-            margin-top: 10px;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            padding: 16px 32px;
+            padding: 16px 35px;
             border-radius: 14px;
-            font-weight: 600;
-            font-size: 1.05rem;
+            font-weight: 700;
+            font-size: 1.1rem;
             text-decoration: none;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: #0b0f19;
-            box-shadow: 0 10px 20px rgba(0, 242, 254, 0.2);
+            color: #000;
+            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.25);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 242, 254, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 242, 254, 0.4);
             color: #fff;
         }
 
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 1.3rem;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .social-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--primary);
-            transform: translateY(-3px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(40px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 950px) {
-            .container {
+            .hero-section {
                 grid-template-columns: 1fr;
                 text-align: center;
-                padding: 40px 30px;
-                gap: 40px;
+                padding: 40px 20px;
             }
-            .badge { align-self: center; }
-            .stats { justify-content: center; text-align: left; }
-            .actions { flex-direction: column; align-items: center; }
-            .glow-ring { display: none; }
+            .stats { justify-content: center; }
+            .bottom-grid { grid-template-columns: 1fr; gap: 50px; }
+            .timeline { margin-left: 10px; }
         }
     </style>
 </head>
 <body>
+    <div class="ambient-bg"></div>
+
     <div class="container">
         
-        <div class="profile-wrapper">
-            <div class="glow-ring"></div>
-            <!-- Placeholder for actual image -->
-            <img src="https://ui-avatars.com/api/?name=Priya&background=0b0f19&color=00f2fe&size=512" alt="Priya Profile" class="profile-img">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="profile-wrapper">
+                <div class="glow-ring"></div>
+                <!-- Placeholder for actual image -->
+                <img src="https://ui-avatars.com/api/?name=Priya&background=0b0f19&color=00f2fe&size=512" alt="Priya Profile" class="profile-img">
+            </div>
+
+            <div class="content">
+                <h1>Hi, I'm <span>Priya.</span></h1>
+                <p class="lead-text">I design posters, social posts, banners, and promotional assets that do more than just attract attention—they create immersive experiences and convert viewers into loyal customers.</p>
+                
+                <div class="quote-box">
+                    "I thrive on pushing boundaries, embracing fresh ideas, and leveraging modern aesthetics to ensure your brand's visual storytelling always stays ahead of the curve."
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-num">150+</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">50+</span>
+                        <span class="stat-label">Clients</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">5yr</span>
+                        <span class="stat-label">Experience</span>
+                    </div>
+                </div>
+                
+                <div class="actions">
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fa-solid fa-arrow-left"></i> Return Home
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <div class="content">
-            <div class="badge">Creative Visionary</div>
-            <h1>Hi, I'm <span>Priya.</span></h1>
-            <p>I design posters, social posts, banners, and promotional assets that do more than just attract attention—they create immersive experiences and <strong>convert viewers into loyal customers</strong>.</p>
+        <!-- Details Grid -->
+        <div class="bottom-grid">
             
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-num">150+</span>
-                    <span class="stat-label">Projects</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-num">50+</span>
-                    <span class="stat-label">Clients</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-num">5yr</span>
-                    <span class="stat-label">Experience</span>
+            <!-- Journey / Timeline -->
+            <div>
+                <h2 class="section-title"><i class="fa-solid fa-route"></i> My Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023 - Present</div>
+                        <div class="timeline-title">Lead Visual Designer</div>
+                        <div class="timeline-desc">Leading creative campaigns, designing high-converting promotional assets, and defining visual standards for major client brands.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2020 - 2023</div>
+                        <div class="timeline-title">Freelance Art Director</div>
+                        <div class="timeline-desc">Collaborated with 50+ international clients. Specialized in social media identities and highly engaging digital banners.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2018 - 2020</div>
+                        <div class="timeline-title">Junior Graphic Designer</div>
+                        <div class="timeline-desc">Started the journey by mastering composition, typography, and color theory at a fast-paced creative agency.</div>
+                    </div>
                 </div>
             </div>
 
-            <p>I thrive on pushing boundaries, embracing fresh ideas, and leveraging modern aesthetics to ensure your brand's visual storytelling always stays ahead of the curve.</p>
-            
-            <div class="actions">
-                <a href="index.html" class="btn btn-primary">
-                    <i class="fa-solid fa-arrow-left"></i> Return Home
-                </a>
-                <div class="social-links">
-                    <a href="#" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="social-link" title="Behance"><i class="fa-brands fa-behance"></i></a>
-                    <a href="#" class="social-link" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#" class="social-link" title="Dribbble"><i class="fa-brands fa-dribbble"></i></a>
+            <!-- Expertise -->
+            <div>
+                <h2 class="section-title"><i class="fa-solid fa-fire"></i> Core Expertise</h2>
+                
+                <div class="expertise-item">
+                    <div class="expertise-header">
+                        <span>Poster & Banner Design</span>
+                        <span style="color: var(--primary);">95%</span>
+                    </div>
+                    <div class="expertise-bar-bg">
+                        <div class="expertise-bar-fill" style="width: 95%;"></div>
+                    </div>
                 </div>
+
+                <div class="expertise-item">
+                    <div class="expertise-header">
+                        <span>Social Media Campaigns</span>
+                        <span style="color: var(--primary);">90%</span>
+                    </div>
+                    <div class="expertise-bar-bg">
+                        <div class="expertise-bar-fill" style="width: 90%;"></div>
+                    </div>
+                </div>
+
+                <div class="expertise-item">
+                    <div class="expertise-header">
+                        <span>Visual Storytelling</span>
+                        <span style="color: var(--primary);">85%</span>
+                    </div>
+                    <div class="expertise-bar-bg">
+                        <div class="expertise-bar-fill" style="width: 85%;"></div>
+                    </div>
+                </div>
+
+                <div class="expertise-item">
+                    <div class="expertise-header">
+                        <span>Brand Identity Assets</span>
+                        <span style="color: var(--primary);">88%</span>
+                    </div>
+                    <div class="expertise-bar-bg">
+                        <div class="expertise-bar-fill" style="width: 88%;"></div>
+                    </div>
+                </div>
+
             </div>
+
         </div>
 
     </div>
