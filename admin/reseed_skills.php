@@ -50,6 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['confirm'] ?? '') === 'yes'
             ['UI/UX Design Basics (Figma)',         'Design & Creative', 85, 'fas fa-vector-square'],
             ['Video Editing & Motion Graphics',     'Design & Creative', 82, 'fas fa-film'],
             ['Brand Identity & Visual Storytelling','Design & Creative', 90, 'fas fa-image'],
+            ['HTML5, CSS3, JavaScript',             'Web Development', 92, 'fab fa-html5'],
+            ['React.js & Next.js',                  'Web Development', 88, 'fab fa-react'],
+            ['Node.js & API Development',           'Web Development', 85, 'fab fa-node-js'],
+            ['Tailwind CSS & Bootstrap',            'Web Development', 90, 'fab fa-css3-alt'],
+            ['PHP & MySQL Database Management',     'Web Development', 87, 'fas fa-database'],
         ];
 
         $stmt = $db->prepare('INSERT INTO skills (name, category, proficiency, icon_class) VALUES (:name, :category, :proficiency, :icon_class)');
@@ -91,13 +96,13 @@ $count = (int)$db->query('SELECT COUNT(*) FROM skills')->fetchColumn();
     </div>
     <div class="reseed-card">
         <?php if ($done): ?>
-        <div class="success-box"><i class="fas fa-check-circle fa-lg"></i><div><strong>Done!</strong> Toolkit reseeded with 35 skills across 7 categories.</div></div>
+        <div class="success-box"><i class="fas fa-check-circle fa-lg"></i><div><strong>Done!</strong> Toolkit reseeded with 40 skills across 8 categories.</div></div>
         <a href="manage_skills.php" class="btn-primary"><i class="fas fa-list"></i> View All Skills</a>
         <?php elseif ($error): ?>
         <div class="alert alert-error"><i class="fas fa-exclamation-circle"></i> <?= htmlspecialchars($error) ?></div>
         <?php else: ?>
         <h2><i class="fas fa-layer-group" style="color:#6366f1;margin-right:10px"></i>Update Full Toolkit</h2>
-        <p>Replaces all existing skills with <strong>35 updated skills</strong> across 7 categories. Currently <strong><?= $count ?> skills</strong> in database.</p>
+        <p>Replaces all existing skills with <strong>40 updated skills</strong> across 8 categories. Currently <strong><?= $count ?> skills</strong> in database.</p>
         <div class="skill-preview">
             <span><i class="fas fa-bullseye" style="color:#e64d7a;margin-right:6px"></i>Paid Acquisition (5)</span>
             <span><i class="fas fa-search" style="color:#7c5cbf;margin-right:6px"></i>SEO (5)</span>
@@ -106,6 +111,7 @@ $count = (int)$db->query('SELECT COUNT(*) FROM skills')->fetchColumn();
             <span><i class="fas fa-robot" style="color:#4db8e8;margin-right:6px"></i>AI & Automations (5) NEW</span>
             <span><i class="fas fa-share-alt" style="color:#f07e3c;margin-right:6px"></i>Content & Social (5) NEW</span>
             <span><i class="fas fa-paint-brush" style="color:#f43f5e;margin-right:6px"></i>Design & Creative (5) NEW</span>
+            <span><i class="fas fa-code" style="color:#22d3ee;margin-right:6px"></i>Web Development (5) NEW</span>
         </div>
         <div class="warning-box"><i class="fas fa-exclamation-triangle"></i><span>This will <strong>truncate</strong> the existing skills table. This action cannot be undone.</span></div>
         <form method="POST">
