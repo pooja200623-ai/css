@@ -155,60 +155,448 @@
             margin: 0;
         }
 
-        /* Poster showcase cards */
+        /* ── Design Showcase & Filter Tabs ── */
+        .design-filter-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .design-filter-tabs {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 8px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+        }
+        .design-tab {
+            padding: 10px 22px;
+            background: transparent;
+            border: none;
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .design-tab:hover {
+            color: #ffffff;
+            background: rgba(var(--primary-rgb), 0.15);
+        }
+        .design-tab.active {
+            background: linear-gradient(135deg, var(--primary-color), #ff7a50);
+            color: #ffffff;
+            box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.4);
+        }
+
+        /* ── Poster & Design Showcase Grid ── */
+        .poster-showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+        }
         .poster-card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .poster-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .poster-card-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-        }
-        .poster-card-placeholder {
-            width: 100%;
-            height: 200px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             display: flex;
             flex-direction: column;
+            position: relative;
+        }
+        .poster-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), 0 0 30px rgba(var(--primary-rgb), 0.2);
+            border-color: rgba(var(--primary-rgb), 0.4);
+        }
+        .poster-card-header {
+            position: relative;
+            height: 210px;
+            padding: 18px;
+            overflow: hidden;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            background: linear-gradient(135deg, rgba(var(--primary-rgb),0.2), rgba(var(--primary-rgb),0.05));
-            color: var(--primary-color);
-            font-size: 2rem;
         }
-        .poster-card-placeholder span {
-            font-size: 0.85rem;
-            font-weight: 600;
+        .card-visual-inner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+        .visual-badge {
+            align-self: flex-start;
+            padding: 4px 12px;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+        }
+        .visual-canvas-mockup {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(8px);
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            padding: 12px 16px;
+            border-radius: 12px;
+        }
+        .mockup-header {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 1.2px;
+        }
+        .mockup-tagline {
+            font-size: 0.75rem;
+            opacity: 0.85;
+            margin-top: 2px;
+            color: #ffffff;
+        }
+        .mockup-promo {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 3px 10px;
+            background: var(--primary-color);
+            color: #ffffff;
+            font-size: 0.78rem;
+            font-weight: 800;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+        .mockup-sub {
+            font-size: 0.7rem;
+            opacity: 0.75;
+            margin-top: 4px;
+            color: #ffffff;
+        }
+        .card-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+        .poster-card:hover .card-overlay {
+            opacity: 1;
+        }
+        .btn-quick-view {
+            padding: 10px 22px;
+            background: #ffffff;
+            color: #111111;
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-quick-view:hover {
+            transform: scale(1.06);
+            background: var(--primary-color);
+            color: #ffffff;
         }
         .poster-card-body {
             padding: 22px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.82rem;
+        }
+        .card-category {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .card-pro-tag {
+            background: rgba(255, 202, 40, 0.15);
+            color: #ffca28;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.75rem;
         }
         .poster-card-body h3 {
-            font-size: 1.1rem;
+            font-size: 1.18rem;
             font-weight: 700;
             margin-bottom: 8px;
+            line-height: 1.35;
         }
         .poster-card-body p {
             font-size: 0.92rem;
             line-height: 1.6;
             opacity: 0.8;
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 18px;
+        }
+        .card-tags span {
+            padding: 4px 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            font-size: 0.78rem;
+            opacity: 0.85;
+        }
+        .card-footer-action {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 14px;
+        }
+        .btn-card-details {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.2s ease;
+            padding: 0;
+        }
+        .btn-card-details:hover {
+            gap: 12px;
+        }
+
+        /* ── Showcase Note Banner ── */
+        .showcase-note-box {
+            margin-top: 45px;
+            background: rgba(var(--primary-rgb), 0.07);
+            border: 1px solid rgba(var(--primary-rgb), 0.2);
+            border-radius: 20px;
+            padding: 24px 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .showcase-note-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        .showcase-note-text {
+            flex: 1;
+            min-width: 250px;
+        }
+        .showcase-note-text strong {
+            font-size: 1.05rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .showcase-note-text p {
+            font-size: 0.92rem;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        /* ── Lightbox Modal Styling ── */
+        .design-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .design-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .design-modal-container {
+            background: #181818;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .design-modal-overlay.active .design-modal-container {
+            transform: scale(1);
+        }
+        .design-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #ffffff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .design-modal-close:hover {
+            background: var(--primary-color);
+            transform: rotate(90deg);
+        }
+        .design-modal-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        @media (max-width: 768px) {
+            .design-modal-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        .design-modal-visual {
+            padding: 40px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 24px 0 0 24px;
+            min-height: 350px;
+        }
+        @media (max-width: 768px) {
+            .design-modal-visual {
+                border-radius: 24px 24px 0 0;
+            }
+        }
+        .modal-mockup-card {
+            width: 100%;
+            padding: 35px 24px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border: 2px dashed rgba(255, 255, 255, 0.35);
+            border-radius: 16px;
+            text-align: center;
+            color: #ffffff;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        .design-modal-details {
+            padding: 40px 35px;
+            display: flex;
+            flex-direction: column;
+        }
+        .design-modal-details .design-badge {
+            align-self: flex-start;
+            padding: 6px 14px;
+            background: rgba(var(--primary-rgb), 0.15);
+            color: var(--primary-color);
+            border: 1px solid rgba(var(--primary-rgb), 0.3);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        .design-modal-details h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+        .modal-description {
+            font-size: 0.95rem;
+            line-height: 1.65;
+            opacity: 0.85;
+            margin-bottom: 22px;
+        }
+        .modal-specs {
+            margin-bottom: 22px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .modal-specs h4 {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        .modal-specs ul {
+            list-style: none;
+            padding: 0;
             margin: 0;
         }
-        .poster-showcase-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
+        .modal-specs li {
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        .modal-specs li:last-child {
+            margin-bottom: 0;
+        }
+        .modal-specs strong {
+            color: #ffffff;
+        }
+        .modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 26px;
+        }
+        .modal-tags span {
+            padding: 5px 12px;
+            background: rgba(var(--primary-rgb), 0.1);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .modal-ctas {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: auto;
         }
 
         /* Contact method link override */
@@ -574,59 +962,391 @@
         </div>
     </section>
 
-    <!-- Portfolio / Poster Design Showcase -->
+    <!-- Portfolio / Design Showcase Section -->
     <section id="work" class="section bg-light">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Portfolio</span>
-                <h2 class="section-title">Poster Design Showcase</h2>
-                <p class="section-desc">A selection of real design work — each one built to attract attention and drive action.</p>
+                <span class="section-tag">Portfolio & Showcase</span>
+                <h2 class="section-title">Featured Creative Designs</h2>
+                <p class="section-desc">Real design work crafted for local businesses, events, and online brands — designed to attract, engage, and convert.</p>
             </div>
 
-            <div class="poster-showcase-grid">
-                <!-- Coffee Shop -->
-                <div class="poster-card">
-                    <div class="poster-card-placeholder">
-                        <i class="fas fa-coffee"></i>
-                        <span>Coffee Shop</span>
-                    </div>
-                    <div class="poster-card-body">
-                        <h3>Coffee Shop Promotion</h3>
-                        <p>Bold headline, appetizing photography, and a clear call-to-action for limited-time offers.</p>
-                    </div>
-                </div>
-
-                <!-- Restaurant Special -->
-                <div class="poster-card">
-                    <div class="poster-card-placeholder">
-                        <i class="fas fa-utensils"></i>
-                        <span>Restaurant</span>
-                    </div>
-                    <div class="poster-card-body">
-                        <h3>Restaurant Special</h3>
-                        <p>High-impact visuals and readable menu highlights designed for quick conversions.</p>
-                    </div>
-                </div>
-
-                <!-- Fashion Sale -->
-                <div class="poster-card">
-                    <div class="poster-card-placeholder">
-                        <i class="fas fa-tshirt"></i>
-                        <span>Fashion Sale</span>
-                    </div>
-                    <div class="poster-card-body">
-                        <h3>Fashion Sale</h3>
-                        <p>Stylish composition that balances imagery and discounted pricing calls-to-action.</p>
-                    </div>
+            <!-- Filter Tabs -->
+            <div class="design-filter-wrapper">
+                <div class="design-filter-tabs">
+                    <button class="design-tab active" data-filter="all">
+                        <i class="fas fa-th-large"></i> All Designs
+                    </button>
+                    <button class="design-tab" data-filter="poster">
+                        <i class="fas fa-image"></i> Posters
+                    </button>
+                    <button class="design-tab" data-filter="social">
+                        <i class="fas fa-mobile-alt"></i> Social Media
+                    </button>
+                    <button class="design-tab" data-filter="banner">
+                        <i class="fas fa-ad"></i> Banners & Flyers
+                    </button>
+                    <button class="design-tab" data-filter="branding">
+                        <i class="fas fa-layer-group"></i> Brand Identity
+                    </button>
                 </div>
             </div>
 
-            <p class="showcase-note" style="text-align:center; margin-top:30px;">
-                <i class="fas fa-images" style="color:var(--primary-color); margin-right:6px;"></i>
-                Want screenshots or print-ready files? I can provide both for each project. <a href="#contact" style="color:var(--primary-color); font-weight:600;">Get in touch</a>.
-            </p>
+            <!-- Design Showcase Grid -->
+            <div class="poster-showcase-grid" id="design-grid">
+                <!-- 1. Coffee Shop Poster -->
+                <div class="poster-card" data-category="poster">
+                    <div class="poster-card-header" style="background: linear-gradient(135deg, #2c1810 0%, #8b4513 50%, #d2691e 100%);">
+                        <div class="card-visual-inner">
+                            <div class="visual-badge"><i class="fas fa-coffee"></i> F&B Poster</div>
+                            <div class="visual-canvas-mockup">
+                                <div class="mockup-header">SPECIAL BREW & BAKERY</div>
+                                <div class="mockup-tagline">Artisan Coffee · Fresh Daily</div>
+                                <div class="mockup-promo">BUY 1 GET 1 FREE</div>
+                                <div class="mockup-sub">Every Morning 8 AM - 11 AM</div>
+                            </div>
+                        </div>
+                        <div class="card-overlay">
+                            <button class="btn-quick-view" data-design-id="1">
+                                <i class="fas fa-expand-alt"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="poster-card-body">
+                        <div class="card-meta">
+                            <span class="card-category"><i class="fas fa-tag"></i> Poster Design</span>
+                            <span class="card-pro-tag"><i class="fas fa-star"></i> Canva Pro</span>
+                        </div>
+                        <h3>Artisan Coffee Shop Poster</h3>
+                        <p>High-contrast, appetizing promo poster designed for local cafes. Boosts morning walk-in sales with bold offers.</p>
+                        <div class="card-tags">
+                            <span>Coffee Shop</span>
+                            <span>Print-Ready 300DPI</span>
+                            <span>A3 / IG Story</span>
+                        </div>
+                        <div class="card-footer-action">
+                            <button class="btn-card-details" data-design-id="1">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Gourmet Restaurant Grand Opening Poster -->
+                <div class="poster-card" data-category="poster">
+                    <div class="poster-card-header" style="background: linear-gradient(135deg, #1a000c 0%, #7b1113 50%, #d9381e 100%);">
+                        <div class="card-visual-inner">
+                            <div class="visual-badge"><i class="fas fa-utensils"></i> Restaurant</div>
+                            <div class="visual-canvas-mockup">
+                                <div class="mockup-header">GRAND OPENING</div>
+                                <div class="mockup-tagline">Authentic Indian Flavors</div>
+                                <div class="mockup-promo">FLAT 25% OFF ON DINING</div>
+                                <div class="mockup-sub">Reserve Your Table Now</div>
+                            </div>
+                        </div>
+                        <div class="card-overlay">
+                            <button class="btn-quick-view" data-design-id="2">
+                                <i class="fas fa-expand-alt"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="poster-card-body">
+                        <div class="card-meta">
+                            <span class="card-category"><i class="fas fa-tag"></i> Poster Design</span>
+                            <span class="card-pro-tag"><i class="fas fa-star"></i> Canva Pro</span>
+                        </div>
+                        <h3>Restaurant Grand Opening Poster</h3>
+                        <p>Rich culinary graphics and vibrant color palette engineered for high-visibility promotional flyers and social posts.</p>
+                        <div class="card-tags">
+                            <span>Hospitality</span>
+                            <span>Food & Dining</span>
+                            <span>Promo Flyer</span>
+                        </div>
+                        <div class="card-footer-action">
+                            <button class="btn-card-details" data-design-id="2">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Fashion Boutique Summer Collection Sale -->
+                <div class="poster-card" data-category="social">
+                    <div class="poster-card-header" style="background: linear-gradient(135deg, #2a085c 0%, #6b21a8 50%, #db2777 100%);">
+                        <div class="card-visual-inner">
+                            <div class="visual-badge"><i class="fas fa-tshirt"></i> Fashion Post</div>
+                            <div class="visual-canvas-mockup">
+                                <div class="mockup-header">SUMMER COLLECTION '26</div>
+                                <div class="mockup-tagline">Chic & Elegant Apparel</div>
+                                <div class="mockup-promo">UP TO 50% OFF</div>
+                                <div class="mockup-sub">Shop Online & In-Store</div>
+                            </div>
+                        </div>
+                        <div class="card-overlay">
+                            <button class="btn-quick-view" data-design-id="3">
+                                <i class="fas fa-expand-alt"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="poster-card-body">
+                        <div class="card-meta">
+                            <span class="card-category"><i class="fas fa-mobile-alt"></i> Social Media</span>
+                            <span class="card-pro-tag"><i class="fas fa-star"></i> Canva Pro</span>
+                        </div>
+                        <h3>Fashion Boutique Summer Sale</h3>
+                        <p>Modern pastel aesthetic carousel ad & story post designed to increase Instagram click-throughs and boutique sales.</p>
+                        <div class="card-tags">
+                            <span>Boutique</span>
+                            <span>Instagram Post</span>
+                            <span>Ad Creative</span>
+                        </div>
+                        <div class="card-footer-action">
+                            <button class="btn-card-details" data-design-id="3">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Gym & Fitness Center Membership Banner -->
+                <div class="poster-card" data-category="banner">
+                    <div class="poster-card-header" style="background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #10b981 100%);">
+                        <div class="card-visual-inner">
+                            <div class="visual-badge"><i class="fas fa-dumbbell"></i> Fitness Banner</div>
+                            <div class="visual-canvas-mockup">
+                                <div class="mockup-header">TRANSFORM YOUR BODY</div>
+                                <div class="mockup-tagline">Join Elite Fitness Gym</div>
+                                <div class="mockup-promo">50% OFF ANNUAL PASS</div>
+                                <div class="mockup-sub">Personal Training Included</div>
+                            </div>
+                        </div>
+                        <div class="card-overlay">
+                            <button class="btn-quick-view" data-design-id="4">
+                                <i class="fas fa-expand-alt"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="poster-card-body">
+                        <div class="card-meta">
+                            <span class="card-category"><i class="fas fa-ad"></i> Banner Design</span>
+                            <span class="card-pro-tag"><i class="fas fa-star"></i> Canva Pro</span>
+                        </div>
+                        <h3>Fitness Gym Promo Web & Rollup Banner</h3>
+                        <p>High-energy contrast sports graphic banner engineered for Facebook ads, website heroes, and physical rollup standees.</p>
+                        <div class="card-tags">
+                            <span>Gym & Health</span>
+                            <span>Web Banner</span>
+                            <span>Rollup Standee</span>
+                        </div>
+                        <div class="card-footer-action">
+                            <button class="btn-card-details" data-design-id="4">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Traditional Indian Festival Celebration Poster -->
+                <div class="poster-card" data-category="poster">
+                    <div class="poster-card-header" style="background: linear-gradient(135deg, #4c1d95 0%, #831843 50%, #f59e0b 100%);">
+                        <div class="card-visual-inner">
+                            <div class="visual-badge"><i class="fas fa-holly-berry"></i> Festival Poster</div>
+                            <div class="visual-canvas-mockup">
+                                <div class="mockup-header">HAPPY DIWALI & PONGAL</div>
+                                <div class="mockup-tagline">Festive Mega Offers</div>
+                                <div class="mockup-promo">SPECIAL FESTIVAL OFFERS</div>
+                                <div class="mockup-sub">Joyful Greetings & Wishes</div>
+                            </div>
+                        </div>
+                        <div class="card-overlay">
+                            <button class="btn-quick-view" data-design-id="5">
+                                <i class="fas fa-expand-alt"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="poster-card-body">
+                        <div class="card-meta">
+                            <span class="card-category"><i class="fas fa-tag"></i> Poster Design</span>
+                            <span class="card-pro-tag"><i class="fas fa-star"></i> Canva Pro</span>
+                        </div>
+                        <h3>Traditional Indian Festival Poster</h3>
+                        <p>Vibrant cultural design featuring ornate motifs, gold accents, and festive typography tailored for Indian festival promotions.</p>
+                        <div class="card-tags">
+                            <span>Festival & Event</span>
+                            <span>Cultural Graphic</span>
+                            <span>WhatsApp Status</span>
+                        </div>
+                        <div class="card-footer-action">
+                            <button class="btn-card-details" data-design-id="5">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Tech Agency Social Media Suite -->
+                <div class="poster-card" data-category="social">
+                    <div class="poster-card-header" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #3b82f6 100%);">
+                        <div class="card-visual-inner">
+                            <div class="visual-badge"><i class="fas fa-laptop-code"></i> Tech Social</div>
+                            <div class="visual-canvas-mockup">
+                                <div class="mockup-header">SCALE YOUR BUSINESS</div>
+                                <div class="mockup-tagline">Modern Tech & Cloud Solutions</div>
+                                <div class="mockup-promo">FREE CONSULTATION</div>
+                                <div class="mockup-sub">LinkedIn & Meta Ad Suite</div>
+                            </div>
+                        </div>
+                        <div class="card-overlay">
+                            <button class="btn-quick-view" data-design-id="6">
+                                <i class="fas fa-expand-alt"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="poster-card-body">
+                        <div class="card-meta">
+                            <span class="card-category"><i class="fas fa-mobile-alt"></i> Social Media</span>
+                            <span class="card-pro-tag"><i class="fas fa-star"></i> Canva Pro</span>
+                        </div>
+                        <h3>Tech & Digital Agency Social Suite</h3>
+                        <p>Sleek dark-mode infographic layout and promo templates built to showcase services and establish digital authority.</p>
+                        <div class="card-tags">
+                            <span>Tech & SaaS</span>
+                            <span>LinkedIn Banner</span>
+                            <span>Infographic</span>
+                        </div>
+                        <div class="card-footer-action">
+                            <button class="btn-card-details" data-design-id="6">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. E-Commerce Mega Sale Web Banner -->
+                <div class="poster-card" data-category="banner">
+                    <div class="poster-card-header" style="background: linear-gradient(135deg, #7c2d12 0%, #c2410c 50%, #f97316 100%);">
+                        <div class="card-visual-inner">
+                            <div class="visual-badge"><i class="fas fa-shopping-bag"></i> E-Com Banner</div>
+                            <div class="visual-canvas-mockup">
+                                <div class="mockup-header">MEGA SAVINGS FESTIVAL</div>
+                                <div class="mockup-tagline">Flat 40% Off Sitewide</div>
+                                <div class="mockup-promo">USE CODE: PRIYA40</div>
+                                <div class="mockup-sub">Limited Time Offer</div>
+                            </div>
+                        </div>
+                        <div class="card-overlay">
+                            <button class="btn-quick-view" data-design-id="7">
+                                <i class="fas fa-expand-alt"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="poster-card-body">
+                        <div class="card-meta">
+                            <span class="card-category"><i class="fas fa-ad"></i> Banner Design</span>
+                            <span class="card-pro-tag"><i class="fas fa-star"></i> Canva Pro</span>
+                        </div>
+                        <h3>E-Commerce Flash Sale Web Banner</h3>
+                        <p>High-converting website slider banner and promotional header graphics formatted for Shopify and WordPress stores.</p>
+                        <div class="card-tags">
+                            <span>E-Commerce</span>
+                            <span>Website Banner</span>
+                            <span>Ad Graphics</span>
+                        </div>
+                        <div class="card-footer-action">
+                            <button class="btn-card-details" data-design-id="7">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Minimalist Brand Identity & Logo Kit -->
+                <div class="poster-card" data-category="branding">
+                    <div class="poster-card-header" style="background: linear-gradient(135deg, #18181b 0%, #3f3f46 50%, #d4d4d8 100%);">
+                        <div class="card-visual-inner">
+                            <div class="visual-badge"><i class="fas fa-palette"></i> Brand Identity</div>
+                            <div class="visual-canvas-mockup">
+                                <div class="mockup-header">BRAND STYLE GUIDE</div>
+                                <div class="mockup-tagline">Color Palette & Typography</div>
+                                <div class="mockup-promo">MODERN MINIMALIST</div>
+                                <div class="mockup-sub">Logo Kit & Card Template</div>
+                            </div>
+                        </div>
+                        <div class="card-overlay">
+                            <button class="btn-quick-view" data-design-id="8">
+                                <i class="fas fa-expand-alt"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="poster-card-body">
+                        <div class="card-meta">
+                            <span class="card-category"><i class="fas fa-layer-group"></i> Brand Identity</span>
+                            <span class="card-pro-tag"><i class="fas fa-star"></i> Canva Pro</span>
+                        </div>
+                        <h3>Minimalist Brand Identity & Logo Kit</h3>
+                        <p>Complete starter brand package including logo mark, typography hierarchy, custom color palette, and business card assets.</p>
+                        <div class="card-tags">
+                            <span>Brand Kit</span>
+                            <span>Logo Design</span>
+                            <span>Style Guide</span>
+                        </div>
+                        <div class="card-footer-action">
+                            <button class="btn-card-details" data-design-id="8">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Showcase Note & CTA -->
+            <div class="showcase-note-box">
+                <div class="showcase-note-icon"><i class="fas fa-magic"></i></div>
+                <div class="showcase-note-text">
+                    <strong>Need custom designs tailored to your brand?</strong>
+                    <p>All designs are custom-crafted in Canva Pro or Photoshop, supplied with source links, print-ready PDFs, and editable formats.</p>
+                </div>
+                <a href="#contact" class="btn btn-primary btn-glow" style="border-radius:30px;">Request Custom Design</a>
+            </div>
         </div>
     </section>
+
+    <!-- Design Details Modal / Lightbox -->
+    <div id="design-modal" class="design-modal-overlay" aria-hidden="true">
+        <div class="design-modal-container">
+            <button class="design-modal-close" id="modal-close-btn" aria-label="Close modal">&times;</button>
+            <div class="design-modal-content">
+                <div class="design-modal-visual" id="modal-visual-box">
+                    <!-- Populated dynamically by JS -->
+                </div>
+                <div class="design-modal-details">
+                    <span class="design-badge" id="modal-category">Poster Design</span>
+                    <h2 id="modal-title">Design Project Title</h2>
+                    <p class="modal-description" id="modal-desc">Detailed project description will appear here...</p>
+
+                    <div class="modal-specs">
+                        <h4><i class="fas fa-sliders-h"></i> Design Specifications</h4>
+                        <ul id="modal-specs-list">
+                            <!-- Populated dynamically by JS -->
+                        </ul>
+                    </div>
+
+                    <div class="modal-tags" id="modal-tags-box">
+                        <!-- Populated dynamically by JS -->
+                    </div>
+
+                    <div class="modal-ctas">
+                        <a href="https://wa.me/917530090915" target="_blank" class="btn-whatsapp" id="modal-wa-btn">
+                            <i class="fab fa-whatsapp"></i> Request Similar Design
+                        </a>
+                        <a href="mailto:padhmapriya.0005@gmail.com" class="btn btn-outline" id="modal-email-btn">
+                            <i class="fas fa-envelope"></i> Email Enquiry
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="section">
