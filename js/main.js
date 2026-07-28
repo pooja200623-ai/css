@@ -304,9 +304,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // Setup interactive design showcase filters & modal lightbox
     setupDesignShowcase();
 
+    // Setup FAQ Accordions
+    setupFAQAccordion();
+
     // Contact form handler
     setupContactForm();
 });
+
+// Setup FAQ Accordion logic
+function setupFAQAccordion() {
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.parentElement;
+            const isOpen = item.classList.contains('open');
+
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+
+            if (!isOpen) {
+                item.classList.add('open');
+            }
+        });
+    });
+}
 
 // Setup Design Showcase Filters, Keyword Search & Lightbox Modal
 function setupDesignShowcase() {

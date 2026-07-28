@@ -577,6 +577,211 @@
             font-size: 0.85rem;
         }
 
+        /* ── Floating WhatsApp Button ── */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+            z-index: 9999;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulseGlow 2.5s infinite;
+        }
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.7);
+            color: #ffffff;
+        }
+        .floating-tooltip {
+            position: absolute;
+            right: 70px;
+            background: #181818;
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .floating-whatsapp:hover .floating-tooltip {
+            opacity: 1;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+            50% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+        }
+
+        /* ── Design Transformation Cards ── */
+        .transformation-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .transformation-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 24px;
+            position: relative;
+        }
+        .transformation-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            background: rgba(var(--primary-rgb), 0.15);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+        .transformation-cols {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 14px;
+            align-items: center;
+        }
+        @media (max-width: 600px) {
+            .transformation-cols {
+                grid-template-columns: 1fr;
+            }
+        }
+        .transform-box {
+            padding: 18px 14px;
+            border-radius: 14px;
+            position: relative;
+            text-align: center;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .before-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+        .box-label {
+            position: absolute;
+            top: -10px;
+            left: 14px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+        .label-before {
+            background: #444;
+            color: #bbb;
+        }
+        .label-after {
+            background: var(--primary-color);
+            color: #ffffff;
+        }
+        .before-content h4 {
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            color: #aaa;
+        }
+        .before-content p {
+            font-size: 0.78rem;
+            opacity: 0.7;
+            margin-bottom: 6px;
+            font-style: italic;
+        }
+        .before-sub {
+            font-size: 0.68rem;
+            color: #ef4444;
+            font-weight: 600;
+        }
+        .transform-arrow {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            text-align: center;
+        }
+        .transformation-footer {
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+
+        /* ── FAQ Accordion ── */
+        .faq-accordion-wrapper {
+            max-width: 800px;
+            margin: 40px auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+        .faq-item.open {
+            border-color: var(--primary-color);
+            background: rgba(var(--primary-rgb), 0.04);
+        }
+        .faq-question {
+            width: 100%;
+            padding: 18px 24px;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.02rem;
+            font-weight: 700;
+            font-family: inherit;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .faq-icon {
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+            padding: 0 24px;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 0 24px 20px 24px;
+        }
+        .faq-answer p {
+            font-size: 0.94rem;
+            line-height: 1.65;
+            opacity: 0.85;
+            margin: 0;
+        }
+
         /* ── Lightbox Modal Styling ── */
         .design-modal-overlay {
             position: fixed;
@@ -771,9 +976,10 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#work">Designs</a></li>
+                <li><a href="#redesign">Transformations</a></li>
                 <li><a href="#process">Process</a></li>
                 <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-actions">
@@ -1702,6 +1908,133 @@
                     <a href="https://wa.me/917530090915?text=Hi%20Priya!%20I'm%20interested%20in%20the%20Full%20Brand%20Starter%20Kit." target="_blank" class="btn btn-outline" style="border-radius:30px;">Get Brand Kit</a>
                 </div>
             </div>
+    <!-- Before & After Design Transformation Showcase -->
+    <section id="redesign" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Design Transformations</span>
+                <h2 class="section-title">The Design Difference</h2>
+                <p class="section-desc">See how turning plain text into polished, brand-aligned graphics dramatically boosts visibility and customer interest.</p>
+            </div>
+
+            <div class="transformation-cards-grid">
+                <!-- Example 1: Bakery Sale Poster -->
+                <div class="transformation-card">
+                    <div class="transformation-badge"><i class="fas fa-magic"></i> Visual Upgrade</div>
+                    <div class="transformation-cols">
+                        <div class="transform-box before-box">
+                            <span class="box-label label-before">BEFORE</span>
+                            <div class="before-content">
+                                <h4>Bakery Sale Announcement</h4>
+                                <p>"Bakery Sale on Sunday. 20% off all cakes and pastries from 9 AM to 2 PM. Visit main road store."</p>
+                                <div class="before-sub">Boring plain text flyer · Hard to read · Low engagement</div>
+                            </div>
+                        </div>
+                        <div class="transform-arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+                        <div class="transform-box after-box" style="background: linear-gradient(135deg, #2c1810 0%, #8b4513 50%, #d2691e 100%);">
+                            <span class="box-label label-after">AFTER (PRIYA'S DESIGN)</span>
+                            <div class="after-content">
+                                <div class="mockup-header" style="font-size:1.1rem; color:#fff;">SUNDAY BAKERY FESTIVAL</div>
+                                <div class="mockup-promo" style="background:#ff5722; color:#fff; font-weight:800; padding:4px 12px; margin-top:8px; display:inline-block; border-radius:4px; font-size:0.8rem;">FLAT 20% OFF CAKES & PASTRIES</div>
+                                <div class="mockup-sub" style="color:rgba(255,255,255,0.9); font-size:0.75rem; margin-top:8px;">8 AM – 2 PM · Main Road Outlet</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="transformation-footer">
+                        <span><i class="fas fa-check-circle" style="color:#4ade80;"></i> Result: 3.5x More Walk-in Customers</span>
+                    </div>
+                </div>
+
+                <!-- Example 2: Gym Membership Offer -->
+                <div class="transformation-card">
+                    <div class="transformation-badge"><i class="fas fa-magic"></i> Brand Upgrade</div>
+                    <div class="transformation-cols">
+                        <div class="transform-box before-box">
+                            <span class="box-label label-before">BEFORE</span>
+                            <div class="before-content">
+                                <h4>New Gym Offer</h4>
+                                <p>"Gym membership opening offer. Join now get 50% discount. Call 9876543210 for details."</p>
+                                <div class="before-sub">Unformatted post · Zero visual contrast · High scroll-past rate</div>
+                            </div>
+                        </div>
+                        <div class="transform-arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+                        <div class="transform-box after-box" style="background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #10b981 100%);">
+                            <span class="box-label label-after">AFTER (PRIYA'S DESIGN)</span>
+                            <div class="after-content">
+                                <div class="mockup-header" style="font-size:1.1rem; color:#fff;">TRANSFORM YOUR BODY</div>
+                                <div class="mockup-promo" style="background:#10b981; color:#fff; font-weight:800; padding:4px 12px; margin-top:8px; display:inline-block; border-radius:4px; font-size:0.8rem;">50% OFF ANNUAL PASS</div>
+                                <div class="mockup-sub" style="color:rgba(255,255,255,0.9); font-size:0.75rem; margin-top:8px;">Personal Training Included</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="transformation-footer">
+                        <span><i class="fas fa-check-circle" style="color:#4ade80;"></i> Result: 400%+ Increase in Direct DMs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Got Questions?</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-desc">Everything you need to know about ordering custom Canva designs.</p>
+            </div>
+
+            <div class="faq-accordion-wrapper">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I edit the designs myself in Canva after delivery?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! Every design package includes an editable Canva Pro template link so you can easily update text, prices, or dates anytime in the future.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you provide print-ready files?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. All posters, flyers, and banners are exported in high-resolution 300 DPI CMYK PDF format ready for local printing shops.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How fast is the turnaround time?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Standard delivery is 24 to 48 hours for single posters and social media graphics. Rush 24-hour delivery is also available upon request.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do revisions work?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>I offer initial design concepts and free revisions to ensure colors, fonts, and text layout match your exact expectations before final delivery.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How can I place an order or discuss a design?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Simply click the WhatsApp button on this site or email padhmapriya.0005@gmail.com with your offer text and ideas to get started immediately!</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1898,12 +2231,19 @@
             <li><a href="#services">Services</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#work">Designs</a></li>
+            <li><a href="#redesign">Transformations</a></li>
             <li><a href="#process">Process</a></li>
             <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#faq">FAQ</a></li>
             <li><a href="#contact">Get in Touch</a></li>
         </ul>
     </div>
+
+    <!-- Floating WhatsApp Widget -->
+    <a href="https://wa.me/917530090915?text=Hi%20Priya!%20I'd%20like%20to%20discuss%20a%20design%20project." target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="floating-tooltip">Chat with Priya</span>
+    </a>
 
     <script src="js/main.js"></script>
     <script>
