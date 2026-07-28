@@ -430,6 +430,153 @@
             opacity: 0.8;
         }
 
+        /* ── Design Search Bar ── */
+        .design-search-wrapper {
+            max-width: 500px;
+            margin: 0 auto 30px auto;
+            position: relative;
+        }
+        .design-search-input {
+            width: 100%;
+            padding: 14px 22px 14px 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 30px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .design-search-input:focus {
+            border-color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.25);
+        }
+        .design-search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.05rem;
+            pointer-events: none;
+        }
+
+        /* ── Design Workflow Process Steps ── */
+        .process-steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+        .process-step-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 30px 24px;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .process-step-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(var(--primary-rgb), 0.3);
+        }
+        .step-num {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--primary-color), #ff7a50);
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+            box-shadow: 0 6px 16px rgba(var(--primary-rgb), 0.4);
+        }
+        .process-step-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        .process-step-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        /* ── Pricing & Packages Cards ── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+            margin-top: 40px;
+        }
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 35px 28px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .pricing-card.popular {
+            border-color: var(--primary-color);
+            background: rgba(var(--primary-rgb), 0.06);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+        }
+        .pricing-popular-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: #ffffff;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .pricing-card h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+        .pricing-card p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        .pricing-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+            flex-grow: 1;
+        }
+        .pricing-list li {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.9;
+        }
+        .pricing-list li i {
+            color: #4ade80;
+            font-size: 0.85rem;
+        }
+
         /* ── Lightbox Modal Styling ── */
         .design-modal-overlay {
             position: fixed;
@@ -624,7 +771,9 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#work">Designs</a></li>
-                <li><a href="#testimonials">Client Feedback</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-actions">
@@ -992,10 +1141,16 @@
                 </div>
             </div>
 
+            <!-- Keyword Search Input -->
+            <div class="design-search-wrapper">
+                <i class="fas fa-search design-search-icon"></i>
+                <input type="text" id="design-search-input" class="design-search-input" placeholder="Search designs by keyword (e.g. Coffee, Sale, Festival, Logo)...">
+            </div>
+
             <!-- Design Showcase Grid -->
             <div class="poster-showcase-grid" id="design-grid">
                 <!-- 1. Coffee Shop Poster -->
-                <div class="poster-card" data-category="poster">
+                <div class="poster-card" data-category="poster" data-keywords="coffee cafe bakery poster drink food bogo brew">
                     <div class="poster-card-header" style="background: linear-gradient(135deg, #2c1810 0%, #8b4513 50%, #d2691e 100%);">
                         <div class="card-visual-inner">
                             <div class="visual-badge"><i class="fas fa-coffee"></i> F&B Poster</div>
@@ -1033,7 +1188,7 @@
                 </div>
 
                 <!-- 2. Gourmet Restaurant Grand Opening Poster -->
-                <div class="poster-card" data-category="poster">
+                <div class="poster-card" data-category="poster" data-keywords="restaurant dining food opening flyer menu traditional indian">
                     <div class="poster-card-header" style="background: linear-gradient(135deg, #1a000c 0%, #7b1113 50%, #d9381e 100%);">
                         <div class="card-visual-inner">
                             <div class="visual-badge"><i class="fas fa-utensils"></i> Restaurant</div>
@@ -1071,7 +1226,7 @@
                 </div>
 
                 <!-- 3. Fashion Boutique Summer Collection Sale -->
-                <div class="poster-card" data-category="social">
+                <div class="poster-card" data-category="social" data-keywords="fashion boutique summer sale clothing instagram post carousel ad">
                     <div class="poster-card-header" style="background: linear-gradient(135deg, #2a085c 0%, #6b21a8 50%, #db2777 100%);">
                         <div class="card-visual-inner">
                             <div class="visual-badge"><i class="fas fa-tshirt"></i> Fashion Post</div>
@@ -1109,7 +1264,7 @@
                 </div>
 
                 <!-- 4. Gym & Fitness Center Membership Banner -->
-                <div class="poster-card" data-category="banner">
+                <div class="poster-card" data-category="banner" data-keywords="gym fitness workout sports banner rollup standee facebook ad">
                     <div class="poster-card-header" style="background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #10b981 100%);">
                         <div class="card-visual-inner">
                             <div class="visual-badge"><i class="fas fa-dumbbell"></i> Fitness Banner</div>
@@ -1147,7 +1302,7 @@
                 </div>
 
                 <!-- 5. Traditional Indian Festival Celebration Poster -->
-                <div class="poster-card" data-category="poster">
+                <div class="poster-card" data-category="poster" data-keywords="festival diwali pongal indian festive gold cultural event whatsapp">
                     <div class="poster-card-header" style="background: linear-gradient(135deg, #4c1d95 0%, #831843 50%, #f59e0b 100%);">
                         <div class="card-visual-inner">
                             <div class="visual-badge"><i class="fas fa-holly-berry"></i> Festival Poster</div>
@@ -1185,7 +1340,7 @@
                 </div>
 
                 <!-- 6. Tech Agency Social Media Suite -->
-                <div class="poster-card" data-category="social">
+                <div class="poster-card" data-category="social" data-keywords="tech agency linkedin dark mode infographic corporate post saas">
                     <div class="poster-card-header" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #3b82f6 100%);">
                         <div class="card-visual-inner">
                             <div class="visual-badge"><i class="fas fa-laptop-code"></i> Tech Social</div>
@@ -1223,7 +1378,7 @@
                 </div>
 
                 <!-- 7. E-Commerce Mega Sale Web Banner -->
-                <div class="poster-card" data-category="banner">
+                <div class="poster-card" data-category="banner" data-keywords="ecommerce shopify web banner slider flash sale discount coupon promo">
                     <div class="poster-card-header" style="background: linear-gradient(135deg, #7c2d12 0%, #c2410c 50%, #f97316 100%);">
                         <div class="card-visual-inner">
                             <div class="visual-badge"><i class="fas fa-shopping-bag"></i> E-Com Banner</div>
@@ -1261,7 +1416,7 @@
                 </div>
 
                 <!-- 8. Minimalist Brand Identity & Logo Kit -->
-                <div class="poster-card" data-category="branding">
+                <div class="poster-card" data-category="branding" data-keywords="brand identity logo kit style guide business card color palette font">
                     <div class="poster-card-header" style="background: linear-gradient(135deg, #18181b 0%, #3f3f46 50%, #d4d4d8 100%);">
                         <div class="card-visual-inner">
                             <div class="visual-badge"><i class="fas fa-palette"></i> Brand Identity</div>
@@ -1297,6 +1452,158 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 9. Real Estate Luxury Property Flyer -->
+                <div class="poster-card" data-category="poster" data-keywords="real estate luxury villa property flyer house building architectural print">
+                    <div class="poster-card-header" style="background: linear-gradient(135deg, #0b132b 0%, #1c2541 50%, #3a506b 100%);">
+                        <div class="card-visual-inner">
+                            <div class="visual-badge"><i class="fas fa-home"></i> Real Estate</div>
+                            <div class="visual-canvas-mockup">
+                                <div class="mockup-header">LUXURY VILLA HOMES</div>
+                                <div class="mockup-tagline">Gated Community · Premium Amenities</div>
+                                <div class="mockup-promo">BOOK A SITE VISIT</div>
+                                <div class="mockup-sub">Special Pre-Launch Rates</div>
+                            </div>
+                        </div>
+                        <div class="card-overlay">
+                            <button class="btn-quick-view" data-design-id="9">
+                                <i class="fas fa-expand-alt"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="poster-card-body">
+                        <div class="card-meta">
+                            <span class="card-category"><i class="fas fa-tag"></i> Poster Design</span>
+                            <span class="card-pro-tag"><i class="fas fa-star"></i> Canva Pro</span>
+                        </div>
+                        <h3>Real Estate Luxury Property Flyer</h3>
+                        <p>Sophisticated corporate flyer layout for real estate developers showcasing property floor plans and luxury features.</p>
+                        <div class="card-tags">
+                            <span>Real Estate</span>
+                            <span>Property Flyer</span>
+                            <span>High-Res Print</span>
+                        </div>
+                        <div class="card-footer-action">
+                            <button class="btn-card-details" data-design-id="9">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. Beauty & Spa Skincare Glow Social Post -->
+                <div class="poster-card" data-category="social" data-keywords="beauty spa skincare glow wellness salon cosmetic instagram post">
+                    <div class="poster-card-header" style="background: linear-gradient(135deg, #4a154b 0%, #611f69 50%, #e01e5a 100%);">
+                        <div class="card-visual-inner">
+                            <div class="visual-badge"><i class="fas fa-spa"></i> Beauty & Spa</div>
+                            <div class="visual-canvas-mockup">
+                                <div class="mockup-header">GLOW SKINCARE TREATMENT</div>
+                                <div class="mockup-tagline">Natural Organic Botanicals</div>
+                                <div class="mockup-promo">30% OFF FIRST FACIAL</div>
+                                <div class="mockup-sub">Book Appointment Today</div>
+                            </div>
+                        </div>
+                        <div class="card-overlay">
+                            <button class="btn-quick-view" data-design-id="10">
+                                <i class="fas fa-expand-alt"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="poster-card-body">
+                        <div class="card-meta">
+                            <span class="card-category"><i class="fas fa-mobile-alt"></i> Social Media</span>
+                            <span class="card-pro-tag"><i class="fas fa-star"></i> Canva Pro</span>
+                        </div>
+                        <h3>Beauty & Spa Skincare Glow Promo Post</h3>
+                        <p>Soft luxury cosmetic promotional post designed to showcase spa therapies and drive salon appointment bookings.</p>
+                        <div class="card-tags">
+                            <span>Beauty & Spa</span>
+                            <span>Instagram Post</span>
+                            <span>Wellness Promo</span>
+                        </div>
+                        <div class="card-footer-action">
+                            <button class="btn-card-details" data-design-id="10">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 11. Music Concert & DJ Night Event Banner -->
+                <div class="poster-card" data-category="banner" data-keywords="music concert dj night event party banner festival live show ticket">
+                    <div class="poster-card-header" style="background: linear-gradient(135deg, #13001e 0%, #3a0066 50%, #7b00ff 100%);">
+                        <div class="card-visual-inner">
+                            <div class="visual-badge"><i class="fas fa-music"></i> Music Event</div>
+                            <div class="visual-canvas-mockup">
+                                <div class="mockup-header">NEON NIGHTS CONCERT</div>
+                                <div class="mockup-tagline">Live DJ & EDM Festival</div>
+                                <div class="mockup-promo">GET EARLY BIRD TICKETS</div>
+                                <div class="mockup-sub">Saturday · Doors Open 7 PM</div>
+                            </div>
+                        </div>
+                        <div class="card-overlay">
+                            <button class="btn-quick-view" data-design-id="11">
+                                <i class="fas fa-expand-alt"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="poster-card-body">
+                        <div class="card-meta">
+                            <span class="card-category"><i class="fas fa-ad"></i> Banner Design</span>
+                            <span class="card-pro-tag"><i class="fas fa-star"></i> Canva Pro</span>
+                        </div>
+                        <h3>Music Concert & DJ Night Event Banner</h3>
+                        <p>Vibrant neon music event promotional banner with bold glowing typography designed for nightlife & ticket sales.</p>
+                        <div class="card-tags">
+                            <span>Music & DJ</span>
+                            <span>Event Poster</span>
+                            <span>Neon Graphics</span>
+                        </div>
+                        <div class="card-footer-action">
+                            <button class="btn-card-details" data-design-id="11">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12. Luxury Royal Jewellery Collection Kit -->
+                <div class="poster-card" data-category="branding" data-keywords="jewellery gold luxury bridal collection diamond brand kit elegant photoshoot">
+                    <div class="poster-card-header" style="background: linear-gradient(135deg, #1c1917 0%, #44403c 50%, #d97706 100%);">
+                        <div class="card-visual-inner">
+                            <div class="visual-badge"><i class="fas fa-gem"></i> Luxury Brand</div>
+                            <div class="visual-canvas-mockup">
+                                <div class="mockup-header">ROYAL BRIDAL COLLECTION</div>
+                                <div class="mockup-tagline">Handcrafted Gold & Diamonds</div>
+                                <div class="mockup-promo">EXCLUSIVE PREVIEW</div>
+                                <div class="mockup-sub">Visit Showroom Today</div>
+                            </div>
+                        </div>
+                        <div class="card-overlay">
+                            <button class="btn-quick-view" data-design-id="12">
+                                <i class="fas fa-expand-alt"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="poster-card-body">
+                        <div class="card-meta">
+                            <span class="card-category"><i class="fas fa-layer-group"></i> Brand Identity</span>
+                            <span class="card-pro-tag"><i class="fas fa-star"></i> Canva Pro</span>
+                        </div>
+                        <h3>Luxury Royal Jewellery Collection Kit</h3>
+                        <p>High-end golden typography and editorial layout designed for luxury jewellery showrooms and festive bridal launch campaigns.</p>
+                        <div class="card-tags">
+                            <span>Jewellery Brand</span>
+                            <span>Bridal Collection</span>
+                            <span>Luxury Editorial</span>
+                        </div>
+                        <div class="card-footer-action">
+                            <button class="btn-card-details" data-design-id="12">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Showcase Note & CTA -->
@@ -1307,6 +1614,93 @@
                     <p>All designs are custom-crafted in Canva Pro or Photoshop, supplied with source links, print-ready PDFs, and editable formats.</p>
                 </div>
                 <a href="#contact" class="btn btn-primary btn-glow" style="border-radius:30px;">Request Custom Design</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Workflow Process Section -->
+    <section id="process" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">How I Work</span>
+                <h2 class="section-title">Design Creation Process</h2>
+                <p class="section-desc">A simple, transparent 4-step workflow to turn your ideas into high-converting visual assets.</p>
+            </div>
+
+            <div class="process-steps-grid">
+                <div class="process-step-card">
+                    <div class="step-num">1</div>
+                    <h3><i class="fas fa-comments" style="color:var(--primary-color); margin-right:8px;"></i> Brief & Idea</h3>
+                    <p>We discuss your brand goals, target audience, preferred colors, and key text offers via WhatsApp or Email.</p>
+                </div>
+                <div class="process-step-card">
+                    <div class="step-num">2</div>
+                    <h3><i class="fas fa-pencil-alt" style="color:var(--primary-color); margin-right:8px;"></i> Initial Drafts</h3>
+                    <p>I create 2–3 unique initial visual concepts in Canva Pro / Photoshop within 24–48 hours for your review.</p>
+                </div>
+                <div class="process-step-card">
+                    <div class="step-num">3</div>
+                    <h3><i class="fas fa-sliders-h" style="color:var(--primary-color); margin-right:8px;"></i> Revisions & Polish</h3>
+                    <p>We refine colors, font hierarchy, alignment, and text formatting based on your exact feedback.</p>
+                </div>
+                <div class="process-step-card">
+                    <div class="step-num">4</div>
+                    <h3><i class="fas fa-file-export" style="color:var(--primary-color); margin-right:8px;"></i> Final Delivery</h3>
+                    <p>You receive high-res 300DPI Print PDFs, digital PNGs/JPEGs, and editable Canva Pro templates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Packages & Pricing Section -->
+    <section id="pricing" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Simple Packages</span>
+                <h2 class="section-title">Design Packages & Pricing</h2>
+                <p class="section-desc">Clear, affordable pricing tailored for small businesses, retail shops, and local brands across India.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Single Design Package</h3>
+                    <p>Ideal for one-off promotions, store openings, or festival offer posters.</p>
+                    <ul class="pricing-list">
+                        <li><i class="fas fa-check-circle"></i> 1 High-Impact Poster / Banner</li>
+                        <li><i class="fas fa-check-circle"></i> 2 Initial Design Concepts</li>
+                        <li><i class="fas fa-check-circle"></i> Print PDF (300DPI) + PNG</li>
+                        <li><i class="fas fa-check-circle"></i> 1 Free Round of Revisions</li>
+                        <li><i class="fas fa-check-circle"></i> 24–48 Hour Fast Turnaround</li>
+                    </ul>
+                    <a href="https://wa.me/917530090915?text=Hi%20Priya!%20I'm%20interested%20in%20the%20Single%20Design%20Package." target="_blank" class="btn btn-outline" style="border-radius:30px;">Order Single Design</a>
+                </div>
+
+                <div class="pricing-card popular">
+                    <span class="pricing-popular-badge">Most Popular</span>
+                    <h3>Social Media Bundle</h3>
+                    <p>Best for active brands wanting consistent monthly visual content.</p>
+                    <ul class="pricing-list">
+                        <li><i class="fas fa-check-circle"></i> 10 Custom Social Media Posts</li>
+                        <li><i class="fas fa-check-circle"></i> Matching WhatsApp Statuses</li>
+                        <li><i class="fas fa-check-circle"></i> Canva Pro Editable Links</li>
+                        <li><i class="fas fa-check-circle"></i> Brand Color & Font Styling</li>
+                        <li><i class="fas fa-check-circle"></i> Free Revisions Included</li>
+                    </ul>
+                    <a href="https://wa.me/917530090915?text=Hi%20Priya!%20I'm%20interested%20in%20the%20Social%20Media%20Bundle." target="_blank" class="btn btn-primary btn-glow" style="border-radius:30px;">Get Social Bundle</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Full Brand Starter Kit</h3>
+                    <p>Complete starter solution for new shops, boutiques & startups.</p>
+                    <ul class="pricing-list">
+                        <li><i class="fas fa-check-circle"></i> Custom Logo Design Kit</li>
+                        <li><i class="fas fa-check-circle"></i> Brand Style Guide & Colors</li>
+                        <li><i class="fas fa-check-circle"></i> Business Card & Letterhead</li>
+                        <li><i class="fas fa-check-circle"></i> 5 Promotional Social Posts</li>
+                        <li><i class="fas fa-check-circle"></i> Full Master File Delivery</li>
+                    </ul>
+                    <a href="https://wa.me/917530090915?text=Hi%20Priya!%20I'm%20interested%20in%20the%20Full%20Brand%20Starter%20Kit." target="_blank" class="btn btn-outline" style="border-radius:30px;">Get Brand Kit</a>
+                </div>
             </div>
         </div>
     </section>
@@ -1504,7 +1898,9 @@
             <li><a href="#services">Services</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#work">Designs</a></li>
-            <li><a href="#testimonials">Client Feedback</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
             <li><a href="#contact">Get in Touch</a></li>
         </ul>
     </div>

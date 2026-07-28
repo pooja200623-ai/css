@@ -168,6 +168,90 @@ const DESIGN_DATA = {
         mockupTagline: "Color Palette & Typography",
         mockupPromo: "MODERN MINIMALIST",
         mockupSub: "Logo Kit & Card Template"
+    },
+    9: {
+        title: "Real Estate Luxury Property Flyer",
+        category: "Poster Design",
+        categoryClass: "poster",
+        gradient: "linear-gradient(135deg, #0b132b 0%, #1c2541 50%, #3a506b 100%)",
+        icon: "fa-home",
+        industry: "Real Estate & Architecture",
+        description: "Sophisticated corporate flyer layout for real estate developers showcasing property floor plans, villa photography, and luxury amenities.",
+        specs: [
+            { label: "Deliverables", value: "A4 Tri-fold Brochure, Print Poster & Social Media Ad" },
+            { label: "Dimensions", value: "1080 x 1350 px & A4 Print File (300 DPI)" },
+            { label: "Primary Tools", value: "Canva Pro & Photoshop" },
+            { label: "Color Palette", value: "Deep Sapphire (#0B132B), Slate Blue (#3A506B), Pure White" },
+            { label: "Turnaround Time", value: "2 Days" }
+        ],
+        tags: ["Real Estate", "Property Flyer", "Architecture", "Print Ready", "Canva Pro"],
+        mockupHeader: "LUXURY VILLA HOMES",
+        mockupTagline: "Gated Community · Premium Amenities",
+        mockupPromo: "BOOK A SITE VISIT",
+        mockupSub: "Special Pre-Launch Rates"
+    },
+    10: {
+        title: "Beauty & Spa Skincare Glow Promo Post",
+        category: "Social Media Graphics",
+        categoryClass: "social",
+        gradient: "linear-gradient(135deg, #4a154b 0%, #611f69 50%, #e01e5a 100%)",
+        icon: "fa-spa",
+        industry: "Beauty, Salon & Wellness",
+        description: "Soft luxury cosmetic promotional post designed to showcase organic skincare therapies and drive salon appointment bookings.",
+        specs: [
+            { label: "Deliverables", value: "3 Instagram Post Templates + Story + WhatsApp Banner" },
+            { label: "Dimensions", value: "1080 x 1080 px & 1080 x 1920 px" },
+            { label: "Primary Tools", value: "Canva Pro" },
+            { label: "Color Palette", value: "Plum Purple (#4A154B), Berry Crimson (#E01E5A), Blush Pink" },
+            { label: "Turnaround Time", value: "2 Days" }
+        ],
+        tags: ["Beauty & Spa", "Instagram Post", "Skincare", "Wellness", "Canva Template"],
+        mockupHeader: "GLOW SKINCARE TREATMENT",
+        mockupTagline: "Natural Organic Botanicals",
+        mockupPromo: "30% OFF FIRST FACIAL",
+        mockupSub: "Book Appointment Today"
+    },
+    11: {
+        title: "Music Concert & DJ Night Event Banner",
+        category: "Banner Design",
+        categoryClass: "banner",
+        gradient: "linear-gradient(135deg, #13001e 0%, #3a0066 50%, #7b00ff 100%)",
+        icon: "fa-music",
+        industry: "Entertainment & Live Events",
+        description: "Vibrant neon music event promotional banner featuring bold typography and glowing accents engineered for event ticket sales & nightlife promotion.",
+        specs: [
+            { label: "Deliverables", value: "Facebook Cover Banner, Ticket Poster, Instagram Reel Cover" },
+            { label: "Dimensions", value: "1200 x 628 px & A3 Print Format" },
+            { label: "Primary Tools", value: "Canva Pro & Photoshop" },
+            { label: "Color Palette", value: "Electric Violet (#7B00FF), Neon Pink, Deep Void (#13001E)" },
+            { label: "Turnaround Time", value: "2 Days" }
+        ],
+        tags: ["Music & DJ", "Event Poster", "Neon Banner", "Nightlife", "Canva Pro"],
+        mockupHeader: "NEON NIGHTS CONCERT",
+        mockupTagline: "Live DJ & EDM Festival",
+        mockupPromo: "GET EARLY BIRD TICKETS",
+        mockupSub: "Saturday · Doors Open 7 PM"
+    },
+    12: {
+        title: "Luxury Royal Jewellery Collection Kit",
+        category: "Brand Identity",
+        categoryClass: "branding",
+        gradient: "linear-gradient(135deg, #1c1917 0%, #44403c 50%, #d97706 100%)",
+        icon: "fa-gem",
+        industry: "Luxury Retail & Jewellery",
+        description: "High-end golden typography and editorial layout designed for luxury jewellery showrooms and festive bridal launch campaigns.",
+        specs: [
+            { label: "Deliverables", value: "Editorial Banner, Print Tag, Social Media Kit & Lookbook" },
+            { label: "Dimensions", value: "High-Res Vector Files & Digital Layouts" },
+            { label: "Primary Tools", value: "Canva Pro & Illustrator" },
+            { label: "Color Palette", value: "Deep Obsidian (#1C1917), Royal Gold (#D97706), Ivory" },
+            { label: "Turnaround Time", value: "3 Days" }
+        ],
+        tags: ["Jewellery Brand", "Bridal Collection", "Gold & Diamond", "Luxury Editorial", "Canva Pro"],
+        mockupHeader: "ROYAL BRIDAL COLLECTION",
+        mockupTagline: "Handcrafted Gold & Diamonds",
+        mockupPromo: "EXCLUSIVE PREVIEW",
+        mockupSub: "Visit Showroom Today"
     }
 };
 
@@ -210,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.service-card, .poster-card, .skill-group-card, .testimonial-card, .goal-card').forEach((el, i) => {
+    document.querySelectorAll('.service-card, .poster-card, .skill-group-card, .testimonial-card, .goal-card, .process-step-card, .pricing-card').forEach((el, i) => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = `opacity 0.5s ease ${i * 80}ms, transform 0.5s ease ${i * 80}ms`;
@@ -224,39 +308,56 @@ document.addEventListener('DOMContentLoaded', () => {
     setupContactForm();
 });
 
-// Setup Design Showcase Filters & Lightbox Modal
+// Setup Design Showcase Filters, Keyword Search & Lightbox Modal
 function setupDesignShowcase() {
     const filterTabs = document.querySelectorAll('.design-tab');
     const designCards = document.querySelectorAll('#design-grid .poster-card');
+    const searchInput = document.getElementById('design-search-input');
     const modalOverlay = document.getElementById('design-modal');
     const modalCloseBtn = document.getElementById('modal-close-btn');
+
+    let currentCategoryFilter = 'all';
+    let currentSearchKeyword = '';
+
+    function filterCards() {
+        designCards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            const cardKeywords = (card.getAttribute('data-keywords') || '') + ' ' + card.innerText.toLowerCase();
+
+            const matchesCategory = (currentCategoryFilter === 'all' || cardCategory === currentCategoryFilter);
+            const matchesSearch = (!currentSearchKeyword || cardKeywords.toLowerCase().includes(currentSearchKeyword));
+
+            if (matchesCategory && matchesSearch) {
+                card.style.display = 'flex';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 50);
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 300);
+            }
+        });
+    }
 
     if (filterTabs.length > 0 && designCards.length > 0) {
         filterTabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 filterTabs.forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
-
-                const filterValue = tab.getAttribute('data-filter');
-
-                designCards.forEach(card => {
-                    const cardCategory = card.getAttribute('data-category');
-
-                    if (filterValue === 'all' || cardCategory === filterValue) {
-                        card.style.display = 'flex';
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                        }, 50);
-                    } else {
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(20px)';
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                        }, 300);
-                    }
-                });
+                currentCategoryFilter = tab.getAttribute('data-filter');
+                filterCards();
             });
+        });
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            currentSearchKeyword = e.target.value.trim().toLowerCase();
+            filterCards();
         });
     }
 
