@@ -782,6 +782,145 @@
             margin: 0;
         }
 
+        /* ── Calculator Estimator ── */
+        .calculator-wrapper {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 40px;
+        }
+        @media (max-width: 768px) {
+            .calculator-wrapper {
+                grid-template-columns: 1fr;
+                padding: 24px;
+            }
+        }
+        .calculator-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .calc-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .calc-group label {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .calc-select {
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+        .calc-select:focus {
+            border-color: var(--primary-color);
+        }
+        .calc-select option {
+            background: #181818;
+            color: #ffffff;
+        }
+        .calculator-summary {
+            background: rgba(var(--primary-rgb), 0.08);
+            border: 1px solid rgba(var(--primary-rgb), 0.25);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .calc-summary-badge {
+            align-self: flex-start;
+            padding: 4px 12px;
+            background: var(--primary-color);
+            color: #ffffff;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        .calc-price-display {
+            margin-bottom: 20px;
+        }
+        .calc-price-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            display: block;
+        }
+        .calc-price-value {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            line-height: 1.1;
+        }
+        .calc-summary-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 24px 0;
+        }
+        .calc-summary-list li {
+            font-size: 0.88rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.9;
+        }
+        .calc-summary-list li i {
+            color: var(--primary-color);
+        }
+
+        /* ── Deliverables Grid ── */
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+        .deliverable-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 30px 24px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .deliverable-card:hover {
+            transform: translateY(-6px);
+        }
+        .deliv-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+        .deliverable-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        .deliverable-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.8;
+            margin: 0;
+        }
+
         /* ── Lightbox Modal Styling ── */
         .design-modal-overlay {
             position: fixed;
@@ -1240,6 +1379,8 @@
                     <div class="skill-pill-list">
                         <span class="skill-pill">HTML5 / CSS3</span>
                         <span class="skill-pill">React.js</span>
+                        <span class="skill-pill">Next.js</span>
+                        <span class="skill-pill">React Native</span>
                         <span class="skill-pill">Node.js Basics</span>
                         <span class="skill-pill">Tailwind CSS</span>
                         <span class="skill-pill">Bootstrap</span>
@@ -1248,7 +1389,6 @@
                         <span class="skill-pill">Basic JavaScript</span>
                         <span class="skill-pill">SEO Basics</span>
                         <span class="skill-pill">Web Hosting</span>
-                        <span class="skill-pill">New Sample Skill</span>
                     </div>
                 </div>
                 <!-- AI Tools -->
@@ -1259,7 +1399,9 @@
                     </h3>
                     <div class="skill-pill-list">
                         <span class="skill-pill">ChatGPT / Gemini</span>
+                        <span class="skill-pill">Claude AI</span>
                         <span class="skill-pill">Midjourney</span>
+                        <span class="skill-pill">Stable Diffusion</span>
                         <span class="skill-pill">Prompt Engineering</span>
                         <span class="skill-pill">AI Automation</span>
                         <span class="skill-pill">Content Generation</span>
@@ -2033,6 +2175,97 @@
                     <div class="faq-answer">
                         <p>Simply click the WhatsApp button on this site or email padhmapriya.0005@gmail.com with your offer text and ideas to get started immediately!</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    <!-- Interactive Design Project Estimator -->
+    <section id="calculator" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Instant Quote</span>
+                <h2 class="section-title">Design Project Estimator</h2>
+                <p class="section-desc">Select your design requirements to get an instant estimated timeline and project quote.</p>
+            </div>
+
+            <div class="calculator-wrapper">
+                <div class="calculator-form">
+                    <div class="calc-group">
+                        <label for="calc-type"><i class="fas fa-layer-group"></i> Design Category</label>
+                        <select id="calc-type" class="calc-select">
+                            <option value="poster" data-price="500">Poster / Flyer Design (Print & Digital)</option>
+                            <option value="social" data-price="400">Social Media Post / Story Creative</option>
+                            <option value="banner" data-price="600">Web Banner / Standee Rollup Banner</option>
+                            <option value="branding" data-price="1500">Complete Brand Kit & Logo Setup</option>
+                        </select>
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="calc-quantity"><i class="fas fa-cubes"></i> Number of Designs</label>
+                        <select id="calc-quantity" class="calc-select">
+                            <option value="1">1 Design</option>
+                            <option value="3">3 Designs (10% Off)</option>
+                            <option value="5">5 Designs (15% Off)</option>
+                            <option value="10">10 Designs Pack (25% Off)</option>
+                        </select>
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="calc-speed"><i class="fas fa-tachometer-alt"></i> Delivery Speed</label>
+                        <select id="calc-speed" class="calc-select">
+                            <option value="standard">Standard Delivery (48 Hours)</option>
+                            <option value="express">Express Delivery (24 Hours)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="calculator-summary">
+                    <div class="calc-summary-badge"><i class="fas fa-check-circle"></i> Instant Estimate</div>
+                    <div class="calc-price-display">
+                        <span class="calc-price-label">Estimated Cost</span>
+                        <div class="calc-price-value" id="calc-price-val">₹500</div>
+                    </div>
+                    <ul class="calc-summary-list">
+                        <li><i class="fas fa-clock"></i> Delivery Time: <strong id="calc-time-val">48 Hours</strong></li>
+                        <li><i class="fas fa-file-pdf"></i> Deliverables: <strong>300DPI Print PDF + PNG + Canva Link</strong></li>
+                        <li><i class="fas fa-sync-alt"></i> Revisions: <strong>Free Revisions Included</strong></li>
+                    </ul>
+                    <a href="https://wa.me/917530090915" target="_blank" class="btn btn-primary btn-glow btn-block" id="calc-wa-btn" style="border-radius:30px; padding:14px 28px;">
+                        <i class="fab fa-whatsapp"></i> Book Order on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deliverables & File Formats Grid -->
+    <section id="deliverables" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">What You Receive</span>
+                <h2 class="section-title">Deliverables & File Formats</h2>
+                <p class="section-desc">Every design order includes complete production-ready master files formatted for both print and digital media.</p>
+            </div>
+
+            <div class="deliverables-grid">
+                <div class="deliverable-card">
+                    <div class="deliv-icon" style="color: #ef4444;"><i class="fas fa-file-pdf"></i></div>
+                    <h3>Print-Ready PDF</h3>
+                    <p>High-resolution 300 DPI CMYK PDFs with bleed lines formatted for local printing presses.</p>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliv-icon" style="color: #3b82f6;"><i class="fas fa-file-image"></i></div>
+                    <h3>High-Res PNG & JPEG</h3>
+                    <p>Optimized RGB web graphics sized perfectly for Instagram, Facebook, LinkedIn & WhatsApp.</p>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliv-icon" style="color: #06b6d4;"><i class="fas fa-link"></i></div>
+                    <h3>Editable Canva Link</h3>
+                    <p>Direct Canva Pro template links allowing you to edit text, dates, or prices anytime.</p>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliv-icon" style="color: #f59e0b;"><i class="fas fa-vector-square"></i></div>
+                    <h3>Transparent PNG Logos</h3>
+                    <p>High-resolution transparent background assets for watermark overlays and brand stamps.</p>
                 </div>
             </div>
         </div>

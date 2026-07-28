@@ -307,6 +307,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Setup FAQ Accordions
     setupFAQAccordion();
 
+    // Setup Design Calculator Estimator
+    setupCalculator();
+
     // Contact form handler
     setupContactForm();
 });
@@ -325,6 +328,47 @@ function setupFAQAccordion() {
             }
         });
     });
+}
+
+// Setup Interactive Design Calculator
+function setupCalculator() {
+    const calcType = document.getElementById('calc-type');
+    const calcQuantity = document.getElementById('calc-quantity');
+    const calcSpeed = document.getElementById('calc-speed');
+    const priceDisplay = document.getElementById('calc-price-val');
+    const timeDisplay = document.getElementById('calc-time-val');
+    const waBtn = document.getElementById('calc-wa-btn');
+
+    if (!calcType || !calcQuantity || !calcSpeed || !priceDisplay) return;
+
+    function updateEstimate() {
+        const selectedOption = calcType.options[calcType.selectedIndex];
+        const basePrice = parseInt(selectedOption.getAttribute('data-price') || '500');
+        const qty = parseInt(calcQuantity.value || '1');
+        const speed = calcSpeed.value;
+
+        let discount = 1;
+        if (qty === 3) discount = 0.90;
+        else if (qty === 5) discount = 0.85;
+        else if (qty >= 10) discount = 0.75;
+
+        let totalPrice = Math.round(basePrice * qty * discount);
+        let hours = (qty > 5) ? 72 : (speed === 'express' ? 24 : 48);
+
+        priceDisplay.textContent = `₹${totalPrice}`;
+        if (timeDisplay) timeDisplay.textContent = `${hours} Hours`;
+
+        if (waBtn) {
+            const categoryName = selectedOption.text.split('(')[0].trim();
+            const text = encodeURIComponent(`Hi Priya! I used your Design Estimator on your website. I need: ${qty} x ${categoryName} (${speed === 'express' ? 'Express 24h' : 'Standard 48h'}). Estimated total: ₹${totalPrice}.`);
+            waBtn.href = `https://wa.me/917530090915?text=${text}`;
+        }
+    }
+
+    calcType.addEventListener('change', updateEstimate);
+    calcQuantity.addEventListener('change', updateEstimate);
+    calcSpeed.addEventListener('change', updateEstimate);
+    updateEstimate();
 }
 
 // Setup Design Showcase Filters, Keyword Search & Lightbox Modal
