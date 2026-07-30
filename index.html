@@ -80,8 +80,10 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .skill-group-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(var(--primary-rgb), 0.25);
+            border-color: rgba(var(--primary-rgb), 0.5);
+            background: rgba(var(--primary-rgb), 0.05);
         }
         .skill-group-card h3 {
             font-size: 1.15rem;
@@ -1481,6 +1483,22 @@
                         <span class="skill-pill">Team Leadership</span>
                         <span class="skill-pill">Stakeholder Management</span>
                         <span class="skill-pill">Risk Mitigation</span>
+                    </div>
+                </div>
+                <!-- Content Creation -->
+                <div class="skill-group-card">
+                    <h3>
+                        <i class="fas fa-pen-nib"></i>
+                        Content Creation
+                    </h3>
+                    <div class="skill-pill-list">
+                        <span class="skill-pill">Copywriting</span>
+                        <span class="skill-pill">Blogging</span>
+                        <span class="skill-pill">Scriptwriting</span>
+                        <span class="skill-pill">Storytelling</span>
+                        <span class="skill-pill">Technical Writing</span>
+                        <span class="skill-pill">Proofreading</span>
+                        <span class="skill-pill">Editing</span>
                     </div>
                 </div>
             </div>
