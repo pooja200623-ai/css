@@ -2542,12 +2542,21 @@
                             <input type="tel" id="phone" placeholder="+91 98765 43210">
                         </div>
                         <div class="form-group">
-                            <label for="subject">Type of Design Needed</label>
-                            <input type="text" id="subject" placeholder="e.g. Poster Design, Social Media Post...">
+                            <label>Type of Design Needed</label>
+                            <div class="design-chips" id="design-chips">
+                                <span class="chip" data-value="Logo Design">🎨 Logo Design</span>
+                                <span class="chip" data-value="Social Media Post">📱 Social Media Post</span>
+                                <span class="chip" data-value="Poster / Flyer">🖼️ Poster / Flyer</span>
+                                <span class="chip" data-value="Brand Kit">✨ Brand Kit</span>
+                                <span class="chip" data-value="Thumbnail">▶️ Thumbnail</span>
+                                <span class="chip" data-value="Other">💡 Other</span>
+                            </div>
+                            <input type="hidden" id="subject" id="subject-hidden">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="position:relative;">
                             <label for="message">Your Message</label>
-                            <textarea id="message" rows="5" required placeholder="Tell me about your business, what you need, and any ideas or preferences you have..."></textarea>
+                            <textarea id="message" rows="5" required placeholder="Tell me about your business, what you need, and any ideas or preferences you have..." maxlength="500" oninput="document.getElementById('char-count').textContent = this.value.length"></textarea>
+                            <span id="char-count" class="char-counter">0</span><span class="char-counter">/500</span>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block btn-glow" id="contact-submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
                         <div id="form-status" class="form-status"></div>

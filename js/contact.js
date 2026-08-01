@@ -1,6 +1,20 @@
 /* ============================================
    Contact Form — AJAX Submission
    ============================================ */
+
+/* --- Design Chips --- */
+document.addEventListener('DOMContentLoaded', function () {
+    const chips = document.querySelectorAll('#design-chips .chip');
+    const subjectInput = document.getElementById('subject');
+    chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+            chips.forEach(function (c) { c.classList.remove('active'); });
+            chip.classList.add('active');
+            if (subjectInput) subjectInput.value = chip.getAttribute('data-value');
+        });
+    });
+});
+
 (function () {
     const form = document.getElementById('contact-form');
     if (!form) return;
