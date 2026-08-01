@@ -1527,6 +1527,67 @@ img { display: block; max-width: 100%; }
 /* =========================================
    Contact Section
    ========================================= */
+
+/* Floating background orbs */
+.contact-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+    animation: orbFloat 8s ease-in-out infinite alternate;
+}
+.contact-orb--1 {
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(235,94,40,0.18) 0%, transparent 70%);
+    top: -100px; right: -80px;
+}
+.contact-orb--2 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(130,80,255,0.14) 0%, transparent 70%);
+    bottom: -60px; left: -60px;
+    animation-delay: -4s;
+}
+@keyframes orbFloat {
+    from { transform: translateY(0px) scale(1); }
+    to   { transform: translateY(30px) scale(1.08); }
+}
+.contact-wrapper { position: relative; z-index: 1; }
+
+/* Quick Stats */
+.contact-stats {
+    display: flex;
+    gap: 28px;
+    margin-bottom: 36px;
+    padding: 20px 24px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    backdrop-filter: blur(8px);
+}
+.contact-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.contact-stat__number {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent-light, #ff8a65);
+    line-height: 1;
+    background: linear-gradient(135deg, #ff8a65, #eb5e28);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.contact-stat__label {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
 .contact-wrapper {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
