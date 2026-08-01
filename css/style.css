@@ -1602,8 +1602,6 @@ img { display: block; max-width: 100%; }
     box-shadow: 0 20px 40px rgba(0,0,0,0.25);
     padding: 48px;
     border-radius: var(--radius);
-    box-shadow: var(--shadow-xl);
-    border: 1px solid var(--border);
 }
 
 .form-row {
@@ -1628,20 +1626,26 @@ img { display: block; max-width: 100%; }
 .form-group textarea {
     width: 100%;
     padding: 14px 16px;
-    background: var(--bg-secondary);
-    border: 1.5px solid var(--border);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-sm);
     font-family: var(--font-body);
     font-size: 15px;
     color: var(--text-main);
-    transition: all 0.22s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     outline: none;
+}
+.form-group input:hover,
+.form-group textarea:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 .form-group input:focus,
 .form-group textarea:focus {
     border-color: var(--accent);
-    background: var(--bg-card);
-    box-shadow: 0 0 0 3px var(--accent-glow);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 15px rgba(235, 94, 40, 0.3); /* Adjust rgba color if var(--accent) glow is different */
+    transform: translateY(-2px);
 }
 .form-group textarea { resize: vertical; min-height: 120px; }
 
