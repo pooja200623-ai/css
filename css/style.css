@@ -1588,6 +1588,83 @@ img { display: block; max-width: 100%; }
     letter-spacing: 0.06em;
 }
 
+/* Animated Gradient Border */
+.contact-form-gradient-border {
+    position: relative;
+    border-radius: calc(var(--radius) + 2px);
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(235,94,40,0.7), rgba(130,80,255,0.5), rgba(235,94,40,0.3));
+    background-size: 300% 300%;
+    animation: gradientShift 5s ease infinite;
+}
+@keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.contact-form-container {
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-dark, #0f0c13);
+}
+
+/* Process Steps (What happens next) */
+.process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 0;
+}
+.process-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 14px 0;
+    position: relative;
+}
+.process-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 17px;
+    top: 46px;
+    width: 2px;
+    height: calc(100% - 20px);
+    background: linear-gradient(to bottom, rgba(235,94,40,0.4), transparent);
+}
+.process-step__icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(235,94,40,0.2), rgba(130,80,255,0.15));
+    border: 1px solid rgba(235,94,40,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--accent, #eb5e28);
+    letter-spacing: 0.03em;
+}
+.process-step__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 6px;
+}
+.process-step__text strong {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+}
+.process-step__text span {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+}
+
 .contact-wrapper {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
